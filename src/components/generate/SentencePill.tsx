@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect } from 'react'
+import { useRef, useCallback } from 'react'
 import type { Clue } from '../../models/sentence'
 import './GenerateComponents.css'
 
@@ -88,7 +88,7 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
   }
 
   const handleSelect = useCallback(() => {
-    // Use setTimeout to ensure selection is finalized (longer timeout for mobile)
+    // Use setTimeout to ensure selection is finalized
     setTimeout(() => {
       const selection = window.getSelection()
       if (!selection || selection.rangeCount === 0) {
@@ -142,51 +142,14 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
       if (start >= 0 && end > start && end <= text.length && actualSelectedText.length > 0) {
         onSelection(sourceId, start, end, actualSelectedText)
       }
-    }, 200) // Increased timeout for mobile to ensure selection is finalized
+    }, 10)
   }, [text, sourceId, onSelection, sortedClues])
-
-  // Use selectionchange event for mobile support with debouncing
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null
-    
-    const handleSelectionChange = () => {
-      // Debounce to avoid firing too frequently during selection
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-      
-      timeoutId = setTimeout(() => {
-        const selection = window.getSelection()
-        if (selection && selection.rangeCount > 0 && pillRef.current) {
-          const range = selection.getRangeAt(0)
-          if (pillRef.current.contains(range.commonAncestorContainer)) {
-            // Selection is in our pill, trigger handleSelect
-            handleSelect()
-          }
-        }
-      }, 150) // Debounce delay
-    }
-
-    document.addEventListener('selectionchange', handleSelectionChange)
-    return () => {
-      document.removeEventListener('selectionchange', handleSelectionChange)
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-    }
-  }, [handleSelect])
-
-  const handleTouchEnd = useCallback(() => {
-    // On mobile, selection happens after touch, wait for selection to complete
-    setTimeout(() => handleSelect(), 300)
-  }, [handleSelect])
 
   return (
     <div 
       ref={pillRef}
       className="pill sentence-pill"
       onMouseUp={handleSelect}
-      onTouchEnd={handleTouchEnd}
     >
       {renderSentenceWithSegments()}
     </div>
