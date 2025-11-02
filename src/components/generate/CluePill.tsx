@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react'
+import { useRef, useCallback, useEffect } from 'react'
 import type { Clue } from '../../models/sentence'
 import './GenerateComponents.css'
 
@@ -96,7 +96,7 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
   }
 
   const handleSelect = useCallback(() => {
-    // Use setTimeout to ensure selection is finalized
+    // Use setTimeout to ensure selection is finalized (longer timeout for mobile)
     setTimeout(() => {
       const selection = window.getSelection()
       if (!selection || selection.rangeCount === 0) {
@@ -148,8 +148,44 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
       if (start >= 0 && end > start && end <= displayClue.text.length && actualSelectedText.length > 0) {
         onSelection(displayClue.id, start, end, actualSelectedText)
       }
-    }, 10)
+    }, 200) // Increased timeout for mobile to ensure selection is finalized
   }, [displayClue.text, displayClue.id, onSelection, sortedNestedClues])
+
+  // Use selectionchange event for mobile support with debouncing
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null
+    
+    const handleSelectionChange = () => {
+      // Debounce to avoid firing too frequently during selection
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+      
+      timeoutId = setTimeout(() => {
+        const selection = window.getSelection()
+        if (selection && selection.rangeCount > 0 && pillRef.current) {
+          const range = selection.getRangeAt(0)
+          if (pillRef.current.contains(range.commonAncestorContainer)) {
+            // Selection is in our pill, trigger handleSelect
+            handleSelect()
+          }
+        }
+      }, 150) // Debounce delay
+    }
+
+    document.addEventListener('selectionchange', handleSelectionChange)
+    return () => {
+      document.removeEventListener('selectionchange', handleSelectionChange)
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [handleSelect])
+
+  const handleTouchEnd = useCallback(() => {
+    // On mobile, selection happens after touch, wait for selection to complete
+    setTimeout(() => handleSelect(), 300)
+  }, [handleSelect])
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdate(displayClue.id, { text: e.target.value })
@@ -161,6 +197,7 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
         ref={pillRef}
         className="pill clue-pill"
         onMouseUp={handleSelect}
+        onTouchEnd={handleTouchEnd}
       >
         {renderClueWithSegments()}
         <button 

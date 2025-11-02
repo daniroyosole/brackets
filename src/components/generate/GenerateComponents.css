@@ -13,9 +13,14 @@
   border: 2px solid #000000;
   font-size: 1rem;
   user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
   cursor: text;
+  -webkit-touch-callout: default;
   transition: all 0.2s ease;
   position: relative;
+  touch-action: manipulation;
 }
 
 .pill:hover {
@@ -31,6 +36,10 @@
   color: #000000;
   font-weight: 400;
   cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .pill-text-used {
@@ -38,6 +47,10 @@
   text-decoration: line-through;
   cursor: not-allowed;
   opacity: 0.5;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .sentence-pill {
