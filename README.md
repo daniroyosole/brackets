@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# Brackets
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A word puzzle game where players solve clues hidden within sentences. Each clue can contain nested clues, creating a multi-level puzzle experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Play Mode**: Solve clues by entering answers. Clues become eligible when all nested clues are solved.
+- **Generate Mode**: Create custom puzzles by selecting text from sentences and adding clues recursively.
+- **Nested Clues**: Build puzzles with unlimited levels of nested clues.
+- **Minimal Design**: Clean, black-and-white newspaper-style interface.
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open `http://localhost:5173` in your browser.
+
+### Build
+
+```bash
+npm run build
+```
+
+## How to Play
+
+### Play Mode
+
+1. Enter a sentence in JSON format (or use the default example).
+2. The sentence appears with clues wrapped in brackets `[ ]`.
+3. Eligible clues (those with no nested clues or all nested clues solved) are highlighted.
+4. Enter answers in the input field.
+5. Correct answers reveal the clue's value and unlock any parent clues.
+
+### Generate Mode
+
+1. Enter your main sentence and click Submit.
+2. Select a portion of text from the sentence.
+3. Enter a clue description (what players will see).
+4. Click Create Clue to add it to the puzzle.
+5. Repeat for nested clues by selecting text within existing clue descriptions.
+6. View the JSON result at the bottom and copy it to use in Play Mode.
+
+## Sentence Format
+
+A sentence is represented as a JSON object:
+
+```json
+{
+  "text": "Primera pista de prova",
+  "clues": [
+    {
+      "text": "Amazón pagant més",
+      "value": "Prime",
+      "startIndex": 0,
+      "clues": [
+        {
+          "text": "President valencià",
+          "value": "mazón",
+          "startIndex": 1
+        }
+      ]
+    }
+  ]
+}
+```
+
+- `text`: The sentence or clue description
+- `value`: The answer players must guess
+- `startIndex`: Position where the clue appears in the parent text
+- `clues`: Optional array of nested clues
+
+## Technologies
+
+- React 19
+- TypeScript
+- Vite
+- React Router
+
+## License
+
+Private project
