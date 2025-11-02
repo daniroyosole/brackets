@@ -1,0 +1,268 @@
+.pills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  font-size: 1rem;
+  user-select: text;
+  cursor: text;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.pill:hover {
+  background-color: #fafafa;
+}
+
+.pill-text {
+  flex: 1;
+  color: #000000;
+}
+
+.pill-text-normal {
+  color: #000000;
+  font-weight: 400;
+  cursor: text;
+}
+
+.pill-text-used {
+  color: #666666;
+  text-decoration: line-through;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sentence-pill {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #000000;
+}
+
+.sentence-pill .pill-text {
+  color: #000000;
+  font-weight: 600;
+}
+
+.clue-pill {
+  border: 2px solid #000000;
+}
+
+.clue-pill .pill-text {
+  color: #000000;
+}
+
+.pill-delete-btn {
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-weight: 700;
+}
+
+.pill-delete-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.clue-pill-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.pill-edit {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
+.pill-edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  font-family: inherit;
+}
+
+.pill-edit-input:focus {
+  outline: none;
+  background-color: #fafafa;
+}
+
+.nested-pills {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selection-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+  z-index: 1000;
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #000000;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #000000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.close-card-btn {
+  background: none;
+  border: 2px solid #000000;
+  color: #000000;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.close-card-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.card-content {
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.card-field {
+  margin-bottom: 1.5rem;
+}
+
+.card-field:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.card-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.selected-value {
+  padding: 0.75rem;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #000000;
+  word-break: break-all;
+}
+
+.clue-text-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  font-family: inherit;
+}
+
+.clue-text-input:focus {
+  outline: none;
+  background-color: #fafafa;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.create-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.create-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.cancel-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .selection-card {
+    min-width: 90vw;
+    max-width: 90vw;
+  }
+
+  .pill {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
