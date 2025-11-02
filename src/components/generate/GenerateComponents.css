@@ -254,6 +254,44 @@
   color: #ffffff;
 }
 
+.sentence-pill-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selection-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 0.5rem;
+}
+
+.create-clue-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+.create-clue-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.create-clue-button:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0 #000000;
+}
+
 @media (max-width: 768px) {
   .pills-container {
     gap: 0.75rem;
@@ -265,6 +303,13 @@
     min-height: 44px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+  }
+
+  .create-clue-button {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+    box-shadow: 3px 3px 0 #000000;
   }
 
   .sentence-pill {
@@ -394,6 +439,12 @@
 
   .card-content {
     padding: 0.875rem;
+  }
+
+  .create-clue-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    min-height: 48px;
   }
 }
 

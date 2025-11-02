@@ -49,15 +49,30 @@
   color: #000000;
 }
 
-.preview-section {
-  margin-bottom: 2rem;
+.generate-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid #000000;
+  margin-bottom: 2rem;
 }
 
-.preview-section h2 {
+.preview-section {
   margin-top: 0;
+}
+
+.preview-section-header,
+.json-preview-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
+}
+
+.preview-section h2,
+.json-preview-section h2 {
+  margin: 0;
   font-size: 1.5rem;
   color: #000000;
   font-weight: 700;
@@ -65,16 +80,29 @@
   letter-spacing: 0.05em;
 }
 
-.preview-content {
-  background-color: #ffffff;
+.collapse-toggle-btn {
+  background: none;
   border: 2px solid #000000;
-  padding: 1.5rem;
+  color: #000000;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: all 0.2s ease;
 }
 
-.generate-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.collapse-toggle-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.preview-content {
+  background-color: #ffffff;
 }
 
 .sentence-form {
@@ -118,19 +146,7 @@
 
 
 .json-preview-section {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 2px solid #000000;
-}
-
-.json-preview-section h2 {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: #000000;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .json-preview-container {
@@ -187,18 +203,22 @@
     min-height: 44px;
   }
 
-  .preview-section {
+  .generate-content {
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
   }
 
-  .preview-section h2 {
+  .preview-section-header,
+  .json-preview-section-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .preview-section h2,
+  .json-preview-section h2 {
     font-size: 1.25rem;
   }
 
   .preview-content {
-    padding: 1rem;
-    font-size: 0.9rem;
     overflow-x: auto;
   }
 
@@ -228,13 +248,10 @@
     min-height: 48px;
   }
 
-  .json-preview-section {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-  }
-
-  .json-preview-section h2 {
-    font-size: 1.25rem;
+  .collapse-toggle-btn {
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 1.1rem;
   }
 
   .json-preview-container {
@@ -254,11 +271,6 @@
 
   .generate-header h1 {
     font-size: 1.25rem;
-  }
-
-  .preview-content {
-    padding: 0.75rem;
-    font-size: 0.85rem;
   }
 
   .sentence-input {

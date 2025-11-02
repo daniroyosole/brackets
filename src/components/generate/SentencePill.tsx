@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react'
+import { useRef, useCallback, useState, useEffect } from 'react'
 import type { Clue } from '../../models/sentence'
 import './GenerateComponents.css'
 
@@ -15,21 +15,25 @@ interface SentencePillProps {
   onSelection: (sourceId: string | null, start: number, end: number, text: string) => void
 }
 
+interface SelectionInfo {
+  start: number
+  end: number
+  text: string
+}
+
 export const SentencePill = ({ text, sourceId, rootClues, onSelection }: SentencePillProps) => {
   const pillRef = useRef<HTMLDivElement>(null)
+  const [currentSelection, setCurrentSelection] = useState<SelectionInfo | null>(null)
 
-  // Sort clues by startIndex
   const sortedClues = [...rootClues].sort((a, b) => a.startIndex - b.startIndex)
-  
-  // Build segments of the sentence: normal text and used (grayed-out) text
+
   const renderSentenceWithSegments = () => {
     const segments: Array<{ text: string; isUsed: boolean; start: number; end: number }> = []
     
     if (sortedClues.length === 0) {
-      // No clues, return the full text as one segment with data attributes
       return (
         <span className="pill-text">
-          <span className="pill-text-normal" data-start={0} data-end={text.length}>
+          <span className="pill-text-normal">
             {text}
           </span>
         </span>
@@ -39,7 +43,6 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
     let lastIndex = 0
     
     for (const clue of sortedClues) {
-      // Add text before this clue
       if (clue.startIndex > lastIndex) {
         segments.push({
           text: text.substring(lastIndex, clue.startIndex),
@@ -48,8 +51,7 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
           end: clue.startIndex
         })
       }
-      
-      // Add the clue's covered text (grayed out)
+
       const clueEnd = clue.startIndex + clue.value.length
       segments.push({
         text: text.substring(clue.startIndex, clueEnd),
@@ -57,11 +59,10 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
         start: clue.startIndex,
         end: clueEnd
       })
-      
+
       lastIndex = clueEnd
     }
-    
-    // Add remaining text after all clues
+
     if (lastIndex < text.length) {
       segments.push({
         text: text.substring(lastIndex),
@@ -77,8 +78,6 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
           <span
             key={idx}
             className={segment.isUsed ? 'pill-text-used' : 'pill-text-normal'}
-            data-start={segment.start}
-            data-end={segment.end}
           >
             {segment.text}
           </span>
@@ -87,71 +86,117 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
     )
   }
 
-  const handleSelect = useCallback(() => {
-    // Use setTimeout to ensure selection is finalized
-    setTimeout(() => {
-      const selection = window.getSelection()
-      if (!selection || selection.rangeCount === 0) {
-        return
-      }
+  const handleSelectionChange = useCallback(() => {
+    const selection = window.getSelection()
+    if (!selection || selection.rangeCount === 0) {
+      setCurrentSelection(null)
+      return
+    }
 
-      const range = selection.getRangeAt(0)
-      if (!pillRef.current?.contains(range.commonAncestorContainer)) {
-        return
-      }
+    const range = selection.getRangeAt(0)
+    if (!pillRef.current?.contains(range.commonAncestorContainer)) {
+      setCurrentSelection(null)
+      return
+    }
 
-      // Get selected text from the pill
-      const selectedTextRaw = selection.toString().trim()
-      if (!selectedTextRaw || selectedTextRaw.length === 0) {
-        return
-      }
+    const selectedTextRaw = selection.toString().trim()
+    if (!selectedTextRaw || selectedTextRaw.length === 0) {
+      setCurrentSelection(null)
+      return
+    }
 
-      // Calculate start position
-      const textNode = pillRef.current.querySelector('.pill-text')
-      if (!textNode) {
-        return
-      }
+    const textNode = pillRef.current.querySelector('.pill-text')
+    if (!textNode) {
+      setCurrentSelection(null)
+      return
+    }
+    const startRange = range.cloneRange()
+    startRange.selectNodeContents(textNode)
+    startRange.setEnd(range.startContainer, range.startOffset)
+    const start = startRange.toString().length
 
-      // Simple approach: count characters from start of textNode to selection start
-      const startRange = range.cloneRange()
-      startRange.selectNodeContents(textNode)
-      startRange.setEnd(range.startContainer, range.startOffset)
-      const start = startRange.toString().length
+    const endRange = range.cloneRange()
+    endRange.selectNodeContents(textNode)
+    endRange.setEnd(range.endContainer, range.endOffset)
+    const end = endRange.toString().length
 
-      // Calculate end position
-      const endRange = range.cloneRange()
-      endRange.selectNodeContents(textNode)
-      endRange.setEnd(range.endContainer, range.endOffset)
-      const end = endRange.toString().length
+    const overlapsWithUsed = sortedClues.some(clue => {
+      const clueEnd = clue.startIndex + clue.value.length
+      return !(end <= clue.startIndex || start >= clueEnd)
+    })
 
-      // Check if selection overlaps with any used clue
-      const overlapsWithUsed = sortedClues.some(clue => {
-        const clueEnd = clue.startIndex + clue.value.length
-        return !(end <= clue.startIndex || start >= clueEnd)
+    if (overlapsWithUsed) {
+      selection.removeAllRanges()
+      setCurrentSelection(null)
+      return
+    }
+
+    const actualSelectedText = text.substring(start, end).trim()
+
+    if (start >= 0 && end > start && end <= text.length && actualSelectedText.length > 0) {
+      setCurrentSelection({
+        start,
+        end,
+        text: actualSelectedText
       })
+    } else {
+      setCurrentSelection(null)
+    }
+  }, [text, sortedClues])
 
-      if (overlapsWithUsed) {
-        // Don't allow selection of used parts
-        selection.removeAllRanges()
-        return
-      }
+  const handleCreateClue = useCallback(() => {
+    if (currentSelection) {
+      onSelection(sourceId, currentSelection.start, currentSelection.end, currentSelection.text)
+      setCurrentSelection(null)
+      window.getSelection()?.removeAllRanges()
+    }
+  }, [currentSelection, sourceId, onSelection])
 
-      // Get the actual selected text from the original text (using start/end indices)
-      const actualSelectedText = text.substring(start, end).trim()
-      
-      if (start >= 0 && end > start && end <= text.length && actualSelectedText.length > 0) {
-        onSelection(sourceId, start, end, actualSelectedText)
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (
+        currentSelection &&
+        pillRef.current &&
+        !pillRef.current.contains(e.target as Node)
+      ) {
+        const target = e.target as HTMLElement
+        if (target.closest('.create-clue-button')) {
+          return
+        }
+        setCurrentSelection(null)
+        window.getSelection()?.removeAllRanges()
       }
-    }, 10)
-  }, [text, sourceId, onSelection, sortedClues])
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [currentSelection])
 
   return (
-    <div 
-      ref={pillRef}
-      className="pill sentence-pill"
-      onMouseUp={handleSelect}
-    >
-      {renderSentenceWithSegments()}
+    <div className="sentence-pill-wrapper">
+      <div 
+        ref={pillRef}
+        className="pill sentence-pill"
+        onMouseUp={handleSelectionChange}
+        onTouchEnd={handleSelectionChange}
+      >
+        {renderSentenceWithSegments()}
+      </div>
+      {currentSelection && (
+        <div className="selection-button-container">
+          <button
+            className="create-clue-button"
+            onClick={handleCreateClue}
+            type="button"
+          >
+            Create Clue
+          </button>
+        </div>
+      )}
     </div>
   )
 }

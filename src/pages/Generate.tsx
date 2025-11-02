@@ -24,6 +24,8 @@ const Generate = () => {
   const [isSentenceLocked, setIsSentenceLocked] = useState(false)
   const [clues, setClues] = useState<Map<string, ClueNode>>(new Map())
   const [selections, setSelections] = useState<Map<string, SelectionState & { clueText: string }>>(new Map())
+  const [isPreviewExpanded, setIsPreviewExpanded] = useState(false)
+  const [isJsonExpanded, setIsJsonExpanded] = useState(false)
 
   const handleSubmitSentence = (e: React.FormEvent) => {
     e.preventDefault()
@@ -283,17 +285,6 @@ const Generate = () => {
         </div>
       </div>
 
-      <div className="preview-section">
-        <h2>Preview</h2>
-        <div className="preview-content">
-          <SentenceComponent 
-            sentence={sentence}
-            solvedClues={new Set()}
-            eligibleCluePaths={new Set()}
-          />
-        </div>
-      </div>
-
       <div className="generate-content">
         {!isSentenceLocked ? (
           <form onSubmit={handleSubmitSentence} className="sentence-form">
@@ -345,13 +336,46 @@ const Generate = () => {
         })()}
       </div>
 
-      <div className="json-preview-section">
-        <h2>JSON Result</h2>
-        <div className="json-preview-container">
-          <pre className="json-preview-content">
-            {JSON.stringify(sentence, null, 2)}
-          </pre>
+      <div className="preview-section">
+        <div className="preview-section-header">
+          <h2>Preview</h2>
+          <button
+            onClick={() => setIsPreviewExpanded(!isPreviewExpanded)}
+            className="collapse-toggle-btn"
+            type="button"
+          >
+            {isPreviewExpanded ? '▼' : '▶'}
+          </button>
         </div>
+        {isPreviewExpanded && (
+          <div className="preview-content">
+            <SentenceComponent 
+              sentence={sentence}
+              solvedClues={new Set()}
+              eligibleCluePaths={new Set()}
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="json-preview-section">
+        <div className="json-preview-section-header">
+          <h2>JSON Result</h2>
+          <button
+            onClick={() => setIsJsonExpanded(!isJsonExpanded)}
+            className="collapse-toggle-btn"
+            type="button"
+          >
+            {isJsonExpanded ? '▼' : '▶'}
+          </button>
+        </div>
+        {isJsonExpanded && (
+          <div className="json-preview-container">
+            <pre className="json-preview-content">
+              {JSON.stringify(sentence, null, 2)}
+            </pre>
+          </div>
+        )}
       </div>
     </div>
   )

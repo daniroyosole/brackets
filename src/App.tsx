@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
 import Game from './pages/Game'
 import Generate from './pages/Generate'
@@ -11,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Game />} />
         <Route path="/generate" element={<Generate />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   )
