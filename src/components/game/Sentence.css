@@ -31,3 +31,34 @@
   color: #ffffff;
 }
 
+@media (max-width: 768px) {
+  .sentence {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+  }
+
+  .clue-eligible {
+    padding: 3px 5px;
+    margin: 0 2px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sentence {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
+  .clue-eligible {
+    padding: 4px 6px;
+    font-size: 0.95rem;
+  }
+}
+

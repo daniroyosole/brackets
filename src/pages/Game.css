@@ -174,3 +174,101 @@
   transform: scale(0.98);
 }
 
+@media (max-width: 768px) {
+  .game-container {
+    padding: 0 0.5rem;
+  }
+
+  .game-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .game-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .reset-game-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-height: 48px;
+  }
+
+  .json-input-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .json-input-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .json-input-section label {
+    font-size: 0.85rem;
+  }
+
+  .collapse-toggle-btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.5rem;
+  }
+
+  .sentence-json-input {
+    padding: 0.875rem;
+    font-size: 0.8rem;
+    min-height: 150px;
+  }
+
+  .json-error,
+  .json-locked-message {
+    padding: 0.625rem;
+    font-size: 0.8rem;
+  }
+
+  .game-content {
+    margin-top: 2rem;
+  }
+
+  .answer-form {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .answer-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    min-width: unset;
+    min-height: 48px;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .sentence-json-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .answer-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
