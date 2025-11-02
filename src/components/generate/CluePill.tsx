@@ -91,28 +91,25 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
 
   const handleSelectionChange = useCallback(() => {
     const selection = window.getSelection()
-    if (!selection || selection.rangeCount === 0) {
-      setCurrentSelection(null)
+    if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
       return
     }
 
     const range = selection.getRangeAt(0)
     if (!pillRef.current?.contains(range.commonAncestorContainer)) {
-      setCurrentSelection(null)
       return
     }
 
     const selectedText = selection.toString().trim()
     if (!selectedText) {
-      setCurrentSelection(null)
       return
     }
 
     const textNode = pillRef.current.querySelector('.pill-text')
     if (!textNode) {
-      setCurrentSelection(null)
       return
     }
+
     const startRange = range.cloneRange()
     startRange.selectNodeContents(textNode)
     startRange.setEnd(range.startContainer, range.startOffset)
@@ -130,7 +127,6 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
 
     if (overlapsWithUsed) {
       selection.removeAllRanges()
-      setCurrentSelection(null)
       return
     }
 
@@ -142,8 +138,6 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
         end,
         text: actualSelectedText
       })
-    } else {
-      setCurrentSelection(null)
     }
   }, [displayClue.text, sortedNestedClues])
 
@@ -156,6 +150,10 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
   }, [currentSelection, displayClue.id, onSelection])
 
   useEffect(() => {
+    const handleSelectionChangeEvent = () => {
+      handleSelectionChange()
+    }
+
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       if (
         currentSelection &&
@@ -171,13 +169,15 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
       }
     }
 
+    document.addEventListener('selectionchange', handleSelectionChangeEvent)
     document.addEventListener('mousedown', handleClickOutside)
     document.addEventListener('touchstart', handleClickOutside)
     return () => {
+      document.removeEventListener('selectionchange', handleSelectionChangeEvent)
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('touchstart', handleClickOutside)
     }
-  }, [currentSelection])
+  }, [currentSelection, handleSelectionChange])
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdate(displayClue.id, { text: e.target.value })
@@ -188,8 +188,6 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
       <div 
         ref={pillRef}
         className="pill clue-pill"
-        onMouseUp={handleSelectionChange}
-        onTouchEnd={handleSelectionChange}
       >
         {renderClueWithSegments()}
         <button 
