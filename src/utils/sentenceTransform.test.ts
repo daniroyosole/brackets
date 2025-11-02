@@ -103,12 +103,12 @@ describe('transformSentence', () => {
           clues: [
             {
               text: 'first letter',
-              value: 'P',
+              value: 'q',
               startIndex: 0,
             },
             {
               text: 'remainder',
-              value: 'rime',
+              value: 'uality',
               startIndex: 1,
             },
           ],
@@ -116,7 +116,7 @@ describe('transformSentence', () => {
       ],
     }
     const result = transformSentence(sentence, new Set())
-    expect(result).toBe('[quality] example')
+    expect(result).toBe('[[first letter][remainder]] example')
     
     // The nested clues should also be transformed
     const nestedResult = transformSentence(sentence.clues![0], new Set())
@@ -150,12 +150,12 @@ describe('transformSentence', () => {
           clues: [
             {
               text: 'first letter',
-              value: 'P',
+              value: 'q',
               startIndex: 0,
             },
             {
               text: 'remainder',
-              value: 'rime',
+              value: 'uality',
               startIndex: 1,
             },
           ],
@@ -165,11 +165,11 @@ describe('transformSentence', () => {
     // Solve only the inner first clue
     const solvedClues = new Set(['0-0'])
     const result = transformSentence(sentence, solvedClues)
-    expect(result).toBe('[quality] example')
+    expect(result).toBe('[q[remainder]] example')
     
     // Check nested clue transformation
     const nestedResult = transformSentence(sentence.clues![0], solvedClues, '0')
-    expect(nestedResult).toBe('P[remainder]')
+    expect(nestedResult).toBe('q[remainder]')
   })
 
   it('should handle clues that appear in reverse order by startIndex', () => {
@@ -204,12 +204,12 @@ describe('transformSentence', () => {
           clues: [
             {
               text: 'level2',
-              value: 'BC',
+              value: 'ev',
               startIndex: 1,
               clues: [
                 {
                   text: 'level3',
-                  value: 'C',
+                  value: 'e',
                   startIndex: 1,
                 },
               ],
@@ -219,14 +219,14 @@ describe('transformSentence', () => {
       ],
     }
     const result = transformSentence(sentence, new Set())
-    expect(result).toBe('[level1]')
+    expect(result).toBe('[l[l[level3]vel2]el1]')
     
     // Verify nested transformation
     const level1Result = transformSentence(sentence.clues![0], new Set(), '0')
-    expect(level1Result).toBe('A[level2]D')
+    expect(level1Result).toBe('l[l[level3]vel2]el1')
     
     const level2Result = transformSentence(sentence.clues![0].clues![0], new Set(), '0-0')
-    expect(level2Result).toBe('B[level3]')
+    expect(level2Result).toBe('l[level3]vel2')
   })
 })
 
@@ -429,7 +429,6 @@ describe('findEligibleClues', () => {
           text: 'greeting',
           value: 'Hello',
           startIndex: 0,
-          length: 5,
           clues: [
             {
               text: 'first letter',

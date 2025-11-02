@@ -16,7 +16,7 @@ interface SelectionState {
   text: string
 }
 
-export default function Generate() {
+const Generate = () => {
   const [sentenceText, setSentenceText] = useState('')
   const [isSentenceLocked, setIsSentenceLocked] = useState(false)
   const [clues, setClues] = useState<Map<string, ClueNode>>(new Map())
@@ -387,6 +387,8 @@ export default function Generate() {
   )
 }
 
+export default Generate
+
 interface SentencePillProps {
   text: string
   sourceId: string | null
@@ -394,7 +396,7 @@ interface SentencePillProps {
   onSelection: (sourceId: string | null, start: number, end: number, text: string) => void
 }
 
-function SentencePill({ text, sourceId, rootClues, onSelection }: SentencePillProps) {
+const SentencePill = ({ text, sourceId, rootClues, onSelection }: SentencePillProps) => {
   const pillRef = useRef<HTMLDivElement>(null)
 
   // Sort clues by startIndex
@@ -543,7 +545,7 @@ interface CluePillProps {
   onDelete: (clueId: string) => void
 }
 
-function CluePill({ clue, clues, onSelection, onUpdate, onDelete }: CluePillProps) {
+const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: CluePillProps) => {
   const pillRef = useRef<HTMLDivElement>(null)
   
   // Get the latest clue from the Map to ensure we have the updated clues array

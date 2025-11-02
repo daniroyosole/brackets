@@ -8,7 +8,7 @@ import { findMatchingClue } from './utils/gameHelpers'
 import { findEligibleClues } from './utils/sentenceTransform'
 import Generate from './pages/Generate'
 
-function Game() {
+const Game = () => {
   const [jsonInput, setJsonInput] = useState<string>(JSON.stringify(initialSentence, null, 2))
   const [solvedClues, setSolvedClues] = useState<Set<string>>(new Set())
   const [inputValue, setInputValue] = useState('')
@@ -121,7 +121,7 @@ function Game() {
   )
 }
 
-function Navigation() {
+const Navigation = () => {
   const location = useLocation()
   
   return (
@@ -136,7 +136,7 @@ function Navigation() {
   )
 }
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Navigation />
