@@ -218,9 +218,9 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
           </button>
         </div>
       )}
-      {nestedClues.length > 0 && (
+      {sortedNestedClues.length > 0 && (
         <div className="nested-pills">
-          {nestedClues.map(nestedClue => {
+          {sortedNestedClues.map(nestedClue => {
             // Get the latest nested clue from the Map
             const latestNestedClue = clues.get(nestedClue.id) || nestedClue
             return (

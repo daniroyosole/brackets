@@ -311,7 +311,7 @@ const Generate = () => {
             
             {getRootClues().length > 0 && (
               <div className="root-clues-container">
-                {getRootClues().map(clue => (
+                {[...getRootClues()].sort((a, b) => a.startIndex - b.startIndex).map(clue => (
                   <CluePill
                     key={clue.id}
                     clue={clue}
