@@ -107,6 +107,11 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
       return
     }
 
+    if (range.commonAncestorContainer === pillRef.current || 
+        pillRef.current.querySelector('.pill-metadata')?.contains(range.commonAncestorContainer)) {
+      return
+    }
+
     const startRange = range.cloneRange()
     startRange.selectNodeContents(textNode)
     startRange.setEnd(range.startContainer, range.startOffset)

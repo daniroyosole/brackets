@@ -110,6 +110,11 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
       return
     }
 
+    if (range.commonAncestorContainer === pillRef.current || 
+        pillRef.current.querySelector('.pill-metadata')?.contains(range.commonAncestorContainer)) {
+      return
+    }
+
     const startRange = range.cloneRange()
     startRange.selectNodeContents(textNode)
     startRange.setEnd(range.startContainer, range.startOffset)
@@ -179,17 +184,21 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
     }
   }, [currentSelection, handleSelectionChange])
 
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onUpdate(displayClue.id, { text: e.target.value })
-  }
+  const wrapperStyle = displayClue.level > 0 
+    ? { marginLeft: `${displayClue.level * 30}px` }
+    : {}
 
   return (
-    <div className="clue-pill-wrapper" style={{ marginLeft: `${displayClue.level * 30}px` }}>
+    <div className="clue-pill-wrapper" style={wrapperStyle}>
       <div 
         ref={pillRef}
         className="pill clue-pill"
       >
         {renderClueWithSegments()}
+        <div className="pill-metadata">
+          <span className="pill-value">{displayClue.value}</span>
+          <span className="pill-index">@{displayClue.startIndex}</span>
+        </div>
         <button 
           onClick={() => onDelete(displayClue.id)} 
           className="pill-delete-btn"
@@ -209,15 +218,6 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
           </button>
         </div>
       )}
-      <div className="pill-edit">
-        <input
-          type="text"
-          value={displayClue.text}
-          onChange={handleTextChange}
-          placeholder="Edit clue text..."
-          className="pill-edit-input"
-        />
-      </div>
       {nestedClues.length > 0 && (
         <div className="nested-pills">
           {nestedClues.map(nestedClue => {

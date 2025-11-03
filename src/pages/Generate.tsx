@@ -309,16 +309,20 @@ const Generate = () => {
               onSelection={handleSelection}
             />
             
-            {getRootClues().map(clue => (
-              <CluePill
-                key={clue.id}
-                clue={clue}
-                clues={clues}
-                onSelection={handleSelection}
-                onUpdate={updateClue}
-                onDelete={deleteClue}
-              />
-            ))}
+            {getRootClues().length > 0 && (
+              <div className="root-clues-container">
+                {getRootClues().map(clue => (
+                  <CluePill
+                    key={clue.id}
+                    clue={clue}
+                    clues={clues}
+                    onSelection={handleSelection}
+                    onUpdate={updateClue}
+                    onDelete={deleteClue}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
