@@ -1,5 +1,5 @@
 .main-nav {
-  display: flex;
+  display: none;
   gap: 0.5rem;
   margin-bottom: 3rem;
   padding-bottom: 1rem;

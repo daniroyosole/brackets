@@ -1,9 +1,10 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import { initialSentence } from '../mockData'
 import type { Sentence } from '../models/sentence'
 import { Sentence as SentenceComponent } from '../components/game/Sentence'
 import { findMatchingClue } from '../utils/gameHelpers'
 import { findEligibleClues } from '../utils/sentenceTransform'
+import { HelpModal } from '../components/game/HelpModal'
 import './Game.css'
 
 const Game = () => {
@@ -12,6 +13,15 @@ const Game = () => {
   const [inputValue, setInputValue] = useState('')
   const [jsonError, setJsonError] = useState<string | null>(null)
   const [isJsonExpanded, setIsJsonExpanded] = useState(false)
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false)
+
+  useEffect(() => {
+    const hasSeenHelp = localStorage.getItem('hasSeenHelp')
+    if (!hasSeenHelp) {
+      setIsHelpModalOpen(true)
+      localStorage.setItem('hasSeenHelp', 'true')
+    }
+  }, [])
 
   const sentence = useMemo(() => {
     try {
@@ -49,18 +59,27 @@ const Game = () => {
   return (
     <div className="game-container">
       <div className="game-header">
-        <h1>Jugar</h1>
-        {solvedClues.size > 0 && (
-          <button 
-            onClick={() => {
-              setSolvedClues(new Set())
-              setInputValue('')
-            }} 
-            className="reset-game-btn"
+        <h1>[Claudàtors]</h1>
+        <div className="game-header-actions">
+          {solvedClues.size > 0 && (
+            <button 
+              onClick={() => {
+                setSolvedClues(new Set())
+                setInputValue('')
+              }} 
+              className="reset-game-btn"
+            >
+              Reiniciar
+            </button>
+          )}
+          <button
+            onClick={() => setIsHelpModalOpen(true)}
+            className="help-btn"
+            title="Ajuda"
           >
-            Reiniciar
+            ?
           </button>
-        )}
+        </div>
       </div>
       
       <div className="json-input-section">
@@ -109,12 +128,17 @@ const Game = () => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Introdueix la resposta..."
+              placeholder="Introdueix una resposta..."
             className="answer-input"
           />
           <button type="submit" className="submit-btn">Enviar</button>
         </form>
       </div>
+
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
     </div>
   )
 }
