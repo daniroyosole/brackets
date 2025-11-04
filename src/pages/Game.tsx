@@ -5,14 +5,10 @@ import { Sentence as SentenceComponent } from '../components/game/Sentence'
 import { findMatchingClue } from '../utils/gameHelpers'
 import { findEligibleClues } from '../utils/sentenceTransform'
 import { HelpModal } from '../components/game/HelpModal'
-import { FirstLetterModal } from '../components/game/FirstLetterModal'
+import { ClueActionModal } from '../components/game/ClueActionModal'
 import './Game.css'
 
 const Game = () => {
-  const [jsonInput, setJsonInput] = useState<string>(() => {
-    const saved = localStorage.getItem('gameJsonInput')
-    return saved || JSON.stringify(initialSentence, null, 2)
-  })
   const [solvedClues, setSolvedClues] = useState<Set<string>>(() => {
     const saved = localStorage.getItem('gameSolvedClues')
     if (saved) {
@@ -36,13 +32,9 @@ const Game = () => {
     return new Set()
   })
   const [inputValue, setInputValue] = useState('')
-  const [jsonError, setJsonError] = useState<string | null>(null)
-  const [isJsonExpanded, setIsJsonExpanded] = useState(() => {
-    const saved = localStorage.getItem('gameJsonExpanded')
-    return saved === 'true'
-  })
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false)
-  const [firstLetterModal, setFirstLetterModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; } | null>(null)
+  const [firstLetterModal, setFirstLetterModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; firstLetter: string } | null>(null)
+  const [solveClueModal, setSolveClueModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>(null)
 
   useEffect(() => {
     const hasSeenHelp = localStorage.getItem('hasSeenHelp')
@@ -53,16 +45,8 @@ const Game = () => {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('gameJsonInput', jsonInput)
-  }, [jsonInput])
-
-  useEffect(() => {
     localStorage.setItem('gameSolvedClues', JSON.stringify(Array.from(solvedClues)))
   }, [solvedClues])
-
-  useEffect(() => {
-    localStorage.setItem('gameJsonExpanded', String(isJsonExpanded))
-  }, [isJsonExpanded])
 
   useEffect(() => {
     localStorage.setItem('gameRevealedFirstLetters', JSON.stringify(Array.from(revealedFirstLetters)))
@@ -103,22 +87,27 @@ const Game = () => {
     setFirstLetterModal(null)
   }, [])
 
-  const sentence = useMemo(() => {
-    try {
-      const parsed = JSON.parse(jsonInput) as Sentence
-      setJsonError(null)
-      return parsed
-    } catch (error) {
-      setJsonError(error instanceof Error ? error.message : 'JSON invàlid')
-      return initialSentence
+  const handleSolveClue = useCallback(() => {
+    if (solveClueModal) {
+      setSolvedClues(prev => new Set(prev).add(solveClueModal.cluePath))
+      setSolveClueModal(null)
     }
-  }, [jsonInput])
+  }, [solveClueModal])
 
-  const handleJsonChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setJsonInput(e.target.value)
-    // Clear solved clues and revealed first letters when JSON changes
-    setSolvedClues(new Set())
-    setRevealedFirstLetters(new Set())
+  const handleCancelSolveClue = useCallback(() => {
+    setSolveClueModal(null)
+  }, [])
+
+  const sentence = useMemo(() => {
+    const saved = localStorage.getItem('gameJsonInput')
+    if (saved) {
+      try {
+        return JSON.parse(saved) as Sentence
+      } catch {
+        return initialSentence
+      }
+    }
+    return initialSentence
   }, [])
 
   const eligibleCluePaths = useMemo(() => {
@@ -127,16 +116,26 @@ const Game = () => {
   }, [sentence, solvedClues])
 
   const handleClueClick = useCallback((cluePath: string) => {
-    if (revealedFirstLetters.has(cluePath)) {
+    const clueInfo = findClueByPath(sentence, cluePath)
+    if (!clueInfo) {
       return
     }
 
-    const clueInfo = findClueByPath(sentence, cluePath)
-    if (clueInfo) {
+    // Si ja té la primera lletra revelada, mostrar modal per resoldre
+    if (revealedFirstLetters.has(cluePath)) {
+      setSolveClueModal({
+        isOpen: true,
+        cluePath,
+        clueText: clueInfo.clueText,
+        clueValue: clueInfo.clue.value
+      })
+    } else {
+      // Si no té la primera lletra revelada, mostrar modal per revelar primera lletra
       setFirstLetterModal({
         isOpen: true,
         cluePath,
         clueText: clueInfo.clueText,
+        firstLetter: clueInfo.clue.value[0] || ''
       })
     }
   }, [sentence, revealedFirstLetters, findClueByPath])
@@ -157,17 +156,6 @@ const Game = () => {
       <div className="game-header">
         <h1>[Claudàtors]</h1>
         <div className="game-header-actions">
-          {solvedClues.size > 0 && (
-            <button 
-              onClick={() => {
-                setSolvedClues(new Set())
-                setInputValue('')
-              }} 
-              className="reset-game-btn"
-            >
-              Reiniciar
-            </button>
-          )}
           <button
             onClick={() => setIsHelpModalOpen(true)}
             className="help-btn"
@@ -176,41 +164,6 @@ const Game = () => {
             ?
           </button>
         </div>
-      </div>
-      
-      <div className="json-input-section">
-        <div className="json-input-header">
-          <label htmlFor="sentence-json">Entrada JSON de la frase:</label>
-          <button
-            onClick={() => setIsJsonExpanded(!isJsonExpanded)}
-            className="collapse-toggle-btn"
-            type="button"
-          >
-            {isJsonExpanded ? '▼' : '▶'}
-          </button>
-        </div>
-        {isJsonExpanded && (
-          <>
-            {jsonError && (
-              <div className="json-error">
-                Error JSON: {jsonError}
-              </div>
-            )}
-            <textarea
-              id="sentence-json"
-              value={jsonInput}
-              onChange={handleJsonChange}
-              className="sentence-json-input"
-              rows={10}
-              readOnly={solvedClues.size > 0}
-            />
-            {solvedClues.size > 0 && (
-              <div className="json-locked-message">
-                El JSON està bloquejat mentre jugues. Reinicia per editar.
-              </div>
-            )}
-          </>
-        )}
       </div>
 
       <div className="game-content">
@@ -239,11 +192,24 @@ const Game = () => {
       />
 
       {firstLetterModal && (
-        <FirstLetterModal
+        <ClueActionModal
           isOpen={firstLetterModal.isOpen}
+          title="Revelar Primera Lletra"
           clueText={firstLetterModal.clueText}
+          confirmButtonText="Sí, revelar"
           onConfirm={handleRevealFirstLetter}
           onCancel={handleCancelFirstLetter}
+        />
+      )}
+
+      {solveClueModal && (
+        <ClueActionModal
+          isOpen={solveClueModal.isOpen}
+          title="Resoldre Pista"
+          clueText={solveClueModal.clueText}
+          confirmButtonText="Sí, resoldre"
+          onConfirm={handleSolveClue}
+          onCancel={handleCancelSolveClue}
         />
       )}
     </div>

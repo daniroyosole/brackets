@@ -15,12 +15,14 @@
 .game-header h1 {
   margin: 0;
   font-size: 2rem;
-  color: #000000;
+  color: var(--color-black);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background-color: #c6dfff;
+  background-color: var(--clue-eligible-bg);
   padding: 0.5rem 1.5rem;
+  display: inline-block;
+  width: auto;
 }
 
 .game-header-actions {
@@ -37,7 +39,9 @@
   color: #000000;
   font-size: 1.25rem;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0;
+  width: 32px;
+  height: 32px;
   min-width: 32px;
   min-height: 32px;
   display: flex;
@@ -46,6 +50,7 @@
   font-weight: 700;
   transition: all 0.2s ease;
   font-family: inherit;
+  border-radius: 50%;
 }
 
 .help-btn:hover {
@@ -53,106 +58,6 @@
   color: #ffffff;
 }
 
-.reset-game-btn {
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #000000;
-  cursor: pointer;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-family: inherit;
-  transition: all 0.2s ease;
-}
-
-.reset-game-btn:hover {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.json-input-section {
-  display: none;
-  margin-bottom: 2rem;
-}
-
-.json-input-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.json-input-section label {
-  font-weight: 600;
-  color: #000000;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 0;
-}
-
-.collapse-toggle-btn {
-  background: none;
-  border: 2px solid #000000;
-  color: #000000;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.collapse-toggle-btn:hover {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.sentence-json-input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 0.85rem;
-  font-family: 'Courier New', monospace;
-  border: 2px solid #000000;
-  background-color: #ffffff;
-  resize: vertical;
-  min-height: 200px;
-  line-height: 1.6;
-  color: #000000;
-}
-
-.sentence-json-input:focus {
-  outline: none;
-  background-color: #fafafa;
-}
-
-.sentence-json-input:read-only {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
-  color: #666666;
-}
-
-.json-error {
-  margin-bottom: 0.5rem;
-  padding: 0.75rem;
-  background-color: #f5f5f5;
-  border: 2px solid #000000;
-  color: #000000;
-  font-size: 0.85rem;
-  font-family: 'Courier New', monospace;
-}
-
-.json-locked-message {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  background-color: #f5f5f5;
-  border: 1px solid #000000;
-  color: #000000;
-  font-size: 0.8rem;
-  font-style: italic;
-}
 
 .game-content {
   margin-top: 3rem;
@@ -162,29 +67,32 @@
   margin-top: 2rem;
   display: flex;
   gap: 0.5rem;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
+  width: 100%;
 }
 
-.answer-input {
+.game-container .answer-input {
   flex: 1;
+  width: 100%;
   padding: 0.75rem 1rem;
-  font-size: 1.1rem;
-  border: 2px solid #000000;
-  background-color: #ffffff;
+  font-size: 0.95rem;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-white);
   font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
   text-align: center;
+  box-sizing: border-box;
 }
 
-.answer-input:focus {
+.game-container .answer-input:focus {
   outline: none;
   background-color: #fafafa;
 }
 
-.submit-btn {
+.game-container .submit-btn {
   padding: 0.75rem 1.5rem;
   font-size: 0.9rem;
   background-color: #000000;
@@ -198,82 +106,122 @@
   transition: all 0.2s ease;
 }
 
-.submit-btn:hover {
+.game-container .submit-btn:hover {
   background-color: #ffffff;
   color: #000000;
 }
 
-.submit-btn:active {
+.game-container .submit-btn:active {
   transform: scale(0.98);
 }
 
 @media (max-width: 768px) {
   .game-container {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 
   .game-header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    position: relative;
   }
 
   .game-header h1 {
     font-size: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    letter-spacing: 0.08em;
+    margin: 0 auto;
   }
 
   .game-header-actions {
-    position: static;
-    width: 100%;
-    flex-direction: column;
+    position: absolute;
+    right: 0;
+    flex-direction: row;
     gap: 0.75rem;
-  }
-
-  .reset-game-btn {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-    min-height: 48px;
+    flex-shrink: 0;
   }
 
   .help-btn {
-    width: 100%;
+    width: 48px;
+    height: 48px;
     min-width: 48px;
     min-height: 48px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    padding: 0;
   }
 
-  .json-input-section {
-    margin-bottom: 1.5rem;
+  .game-content {
+    margin-top: 2.5rem;
   }
 
-  .json-input-header {
-    flex-wrap: wrap;
+  .answer-form {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .game-container .answer-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    min-height: 56px;
+    -webkit-appearance: none;
+    border-radius: 0;
+    letter-spacing: 0.08em;
+    box-sizing: border-box;
+  }
+
+  .game-container .submit-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    min-height: 56px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 0 0.75rem;
+  }
+
+  .game-header {
     gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.875rem;
+    position: relative;
   }
 
-  .json-input-section label {
-    font-size: 0.85rem;
+  .game-header h1 {
+    font-size: 1.25rem;
+    padding: 0.625rem 1rem;
+    letter-spacing: 0.06em;
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
   }
 
-  .collapse-toggle-btn {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0.5rem;
+  .game-header-actions {
+    position: absolute;
+    right: 0;
   }
 
-  .sentence-json-input {
-    padding: 0.875rem;
-    font-size: 0.8rem;
-    min-height: 150px;
-  }
-
-  .json-error,
-  .json-locked-message {
-    padding: 0.625rem;
-    font-size: 0.8rem;
+  .help-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.1rem;
+    padding: 0;
   }
 
   .game-content {
@@ -281,40 +229,21 @@
   }
 
   .answer-form {
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    width: 100%;
+    gap: 0.875rem;
+    margin-top: 1.75rem;
   }
 
-  .answer-input {
-    flex: 1;
+  .game-container .answer-input {
+    width: 100%;
     padding: 0.875rem 1rem;
-    font-size: 1rem;
-    min-height: 48px;
-    -webkit-appearance: none;
-    border-radius: 0;
+    font-size: 15px; /* Prevents zoom on iOS */
+    min-height: 52px;
+    box-sizing: border-box;
   }
 
-  .submit-btn {
-    width: 100%;
+  .game-container .submit-btn {
     padding: 0.875rem 1.5rem;
-    font-size: 1rem;
-    min-height: 48px;
-  }
-}
-
-@media (max-width: 480px) {
-  .game-header h1 {
-    font-size: 1.25rem;
-  }
-
-  .sentence-json-input {
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-
-  .answer-input {
-    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 52px;
   }
 }
 

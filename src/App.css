@@ -2,17 +2,18 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  background-color: #ffffff;
+  background-color: var(--color-white);
+  min-height: 100vh;
 }
 
 @media (max-width: 768px) {
   #root {
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
   #root {
-    padding: 0.75rem 0.5rem;
+    padding: 1.25rem 0.75rem;
   }
 }

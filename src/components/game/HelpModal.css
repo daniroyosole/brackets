@@ -103,7 +103,7 @@
 }
 
 .help-example-clue {
-  background-color: #c6dfff;
+  background-color: var(--clue-eligible-bg);
   padding: 2px 6px;
   font-weight: 700;
 }
@@ -136,48 +136,77 @@
 
 @media (max-width: 768px) {
   .help-modal-overlay {
-    padding: 0.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .help-modal {
-    max-height: 95vh;
+    max-height: 85vh;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 4px 4px 0 #000000;
   }
 
   .help-modal-header {
-    padding: 1rem;
+    padding: 1rem 1.25rem;
   }
 
   .help-modal-header h2 {
     font-size: 1.25rem;
+    letter-spacing: 0.06em;
   }
 
   .help-modal-close-btn {
     width: 40px;
     height: 40px;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    border-width: 2px;
   }
 
   .help-modal-content {
-    padding: 1rem;
+    padding: 1.25rem 1.25rem;
   }
 
   .help-section {
     margin-bottom: 1.5rem;
   }
 
+  .help-section:last-child {
+    margin-bottom: 0;
+  }
+
   .help-section h3 {
     font-size: 1rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .help-section p {
+    margin-bottom: 0.625rem;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .help-section ul {
+    margin: 0.625rem 0;
+    padding-left: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .help-section li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
   }
 
   .help-modal-footer {
-    padding: 1rem;
+    padding: 1rem 1.25rem;
   }
 
   .help-modal-ok-btn {
     width: 100%;
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
     min-height: 48px;
+    letter-spacing: 0.06em;
   }
 }
 

@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
   line-height: 1.6;
   font-weight: 400;
 
@@ -11,6 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Color variables */
+  --clue-eligible-bg: #c6dfff;
+  --clue-eligible-bg-hover: #80deea;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #fafafa;
+  --color-gray-medium: #666666;
+  --color-gray-dark: #333333;
+  --color-border: #000000;
+  --shadow-offset: 8px;
 }
 
 body {
