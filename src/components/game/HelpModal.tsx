@@ -18,7 +18,7 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
     <div className="help-modal-overlay" onClick={handleOverlayClick}>
       <div className="help-modal">
         <div className="help-modal-header">
-          <h2>Com Jugar</h2>
+          <h2>[Com Jugar]</h2>
           <button onClick={onClose} className="help-modal-close-btn" title="Tancar">
             ×
           </button>
