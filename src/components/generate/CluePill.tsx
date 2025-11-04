@@ -202,7 +202,7 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
         <button 
           onClick={() => onDelete(displayClue.id)} 
           className="pill-delete-btn"
-          title="Delete clue"
+          title="Eliminar pista"
         >
           ×
         </button>
@@ -214,7 +214,7 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
             onClick={handleCreateClue}
             type="button"
           >
-            Create Clue
+            Crear Pista
           </button>
         </div>
       )}

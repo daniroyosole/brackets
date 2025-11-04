@@ -7,10 +7,10 @@ const Navigation = () => {
   return (
     <nav className="main-nav">
       <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
-        Play
+        Jugar
       </Link>
       <Link to="/generate" className={location.pathname === '/generate' ? 'active' : ''}>
-        Generate
+        Generar
       </Link>
     </nav>
   )

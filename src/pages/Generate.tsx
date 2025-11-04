@@ -30,7 +30,7 @@ const Generate = () => {
   const handleSubmitSentence = (e: React.FormEvent) => {
     e.preventDefault()
     if (!sentenceText.trim()) {
-      alert('Please enter a sentence first')
+      alert('Si us plau, introdueix una frase primer')
       return
     }
     setIsSentenceLocked(true)
@@ -39,7 +39,7 @@ const Generate = () => {
 
   const handleReset = () => {
     if (clues.size > 0 || selections.size > 0) {
-      if (!confirm('Resetting will clear all existing clues and selections. Continue?')) {
+      if (!confirm('Reiniciar esborrarà totes les pistes i seleccions existents. Continuar?')) {
         return
       }
     }
@@ -150,12 +150,12 @@ const Generate = () => {
     const selection = selections.get(selectionId)
     
     if (!selection) {
-      alert('Selection not found')
+      alert('Selecció no trobada')
       return
     }
     
     if (!selection.clueText.trim()) {
-      alert('Please enter a clue text')
+      alert('Si us plau, introdueix un text per la pista')
       return
     }
     
@@ -268,19 +268,19 @@ const Generate = () => {
 
   const exportSentence = () => {
     navigator.clipboard.writeText(JSON.stringify(sentence, null, 2))
-    alert('Sentence JSON copied to clipboard!')
+    alert('JSON de la frase copiat al porta-retalls!')
   }
 
   return (
     <div className="generate-container">
       <div className="generate-header">
-        <h1>Generate Custom Sentence</h1>
+        <h1>Generar Frase Personalitzada</h1>
         <div className="header-actions">
           <button onClick={handleReset} className="reset-btn">
-            Reset
+            Reiniciar
           </button>
           <button onClick={exportSentence} className="export-btn">
-            Copy JSON
+            Copiar JSON
           </button>
         </div>
       </div>
@@ -292,12 +292,12 @@ const Generate = () => {
               type="text"
               value={sentenceText}
               onChange={(e) => setSentenceText(e.target.value)}
-              placeholder="Enter your sentence..."
+              placeholder="Introdueix la teva frase..."
               className="sentence-input"
               autoFocus
             />
             <button type="submit" className="submit-btn">
-              Submit
+              Enviar
             </button>
           </form>
         ) : (
@@ -342,7 +342,7 @@ const Generate = () => {
 
       <div className="preview-section">
         <div className="preview-section-header">
-          <h2>Preview</h2>
+          <h2>Vista prèvia</h2>
           <button
             onClick={() => setIsPreviewExpanded(!isPreviewExpanded)}
             className="collapse-toggle-btn"
@@ -364,7 +364,7 @@ const Generate = () => {
 
       <div className="json-preview-section">
         <div className="json-preview-section-header">
-          <h2>JSON Result</h2>
+          <h2>Resultat JSON</h2>
           <button
             onClick={() => setIsJsonExpanded(!isJsonExpanded)}
             className="collapse-toggle-btn"

@@ -26,23 +26,23 @@ export const SelectionCard = ({
   return (
     <div className="selection-card">
       <div className="card-header">
-        <h3>Create Clue</h3>
-        <button onClick={onCancel} className="close-card-btn" title="Close">
+        <h3>Crear Pista</h3>
+        <button onClick={onCancel} className="close-card-btn" title="Tancar">
           ×
         </button>
       </div>
       <div className="card-content">
         <div className="card-field">
-          <label>Selected Value:</label>
+          <label>Valor Seleccionat:</label>
           <div className="selected-value">{selection.text}</div>
         </div>
         <div className="card-field">
-          <label>Clue Text (what the user will see):</label>
+          <label>Text de la Pista (el que veurà l'usuari):</label>
           <input
             type="text"
             value={selection.clueText}
             onChange={(e) => onClueTextChange(selectionId, e.target.value)}
-            placeholder="Enter clue description..."
+            placeholder="Introdueix la descripció de la pista..."
             className="clue-text-input"
             autoFocus
           />
@@ -52,13 +52,13 @@ export const SelectionCard = ({
             onClick={() => onCreateClue(selectionId)} 
             className="create-btn"
           >
-            Create Clue
+            Crear Pista
           </button>
           <button 
             onClick={onCancel} 
             className="cancel-btn"
           >
-            Cancel
+            Cancel·lar
           </button>
         </div>
       </div>

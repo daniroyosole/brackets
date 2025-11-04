@@ -196,7 +196,7 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
             onClick={handleCreateClue}
             type="button"
           >
-            Create Clue
+            Crear Pista
           </button>
         </div>
       )}

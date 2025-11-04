@@ -19,7 +19,7 @@ const Game = () => {
       setJsonError(null)
       return parsed
     } catch (error) {
-      setJsonError(error instanceof Error ? error.message : 'Invalid JSON')
+      setJsonError(error instanceof Error ? error.message : 'JSON invàlid')
       return initialSentence
     }
   }, [jsonInput])
@@ -49,7 +49,7 @@ const Game = () => {
   return (
     <div className="game-container">
       <div className="game-header">
-        <h1>Play Game</h1>
+        <h1>Jugar</h1>
         {solvedClues.size > 0 && (
           <button 
             onClick={() => {
@@ -58,14 +58,14 @@ const Game = () => {
             }} 
             className="reset-game-btn"
           >
-            Reset Game
+            Reiniciar
           </button>
         )}
       </div>
       
       <div className="json-input-section">
         <div className="json-input-header">
-          <label htmlFor="sentence-json">Sentence JSON input:</label>
+          <label htmlFor="sentence-json">Entrada JSON de la frase:</label>
           <button
             onClick={() => setIsJsonExpanded(!isJsonExpanded)}
             className="collapse-toggle-btn"
@@ -78,7 +78,7 @@ const Game = () => {
           <>
             {jsonError && (
               <div className="json-error">
-                JSON Error: {jsonError}
+                Error JSON: {jsonError}
               </div>
             )}
             <textarea
@@ -91,7 +91,7 @@ const Game = () => {
             />
             {solvedClues.size > 0 && (
               <div className="json-locked-message">
-                JSON is locked while playing. Reset to edit.
+                El JSON està bloquejat mentre jugues. Reinicia per editar.
               </div>
             )}
           </>
@@ -109,10 +109,10 @@ const Game = () => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Enter answer..."
+              placeholder="Introdueix la resposta..."
             className="answer-input"
           />
-          <button type="submit" className="submit-btn">Submit</button>
+          <button type="submit" className="submit-btn">Enviar</button>
         </form>
       </div>
     </div>
