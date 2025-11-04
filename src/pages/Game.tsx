@@ -6,6 +6,8 @@ import { findMatchingClue } from '../utils/gameHelpers'
 import { findEligibleClues } from '../utils/sentenceTransform'
 import { HelpModal } from '../components/game/HelpModal'
 import { ClueActionModal } from '../components/game/ClueActionModal'
+import { ScoreModal } from '../components/game/ScoreModal'
+import { countAllClues, calculateScore, areAllCluesSolved } from '../utils/scoreCalculator'
 import './Game.css'
 
 const Game = () => {
@@ -35,6 +37,29 @@ const Game = () => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false)
   const [firstLetterModal, setFirstLetterModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; firstLetter: string } | null>(null)
   const [solveClueModal, setSolveClueModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>(null)
+  const [wrongAnswers, setWrongAnswers] = useState<number>(() => {
+    const saved = localStorage.getItem('gameWrongAnswers')
+    if (saved) {
+      try {
+        return parseInt(saved, 10) || 0
+      } catch {
+        return 0
+      }
+    }
+    return 0
+  })
+  const [fullClueReveals, setFullClueReveals] = useState<number>(() => {
+    const saved = localStorage.getItem('gameFullClueReveals')
+    if (saved) {
+      try {
+        return parseInt(saved, 10) || 0
+      } catch {
+        return 0
+      }
+    }
+    return 0
+  })
+  const [isScoreModalOpen, setIsScoreModalOpen] = useState(false)
 
   useEffect(() => {
     const hasSeenHelp = localStorage.getItem('hasSeenHelp')
@@ -51,6 +76,14 @@ const Game = () => {
   useEffect(() => {
     localStorage.setItem('gameRevealedFirstLetters', JSON.stringify(Array.from(revealedFirstLetters)))
   }, [revealedFirstLetters])
+
+  useEffect(() => {
+    localStorage.setItem('gameWrongAnswers', wrongAnswers.toString())
+  }, [wrongAnswers])
+
+  useEffect(() => {
+    localStorage.setItem('gameFullClueReveals', fullClueReveals.toString())
+  }, [fullClueReveals])
 
   const findClueByPath = useCallback((sentenceObj: Sentence, targetPath: string, currentPath: string = ""): { clue: Clue; clueText: string } | null => {
     if (!sentenceObj.clues || sentenceObj.clues.length === 0) {
@@ -90,6 +123,7 @@ const Game = () => {
   const handleSolveClue = useCallback(() => {
     if (solveClueModal) {
       setSolvedClues(prev => new Set(prev).add(solveClueModal.cluePath))
+      setFullClueReveals(prev => prev + 1)
       setSolveClueModal(null)
     }
   }, [solveClueModal])
@@ -109,6 +143,33 @@ const Game = () => {
     }
     return initialSentence
   }, [])
+
+  // Calculate score and check if game is finished
+  const totalClues = useMemo(() => countAllClues(sentence), [sentence])
+  const score = useMemo(() => {
+    return calculateScore(
+      totalClues,
+      revealedFirstLetters.size,
+      fullClueReveals,
+      wrongAnswers
+    )
+  }, [totalClues, revealedFirstLetters.size, fullClueReveals, wrongAnswers])
+
+  // Log score whenever it changes
+  useEffect(() => {
+    console.log('Current score:', score)
+  }, [score])
+
+  const isGameFinished = useMemo(() => {
+    return areAllCluesSolved(sentence, solvedClues)
+  }, [sentence, solvedClues])
+
+  // Show score modal when game finishes (including on page load if already finished)
+  useEffect(() => {
+    if (isGameFinished) {
+      setIsScoreModalOpen(true)
+    }
+  }, [isGameFinished])
 
   const eligibleCluePaths = useMemo(() => {
     const eligible = findEligibleClues(sentence, solvedClues)
@@ -179,6 +240,10 @@ const Game = () => {
     
     if (matchingClue) {
       setSolvedClues(prev => new Set(prev).add(matchingClue.path))
+      setInputValue('')
+    } else if (inputValue.trim()) {
+      // Track wrong answer only if input is not empty
+      setWrongAnswers(prev => prev + 1)
       setInputValue('')
     }
   }
@@ -265,6 +330,12 @@ const Game = () => {
           onCancel={handleCancelSolveClue}
         />
       )}
+
+      <ScoreModal
+        isOpen={isScoreModalOpen}
+        score={score}
+        onClose={() => setIsScoreModalOpen(false)}
+      />
     </div>
   )
 }

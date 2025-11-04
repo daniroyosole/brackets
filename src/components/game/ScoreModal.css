@@ -1,0 +1,199 @@
+.score-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  backdrop-filter: blur(2px);
+}
+
+.score-modal {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.score-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.score-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #000000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background-color: var(--clue-eligible-bg);
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  width: auto;
+}
+
+.score-modal-close-btn {
+  background: none;
+  border: 2px solid #000000;
+  color: #000000;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.score-modal-close-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.score-modal-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.score-value {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 1rem;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.score-message {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.score-modal-footer {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.score-modal-ok-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.score-modal-ok-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  .score-modal-overlay {
+    padding: 1.5rem 1rem;
+  }
+
+  .score-modal {
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 4px 4px 0 #000000;
+  }
+
+  .score-modal-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .score-modal-header h2 {
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .score-modal-close-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    border-width: 2px;
+  }
+
+  .score-modal-content {
+    padding: 1.25rem 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .score-value {
+    font-size: 3rem;
+  }
+
+  .score-label {
+    font-size: 0.9rem;
+  }
+
+  .score-message {
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+  }
+
+  .score-modal-footer {
+    padding: 1rem 1.25rem;
+  }
+
+  .score-modal-ok-btn {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    min-height: 48px;
+    letter-spacing: 0.06em;
+  }
+}
+
