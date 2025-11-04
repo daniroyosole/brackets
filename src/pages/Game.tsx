@@ -291,7 +291,7 @@ const Game = () => {
         </span>
         <span className="stat-item">
           <span className="stat-emoji">💡</span>
-          <span className="stat-value">{revealedFirstLetters.size + fullClueReveals}</span>
+          <span className="stat-value">{fullClueReveals}</span>
         </span>
         <span className="stat-item">
           <span className="stat-emoji">❌</span>

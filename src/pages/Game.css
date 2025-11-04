@@ -72,7 +72,7 @@
 }
 
 .help-btn {
-  background: var(--color-gray-light);
+  background: var(--color-white);
   border: 2px solid var(--color-gray-medium);
   color: var(--color-black);
   font-size: 1.25rem;
@@ -390,8 +390,8 @@
     padding-bottom: 0;
     padding-left: 0;
     padding-right: 0;
-    margin-left: -0.75rem;
-    margin-right: -0.75rem;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 0;
     flex-shrink: 0;
     background-color: #ffffff;
@@ -406,12 +406,17 @@
     font-size: 15px; /* Prevents zoom on iOS */
     min-height: 52px;
     box-sizing: border-box;
+    margin: 0;
+    border-radius: 8px;
+    border: 2px solid var(--color-gray-medium);
   }
 
   .game-container .submit-btn {
     padding: 0.875rem 1.5rem;
     min-height: 52px;
-    margin: 0 0.75rem 0 0.75rem;
+    margin: 0;
+    border-radius: 8px;
+    border: 2px solid var(--color-primary);
   }
 }
 
