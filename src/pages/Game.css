@@ -71,6 +71,8 @@
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  max-height: 100vh;
+  max-height: 100dvh; /* Dynamic viewport height */
 }
 
 .sentence-wrapper {
@@ -237,6 +239,8 @@
     padding: 1.25rem 0.75rem 0.75rem 0.75rem;
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic viewport height for mobile */
+    max-height: 100dvh;
+    overflow: hidden;
   }
 
   .game-header {
@@ -273,6 +277,8 @@
     flex: 1;
     overflow: hidden;
     min-height: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .sentence-wrapper {
@@ -283,16 +289,17 @@
     border: 2px solid var(--color-border);
     background-color: var(--color-white);
     box-sizing: border-box;
-    max-height: calc(100dvh - 320px); /* Adjust based on header + input height */
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(100dvh - 280px); /* Adjust: header (~100px) + form (~180px) */
   }
 
   .answer-form {
     gap: 0.875rem;
-    margin-top: auto;
+    margin-top: 0;
     padding-top: 0.875rem;
     padding-bottom: 0.5rem;
-    position: sticky;
-    bottom: 0;
+    flex-shrink: 0;
     background-color: #ffffff;
     z-index: 10;
   }

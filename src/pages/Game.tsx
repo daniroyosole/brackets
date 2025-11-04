@@ -154,9 +154,14 @@ const Game = () => {
   }
 
   const handleInputFocus = () => {
-    // Scroll to input when keyboard opens on mobile
+    // Scroll to show sentence container top when keyboard opens on mobile
     setTimeout(() => {
-      answerInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      const sentenceWrapper = document.querySelector('.sentence-wrapper') as HTMLElement
+      if (sentenceWrapper) {
+        // Scroll to top of sentence container so user can see the beginning
+        sentenceWrapper.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      // Input should already be visible due to flex layout
     }, 300)
   }
 
