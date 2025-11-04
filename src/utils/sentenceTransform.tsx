@@ -23,6 +23,8 @@ export function renderSentenceWithHighlighting(
   sentence: Sentence,
   solvedClues: Set<string>,
   eligibleCluePaths: Set<string>,
+  revealedFirstLetters: Set<string>,
+  onClueClick: (cluePath: string) => void,
   path: string = ""
 ): React.ReactNode {
   if (!sentence.clues || sentence.clues.length === 0) {
@@ -53,13 +55,23 @@ export function renderSentenceWithHighlighting(
       result.push(clue.value);
     } else {
       // If not solved, recursively render the clue
-      const clueContent = renderSentenceWithHighlighting(clue, solvedClues, eligibleCluePaths, cluePath);
+      const clueContent = renderSentenceWithHighlighting(clue, solvedClues, eligibleCluePaths, revealedFirstLetters, onClueClick, cluePath);
+      
+      const hasFirstLetterRevealed = revealedFirstLetters.has(cluePath);
+      const displayContent = hasFirstLetterRevealed 
+        ? <>{clueContent} ({clue.value[0]})</>
+        : clueContent;
 
       // Wrap in brackets with highlighting if eligible
       if (isEligible) {
         result.push(
-          <span key={cluePath} className="clue-eligible">
-            [{clueContent}]
+          <span 
+            key={cluePath} 
+            className="clue-eligible"
+            onClick={() => onClueClick(cluePath)}
+            style={{ cursor: 'pointer' }}
+          >
+            [{displayContent}]
           </span>
         );
       } else {

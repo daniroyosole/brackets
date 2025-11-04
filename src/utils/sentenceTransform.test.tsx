@@ -276,7 +276,7 @@ describe('renderSentenceWithHighlighting', () => {
     const sentence: Sentence = {
       text: 'Hello world',
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('Hello world')
   })
 
@@ -291,7 +291,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('[greeting] world')
   })
 
@@ -311,7 +311,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('[greeting] [planet]')
   })
 
@@ -338,7 +338,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('[[first letter][remainder]] example')
   })
 
@@ -354,7 +354,7 @@ describe('renderSentenceWithHighlighting', () => {
       ],
     }
     const solvedClues = new Set(['0'])
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, solvedClues, new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, solvedClues, new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('Hello world')
   })
 
@@ -383,7 +383,7 @@ describe('renderSentenceWithHighlighting', () => {
     }
     // Solve only the inner first clue
     const solvedClues = new Set(['0-0'])
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, solvedClues, new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, solvedClues, new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('[q[remainder]] example')
   })
 
@@ -404,7 +404,7 @@ describe('renderSentenceWithHighlighting', () => {
       ],
     }
     const eligibleCluePaths = new Set(['0'])
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), eligibleCluePaths)}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), eligibleCluePaths, new Set(), () => {})}</>)
     const eligibleSpan = container.querySelector('.clue-eligible')
     expect(eligibleSpan).toBeTruthy()
     expect(eligibleSpan?.textContent).toBe('[greeting]')
@@ -432,7 +432,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('[first][second]f')
   })
 
@@ -461,7 +461,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('[l[l[level3]vel2]el1]')
   })
 
@@ -490,7 +490,7 @@ describe('renderSentenceWithHighlighting', () => {
     }
     // Make the inner clue eligible
     const eligibleCluePaths = new Set(['0-0'])
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), eligibleCluePaths)}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), eligibleCluePaths, new Set(), () => {})}</>)
     
     // Should find eligible span for the inner clue
     const eligibleSpans = container.querySelectorAll('.clue-eligible')
@@ -514,7 +514,7 @@ describe('renderSentenceWithHighlighting', () => {
     }
     const solvedClues = new Set(['0'])
     const eligibleCluePaths = new Set(['0'])
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, solvedClues, eligibleCluePaths)}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, solvedClues, eligibleCluePaths, new Set(), () => {})}</>)
     
     // Solved clues should show their value, not be wrapped in spans
     expect(container.textContent).toBe('Hello world')
@@ -533,7 +533,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     expect(container.textContent).toBe('Start [greeting] End')
   })
 
@@ -558,7 +558,7 @@ describe('renderSentenceWithHighlighting', () => {
         },
       ],
     }
-    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set())}</>)
+    const { container } = render(<>{renderSentenceWithHighlighting(sentence, new Set(), new Set(), new Set(), () => {})}</>)
     // Should render clues in order
     expect(container.textContent).toContain('[first]')
     expect(container.textContent).toContain('[second]')

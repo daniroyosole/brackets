@@ -1,19 +1,48 @@
 import { useState, useMemo, useCallback, useEffect } from 'react'
 import { initialSentence } from '../mockData'
-import type { Sentence } from '../models/sentence'
+import type { Sentence, Clue } from '../models/sentence'
 import { Sentence as SentenceComponent } from '../components/game/Sentence'
 import { findMatchingClue } from '../utils/gameHelpers'
 import { findEligibleClues } from '../utils/sentenceTransform'
 import { HelpModal } from '../components/game/HelpModal'
+import { FirstLetterModal } from '../components/game/FirstLetterModal'
 import './Game.css'
 
 const Game = () => {
-  const [jsonInput, setJsonInput] = useState<string>(JSON.stringify(initialSentence, null, 2))
-  const [solvedClues, setSolvedClues] = useState<Set<string>>(new Set())
+  const [jsonInput, setJsonInput] = useState<string>(() => {
+    const saved = localStorage.getItem('gameJsonInput')
+    return saved || JSON.stringify(initialSentence, null, 2)
+  })
+  const [solvedClues, setSolvedClues] = useState<Set<string>>(() => {
+    const saved = localStorage.getItem('gameSolvedClues')
+    if (saved) {
+      try {
+        return new Set(JSON.parse(saved))
+      } catch {
+        return new Set()
+      }
+    }
+    return new Set()
+  })
+  const [revealedFirstLetters, setRevealedFirstLetters] = useState<Set<string>>(() => {
+    const saved = localStorage.getItem('gameRevealedFirstLetters')
+    if (saved) {
+      try {
+        return new Set(JSON.parse(saved))
+      } catch {
+        return new Set()
+      }
+    }
+    return new Set()
+  })
   const [inputValue, setInputValue] = useState('')
   const [jsonError, setJsonError] = useState<string | null>(null)
-  const [isJsonExpanded, setIsJsonExpanded] = useState(false)
+  const [isJsonExpanded, setIsJsonExpanded] = useState(() => {
+    const saved = localStorage.getItem('gameJsonExpanded')
+    return saved === 'true'
+  })
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false)
+  const [firstLetterModal, setFirstLetterModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; } | null>(null)
 
   useEffect(() => {
     const hasSeenHelp = localStorage.getItem('hasSeenHelp')
@@ -21,6 +50,57 @@ const Game = () => {
       setIsHelpModalOpen(true)
       localStorage.setItem('hasSeenHelp', 'true')
     }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('gameJsonInput', jsonInput)
+  }, [jsonInput])
+
+  useEffect(() => {
+    localStorage.setItem('gameSolvedClues', JSON.stringify(Array.from(solvedClues)))
+  }, [solvedClues])
+
+  useEffect(() => {
+    localStorage.setItem('gameJsonExpanded', String(isJsonExpanded))
+  }, [isJsonExpanded])
+
+  useEffect(() => {
+    localStorage.setItem('gameRevealedFirstLetters', JSON.stringify(Array.from(revealedFirstLetters)))
+  }, [revealedFirstLetters])
+
+  const findClueByPath = useCallback((sentenceObj: Sentence, targetPath: string, currentPath: string = ""): { clue: Clue; clueText: string } | null => {
+    if (!sentenceObj.clues || sentenceObj.clues.length === 0) {
+      return null
+    }
+
+    for (let i = 0; i < sentenceObj.clues.length; i++) {
+      const clue = sentenceObj.clues[i]
+      const cluePath = currentPath ? `${currentPath}-${i}` : `${i}`
+      
+      if (cluePath === targetPath) {
+        return { clue, clueText: clue.text }
+      }
+
+      if (clue.clues) {
+        const nested = findClueByPath(clue, targetPath, cluePath)
+        if (nested) {
+          return nested
+        }
+      }
+    }
+
+    return null
+  }, [])
+
+  const handleRevealFirstLetter = useCallback(() => {
+    if (firstLetterModal) {
+      setRevealedFirstLetters(prev => new Set(prev).add(firstLetterModal.cluePath))
+      setFirstLetterModal(null)
+    }
+  }, [firstLetterModal])
+
+  const handleCancelFirstLetter = useCallback(() => {
+    setFirstLetterModal(null)
   }, [])
 
   const sentence = useMemo(() => {
@@ -36,14 +116,30 @@ const Game = () => {
 
   const handleJsonChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJsonInput(e.target.value)
-    // Clear solved clues when JSON changes
+    // Clear solved clues and revealed first letters when JSON changes
     setSolvedClues(new Set())
+    setRevealedFirstLetters(new Set())
   }, [])
 
   const eligibleCluePaths = useMemo(() => {
     const eligible = findEligibleClues(sentence, solvedClues)
     return new Set(eligible.map(({ path }) => path))
   }, [sentence, solvedClues])
+
+  const handleClueClick = useCallback((cluePath: string) => {
+    if (revealedFirstLetters.has(cluePath)) {
+      return
+    }
+
+    const clueInfo = findClueByPath(sentence, cluePath)
+    if (clueInfo) {
+      setFirstLetterModal({
+        isOpen: true,
+        cluePath,
+        clueText: clueInfo.clueText,
+      })
+    }
+  }, [sentence, revealedFirstLetters, findClueByPath])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -122,6 +218,8 @@ const Game = () => {
           sentence={sentence} 
           solvedClues={solvedClues}
           eligibleCluePaths={eligibleCluePaths}
+          revealedFirstLetters={revealedFirstLetters}
+          onClueClick={handleClueClick}
         />
         <form onSubmit={handleSubmit} className="answer-form">
           <input
@@ -139,6 +237,15 @@ const Game = () => {
         isOpen={isHelpModalOpen}
         onClose={() => setIsHelpModalOpen(false)}
       />
+
+      {firstLetterModal && (
+        <FirstLetterModal
+          isOpen={firstLetterModal.isOpen}
+          clueText={firstLetterModal.clueText}
+          onConfirm={handleRevealFirstLetter}
+          onCancel={handleCancelFirstLetter}
+        />
+      )}
     </div>
   )
 }

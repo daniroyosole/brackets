@@ -6,16 +6,20 @@ interface SentenceComponentProps {
   sentence: SentenceType;
   solvedClues: Set<string>;
   eligibleCluePaths: Set<string>;
+  revealedFirstLetters: Set<string>;
+  onClueClick: (cluePath: string) => void;
 }
 
 export const Sentence = ({ 
   sentence, 
   solvedClues,
-  eligibleCluePaths
+  eligibleCluePaths,
+  revealedFirstLetters,
+  onClueClick
 }: SentenceComponentProps) => {
   return (
     <div className="sentence">
-      {renderSentenceWithHighlighting(sentence, solvedClues, eligibleCluePaths)}
+      {renderSentenceWithHighlighting(sentence, solvedClues, eligibleCluePaths, revealedFirstLetters, onClueClick)}
     </div>
   );
 }

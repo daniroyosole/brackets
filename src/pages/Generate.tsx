@@ -357,6 +357,8 @@ const Generate = () => {
               sentence={sentence}
               solvedClues={new Set()}
               eligibleCluePaths={new Set()}
+              revealedFirstLetters={new Set()}
+              onClueClick={() => {}}
             />
           </div>
         )}
