@@ -239,8 +239,12 @@
     padding: 1.25rem 0.75rem 0.75rem 0.75rem;
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic viewport height for mobile */
+    min-height: var(--viewport-height, 100dvh); /* Use actual viewport height */
     max-height: 100dvh;
+    max-height: var(--viewport-height, 100dvh);
     overflow: hidden;
+    /* Account for browser UI (bookmarks bar, address bar, etc.) */
+    padding-bottom: env(safe-area-inset-bottom, 0.75rem);
   }
 
   .game-header {
@@ -291,17 +295,22 @@
     box-sizing: border-box;
     flex: 1 1 auto;
     min-height: 0;
-    max-height: calc(100dvh - 280px); /* Adjust: header (~100px) + form (~180px) */
+    /* Adjust based on actual viewport height, accounting for keyboard and browser UI */
+    max-height: calc(var(--viewport-height, 100dvh) - 280px);
+    /* Fallback for browsers without CSS variables */
+    max-height: calc(100dvh - 280px);
   }
 
   .answer-form {
     gap: 0.875rem;
     margin-top: 0;
     padding-top: 0.875rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); /* Account for browser UI */
     flex-shrink: 0;
     background-color: #ffffff;
     z-index: 10;
+    /* Ensure form stays visible above keyboard */
+    position: relative;
   }
 
   .game-container .answer-input {

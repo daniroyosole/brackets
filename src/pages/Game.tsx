@@ -141,6 +141,36 @@ const Game = () => {
   }, [sentence, revealedFirstLetters, findClueByPath])
 
   const answerInputRef = useRef<HTMLInputElement>(null)
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight)
+
+  useEffect(() => {
+    // Handle viewport changes when keyboard or browser UI appears/disappears
+    const handleResize = () => {
+      // Use visual viewport if available (better for mobile keyboard)
+      if (window.visualViewport) {
+        setViewportHeight(window.visualViewport.height)
+      } else {
+        setViewportHeight(window.innerHeight)
+      }
+    }
+
+    // Listen to visual viewport changes (keyboard open/close)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize)
+      window.visualViewport.addEventListener('scroll', handleResize)
+    } else {
+      window.addEventListener('resize', handleResize)
+    }
+
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleResize)
+        window.visualViewport.removeEventListener('scroll', handleResize)
+      } else {
+        window.removeEventListener('resize', handleResize)
+      }
+    }
+  }, [])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -166,7 +196,12 @@ const Game = () => {
   }
 
   return (
-    <div className="game-container">
+    <div 
+      className="game-container"
+      style={{ 
+        '--viewport-height': `${viewportHeight}px` 
+      } as React.CSSProperties}
+    >
       <div className="game-header">
         <h1>[Claudàtors]</h1>
         <div className="game-header-actions">
