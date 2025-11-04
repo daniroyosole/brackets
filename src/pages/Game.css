@@ -206,6 +206,10 @@
     width: 100%;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
+    position: sticky;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 10;
   }
 
   .game-container .answer-input {
@@ -231,6 +235,8 @@
 @media (max-width: 480px) {
   .game-container {
     padding: 1.25rem 0.75rem 0.75rem 0.75rem;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
   }
 
   .game-header {
@@ -277,6 +283,7 @@
     border: 2px solid var(--color-border);
     background-color: var(--color-white);
     box-sizing: border-box;
+    max-height: calc(100dvh - 320px); /* Adjust based on header + input height */
   }
 
   .answer-form {
@@ -284,6 +291,10 @@
     margin-top: auto;
     padding-top: 0.875rem;
     padding-bottom: 0.5rem;
+    position: sticky;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 10;
   }
 
   .game-container .answer-input {

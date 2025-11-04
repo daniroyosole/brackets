@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from 'react'
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
 import { initialSentence } from '../mockData'
 import type { Sentence, Clue } from '../models/sentence'
 import { Sentence as SentenceComponent } from '../components/game/Sentence'
@@ -140,7 +140,9 @@ const Game = () => {
     }
   }, [sentence, revealedFirstLetters, findClueByPath])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const answerInputRef = useRef<HTMLInputElement>(null)
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
     const matchingClue = findMatchingClue(sentence, solvedClues, inputValue)
@@ -149,6 +151,13 @@ const Game = () => {
       setSolvedClues(prev => new Set(prev).add(matchingClue.path))
       setInputValue('')
     }
+  }
+
+  const handleInputFocus = () => {
+    // Scroll to input when keyboard opens on mobile
+    setTimeout(() => {
+      answerInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 300)
   }
 
   return (
@@ -178,10 +187,12 @@ const Game = () => {
         </div>
         <form onSubmit={handleSubmit} className="answer-form">
           <input
+            ref={answerInputRef}
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Introdueix una resposta..."
+            onFocus={handleInputFocus}
+            placeholder="Introdueix una resposta..."
             className="answer-input"
           />
           <button type="submit" className="submit-btn">Enviar</button>
