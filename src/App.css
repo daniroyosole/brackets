@@ -1,19 +1,22 @@
 #root {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 0;
   background-color: var(--color-white);
   min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
   #root {
-    padding: 1.5rem 1rem;
+    padding: 0;
   }
 }
 
 @media (max-width: 480px) {
   #root {
-    padding: 1.25rem 0.75rem;
+    padding: 0;
   }
 }

@@ -167,13 +167,15 @@ const Game = () => {
       </div>
 
       <div className="game-content">
-        <SentenceComponent 
-          sentence={sentence} 
-          solvedClues={solvedClues}
-          eligibleCluePaths={eligibleCluePaths}
-          revealedFirstLetters={revealedFirstLetters}
-          onClueClick={handleClueClick}
-        />
+        <div className="sentence-wrapper">
+          <SentenceComponent 
+            sentence={sentence} 
+            solvedClues={solvedClues}
+            eligibleCluePaths={eligibleCluePaths}
+            revealedFirstLetters={revealedFirstLetters}
+            onClueClick={handleClueClick}
+          />
+        </div>
         <form onSubmit={handleSubmit} className="answer-form">
           <input
             type="text"
