@@ -41,9 +41,15 @@ export function calculateScore(
     return 100
   }
 
-  const firstLetterPenalty = (100 / (N )) * firstLetterRequests
-  const fullCluePenalty = (100 / N) * 2.5 * fullClueReveals
-  const wrongAnswerPenalty = (100 / (N * 1.5)) * wrongAnswers
+  // Scale penalties to be more proportional across different N values
+  // Adjust scaling factor based on N to prevent excessive penalties for small N
+  // Use a logarithmic-style scaling that's more lenient for small N
+  const baseScale = Math.min(1, N / 26) // Normalize to N=26 as baseline
+  const adjustedScale = 0.3 + (baseScale * 0.7) // Scale between 0.3 and 1.0 (more lenient)
+  
+  const firstLetterPenalty = (100 / N) * adjustedScale * firstLetterRequests
+  const fullCluePenalty = (100 / N) * 2.5 * adjustedScale * fullClueReveals
+  const wrongAnswerPenalty = (100 / (N * 1.5)) * adjustedScale * wrongAnswers
 
   const score = 100 - firstLetterPenalty - fullCluePenalty - wrongAnswerPenalty
 
