@@ -280,6 +280,25 @@ const Game = () => {
         </div>
       </div>
 
+      <div className="game-stats">
+        <span className="stat-item">
+          <span className="stat-emoji">✅</span>
+          <span className="stat-value">{solvedClues.size} / {totalClues}</span>
+        </span>
+        <span className="stat-item">
+          <span className="stat-emoji">🔍</span>
+          <span className="stat-value">{revealedFirstLetters.size}</span>
+        </span>
+        <span className="stat-item">
+          <span className="stat-emoji">💡</span>
+          <span className="stat-value">{revealedFirstLetters.size + fullClueReveals}</span>
+        </span>
+        <span className="stat-item">
+          <span className="stat-emoji">❌</span>
+          <span className="stat-value">{wrongAnswers}</span>
+        </span>
+      </div>
+
       <div className="game-content">
         <div className="sentence-wrapper">
           <SentenceComponent 

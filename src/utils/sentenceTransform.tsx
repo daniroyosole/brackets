@@ -59,7 +59,7 @@ export function renderSentenceWithHighlighting(
       
       const hasFirstLetterRevealed = revealedFirstLetters.has(cluePath);
       const displayContent = hasFirstLetterRevealed 
-        ? <>{clueContent} ({clue.value[0]})</>
+        ? <>{clueContent} <strong>({clue.value[0].toUpperCase()})</strong></>
         : clueContent;
 
       // Wrap in brackets with highlighting if eligible
