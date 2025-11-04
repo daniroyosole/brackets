@@ -312,7 +312,7 @@ const Game = () => {
       {firstLetterModal && (
         <ClueActionModal
           isOpen={firstLetterModal.isOpen}
-          title="Revelar Primera Lletra"
+          title="Revelar la Primera Lletra"
           clueText={firstLetterModal.clueText}
           confirmButtonText="Sí, revelar"
           onConfirm={handleRevealFirstLetter}
@@ -323,7 +323,7 @@ const Game = () => {
       {solveClueModal && (
         <ClueActionModal
           isOpen={solveClueModal.isOpen}
-          title="Resoldre Pista"
+          title="Resoldre"
           clueText={solveClueModal.clueText}
           confirmButtonText="Sí, resoldre"
           onConfirm={handleSolveClue}

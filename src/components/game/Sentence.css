@@ -24,6 +24,8 @@
   font-size: inherit;
   font-weight: normal;
   border-radius: 3px;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .clue-eligible:hover {

@@ -15,12 +15,14 @@
 
 .clue-action-modal {
   background-color: #ffffff;
-  border: 3px solid #000000;
-  box-shadow: 8px 8px 0 #000000;
+  border: 2px solid var(--color-gray-medium);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   max-width: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .clue-action-modal-header {
@@ -38,12 +40,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 .clue-action-modal-close-btn {
-  background: none;
-  border: 2px solid #000000;
-  color: #000000;
+  background: var(--color-gray-light);
+  border: 2px solid var(--color-gray-medium);
+  color: var(--color-black);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0;
@@ -54,11 +57,13 @@
   justify-content: center;
   font-weight: 700;
   transition: all 0.2s ease;
+  border-radius: 50%;
 }
 
 .clue-action-modal-close-btn:hover {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--clue-eligible-bg);
+  border-color: var(--clue-eligible-bg-hover);
+  color: var(--color-black);
 }
 
 .clue-action-modal-content {
@@ -77,9 +82,10 @@
 
 .clue-action-preview {
   padding: 0.75rem;
-  background-color: #fafafa;
-  border: 2px solid #000000;
+  background-color: var(--color-gray-light);
+  border: 1px solid var(--color-gray-medium);
   font-family: 'Courier New', monospace;
+  border-radius: 4px;
 }
 
 .clue-action-modal-footer {
@@ -92,7 +98,7 @@
 .clue-action-confirm-btn,
 .clue-action-cancel-btn {
   padding: 0.75rem 1.5rem;
-  border: 2px solid #000000;
+  border: 2px solid var(--color-gray-medium);
   cursor: pointer;
   font-weight: 700;
   font-size: 0.9rem;
@@ -100,26 +106,31 @@
   letter-spacing: 0.1em;
   font-family: inherit;
   transition: all 0.2s ease;
+  border-radius: 4px;
 }
 
 .clue-action-confirm-btn {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
 }
 
 .clue-action-confirm-btn:hover {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-white);
 }
 
 .clue-action-cancel-btn {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-gray-medium);
 }
 
 .clue-action-cancel-btn:hover {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-gray-light);
+  border-color: var(--color-gray-dark);
+  color: var(--color-black);
 }
 
 @media (max-width: 768px) {
@@ -130,7 +141,7 @@
   .clue-action-modal {
     max-width: 420px;
     width: 100%;
-    box-shadow: 4px 4px 0 #000000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
   .clue-action-modal-header {

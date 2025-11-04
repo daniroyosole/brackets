@@ -7,6 +7,8 @@
   flex: 1;
   padding: 2rem 1rem 1.5rem 1rem;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .game-header {
@@ -41,9 +43,9 @@
 }
 
 .help-btn {
-  background: none;
-  border: 2px solid #000000;
-  color: #000000;
+  background: var(--color-gray-light);
+  border: 2px solid var(--color-gray-medium);
+  color: var(--color-black);
   font-size: 1.25rem;
   cursor: pointer;
   padding: 0;
@@ -61,8 +63,9 @@
 }
 
 .help-btn:hover {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--clue-eligible-bg);
+  border-color: var(--clue-eligible-bg-hover);
+  color: var(--color-black);
 }
 
 
@@ -83,9 +86,11 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--color-gray-medium);
   background-color: var(--color-white);
   box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .answer-form {
@@ -105,7 +110,7 @@
   width: 100%;
   padding: 0.75rem 1rem;
   font-size: 0.95rem;
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--color-gray-medium);
   background-color: var(--color-white);
   font-family: inherit;
   text-transform: uppercase;
@@ -113,34 +118,43 @@
   font-weight: 600;
   text-align: center;
   box-sizing: border-box;
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
 }
 
 .game-container .answer-input:focus {
   outline: none;
-  background-color: #fafafa;
+  background-color: var(--color-white);
+  border-color: var(--clue-eligible-border);
+  box-shadow: 0 0 0 2px rgba(91, 179, 217, 0.2);
 }
 
 .game-container .submit-btn {
   padding: 0.75rem 1.5rem;
   font-size: 0.9rem;
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #000000;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: 2px solid var(--color-primary);
   cursor: pointer;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-family: inherit;
   transition: all 0.2s ease;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(106, 170, 100, 0.25);
 }
 
 .game-container .submit-btn:hover {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(106, 170, 100, 0.35);
 }
 
 .game-container .submit-btn:active {
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.97);
 }
 
 @media (max-width: 768px) {
@@ -221,6 +235,7 @@
     font-size: 1rem;
     min-height: 56px;
     -webkit-appearance: none;
+    appearance: none;
     border-radius: 0;
     letter-spacing: 0.08em;
     box-sizing: border-box;
@@ -257,7 +272,7 @@
 
   .game-header h1 {
     font-size: 1.25rem;
-    padding: 0.625rem 1rem;
+    padding: 0.8rem 1.8rem;
     letter-spacing: 0.06em;
     display: inline-block;
     width: auto;
