@@ -95,6 +95,12 @@
   gap: 0.5rem;
 }
 
+.score-emoji {
+  font-size: 6rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
 .score-value {
   font-size: 4rem;
   font-weight: 700;

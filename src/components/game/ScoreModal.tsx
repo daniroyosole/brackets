@@ -15,6 +15,15 @@ export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
     }
   }
 
+  const getScoreEmoji = (): string => {
+    if (score === 100) return '🍓'
+    if (score >= 81) return '🍉'
+    if (score >= 61) return '🍑'
+    if (score >= 41) return '🍋'
+    if (score >= 21) return '🥦'
+    return '🥔'
+  }
+
   const getScoreMessage = () => {
     if (score >= 90) return 'Excel·lent!'
     if (score >= 75) return 'Molt bé!'
@@ -34,6 +43,7 @@ export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
         </div>
         <div className="score-modal-content">
           <div className="score-display">
+            <div className="score-emoji">{getScoreEmoji()}</div>
             <div className="score-value">{score.toFixed(0)} / 100</div>
             <div className="score-label">Puntuació</div>
           </div>
