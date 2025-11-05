@@ -3,6 +3,10 @@
   margin: 0 auto;
   padding: 2rem 1rem;
   background-color: #ffffff;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .generate-header {
