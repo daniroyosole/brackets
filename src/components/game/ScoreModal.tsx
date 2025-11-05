@@ -25,11 +25,12 @@ export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
   }
 
   const getScoreMessage = () => {
-    if (score >= 90) return 'Excel·lent!'
-    if (score >= 75) return 'Molt bé!'
-    if (score >= 60) return 'Bé!'
-    if (score >= 40) return 'No està malament'
-    return 'Pots millorar!'
+    if (score === 100) return 'Excel·lent'
+    if (score >= 81) return 'Espectacular!'
+    if (score >= 61) return 'Fantàstic!'
+    if (score >= 41) return 'Molt bé!'
+    if (score >= 21) return "T'hi vas acostant!"
+    return 'Casi bé!'
   }
 
   return (
