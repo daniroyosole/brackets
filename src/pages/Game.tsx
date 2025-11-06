@@ -7,7 +7,6 @@ import { GameStats } from '../components/game/GameStats'
 import { useGameState } from '../hooks/useGameState'
 import { useGameHandlers } from '../hooks/useGameHandlers'
 import { useHelpModal } from '../hooks/useHelpModal'
-import { useViewportHeight } from '../hooks/useViewportHeight'
 import './Game.css'
 
 const Game = () => {
@@ -36,10 +35,6 @@ const Game = () => {
   } = useGameState()
 
   const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal()
-  const viewportHeight = useViewportHeight()
-  
-  // Hide header when keyboard is open on small devices (viewport height < 500px)
-  const isKeyboardOpen = viewportHeight < 500
 
   const {
     handleClueClick,
@@ -73,12 +68,7 @@ const Game = () => {
 
   if (isLoading) {
     return (
-      <div 
-        className="game-container"
-        style={{ 
-          '--viewport-height': `${viewportHeight}px` 
-        } as React.CSSProperties}
-      >
+      <div className="game-container">
         <div className="game-loading">
           <div className="loading-spinner"></div>
           <p className="loading-text">Carregant partida...</p>
@@ -89,12 +79,7 @@ const Game = () => {
 
   if (error) {
     return (
-      <div 
-        className="game-container"
-        style={{ 
-          '--viewport-height': `${viewportHeight}px` 
-        } as React.CSSProperties}
-      >
+      <div className="game-container">
         <div className="game-error">
           <div className="error-emoji">🏖️</div>
           <p className="error-text">{error}</p>
@@ -104,13 +89,8 @@ const Game = () => {
   }
 
   return (
-    <div 
-      className="game-container"
-      style={{ 
-        '--viewport-height': `${viewportHeight}px` 
-      } as React.CSSProperties}
-    >
-      <div className={`game-header ${isKeyboardOpen ? 'game-header-hidden' : ''}`}>
+    <div className="game-container">
+      <div className="game-header">
         <h1>[Claudàtors]</h1>
         <div className="game-header-actions">
           <button
@@ -132,7 +112,7 @@ const Game = () => {
       />
 
       <div className="game-content">
-        <div className={`sentence-wrapper ${isKeyboardOpen ? 'sentence-wrapper-keyboard-open' : ''}`}>
+        <div className="sentence-wrapper">
           <SentenceComponent 
             sentence={sentence} 
             solvedClues={solvedClues}

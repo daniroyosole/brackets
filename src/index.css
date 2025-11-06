@@ -43,6 +43,7 @@ html, body {
   overflow-y: auto;
   min-width: 320px;
   overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {

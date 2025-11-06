@@ -1,14 +1,16 @@
 .game-container {
   width: 900px;
-  max-width: calc(100% - 2rem);
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 2rem 1rem 1.5rem 1rem;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .game-loading {
@@ -161,9 +163,11 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden !important;
+  overflow: hidden;
   min-height: 0;
-  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .sentence-wrapper {
@@ -173,12 +177,16 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
   border: 2px solid var(--color-gray-medium);
   background-color: var(--color-white);
   box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  width: 100%;
 }
 
 .answer-form {
@@ -277,9 +285,12 @@
 @media (max-width: 900px), (hover: none), (pointer: coarse) {
   .game-container {
     padding: 1.5rem 1rem 1rem 1rem;
-    overflow-x: hidden !important;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
     overflow-y: visible;
     min-height: 100dvh;
+    box-sizing: border-box;
   }
 
   .game-header {
@@ -349,16 +360,13 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
     border: 2px solid var(--color-border);
     background-color: var(--color-white);
     box-sizing: border-box;
-  }
-
-  .sentence-wrapper.sentence-wrapper-keyboard-open {
-    flex: 0 1 auto;
-    min-height: 0;
-    max-height: calc(var(--viewport-height, 100dvh) - 200px);
-    height: calc(var(--viewport-height, 100dvh) - 200px);
+    max-width: 100%;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   .answer-form {
@@ -372,6 +380,8 @@
     bottom: 0;
     background-color: #ffffff;
     z-index: 10;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   .game-container .answer-input {
@@ -399,9 +409,12 @@
   .game-container {
     padding: 0.75rem 0.5rem 0.5rem 0.5rem;
     padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
-    overflow-x: hidden !important;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
     overflow-y: visible;
     min-height: 100dvh;
+    box-sizing: border-box;
   }
 
   .game-header {
@@ -409,15 +422,8 @@
     margin-bottom: 0.5rem;
     padding-bottom: 0.4rem;
     position: relative;
-    transition: opacity 0.2s ease, max-height 0.2s ease, margin 0.2s ease, padding 0.2s ease;
-  }
-
-  .game-header.game-header-hidden {
-    opacity: 0;
-    max-height: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .game-stats {
@@ -484,12 +490,6 @@
     max-height: 100%;
   }
 
-  .sentence-wrapper.sentence-wrapper-keyboard-open {
-    flex: 0 1 auto;
-    min-height: 0;
-    max-height: calc(var(--viewport-height, 100dvh) - 200px);
-    height: calc(var(--viewport-height, 100dvh) - 200px);
-  }
 
   .answer-form {
     gap: 0.5rem;

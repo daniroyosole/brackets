@@ -13,6 +13,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: auto;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {

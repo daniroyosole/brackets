@@ -175,11 +175,6 @@ export const useGameState = () => {
     return new Set(eligible.map(({ path }) => path))
   }, [sentence, solvedClues])
 
-  // Log score whenever it changes
-  useEffect(() => {
-    console.log('Current score:', score)
-  }, [score])
-
   return {
     sentence,
     solvedClues,
