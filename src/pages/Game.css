@@ -109,7 +109,6 @@
   overflow-x: hidden !important;
   min-height: 0;
   max-height: 100%;
-  touch-action: pan-y;
 }
 
 .sentence-wrapper {
@@ -124,6 +123,7 @@
   box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  touch-action: pan-y;
 }
 
 .answer-form {
@@ -214,7 +214,6 @@
     overflow-x: hidden !important;
     height: 100dvh;
     max-height: 100dvh;
-    touch-action: pan-y;
   }
 
   .game-header {
@@ -342,7 +341,6 @@
     padding-bottom: env(safe-area-inset-bottom, 0px);
     height: 100dvh;
     max-height: 100dvh;
-    touch-action: pan-y;
   }
 
   .game-header {
