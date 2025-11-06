@@ -13,6 +13,7 @@ interface UseGameHandlersProps {
   setFullClueReveals: React.Dispatch<React.SetStateAction<number>>
   setFirstLetterModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; cluePath: string; clueText: string; firstLetter: string } | null>>
   setSolveClueModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>>
+  setInputError: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const useGameHandlers = ({
@@ -24,7 +25,8 @@ export const useGameHandlers = ({
   setWrongAnswers,
   setFullClueReveals,
   setFirstLetterModal,
-  setSolveClueModal
+  setSolveClueModal,
+  setInputError
 }: UseGameHandlersProps) => {
   const handleClueClick = useCallback((cluePath: string) => {
     const clueInfo = findClueByPath(sentence, cluePath)
@@ -87,12 +89,17 @@ export const useGameHandlers = ({
     if (matchingClue) {
       setSolvedClues(prev => new Set(prev).add(matchingClue.path))
       setInputValue('')
+      setInputError(false)
     } else if (inputValue.trim()) {
       // Track wrong answer only if input is not empty
       setWrongAnswers(prev => prev + 1)
-      setInputValue('')
+      setInputError(true)
+      setTimeout(() => {
+        setInputValue('')
+        setInputError(false)
+      }, 800)
     }
-  }, [sentence, solvedClues, setSolvedClues, setWrongAnswers])
+  }, [sentence, solvedClues, setSolvedClues, setWrongAnswers, setInputError])
 
   const handleInputFocus = useCallback(() => {
     // Scroll to show sentence container top when keyboard opens on mobile

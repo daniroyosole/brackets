@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { Sentence } from '../../models/sentence'
 import { Sentence as SentenceComponent } from './Sentence'
 import { findMatchingClue } from '../../utils/gameHelpers'
@@ -28,9 +28,14 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
   const [miniTutorialInput, setMiniTutorialInput] = useState('')
   const [miniTutorialSolved, setMiniTutorialSolved] = useState(false)
   const [miniTutorialRevealedFirstLetters, setMiniTutorialRevealedFirstLetters] = useState<Set<string>>(new Set())
+  const [miniTutorialInputError, setMiniTutorialInputError] = useState(false)
+  const miniTutorialInputRef = useRef<HTMLInputElement>(null)
+  const [hasCompletedTutorial, setHasCompletedTutorial] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
+      const completed = localStorage.getItem('hasSeenHelp') === 'true'
+      setHasCompletedTutorial(completed)
       setStep(1)
       setIsMiniTutorial(false)
       setMiniTutorialInput('')
@@ -39,15 +44,41 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
     }
   }, [isOpen])
 
+  // Focus input after 2 seconds when mini tutorial starts
+  useEffect(() => {
+    if (step === 2 && isMiniTutorial && !miniTutorialSolved) {
+      const timer = setTimeout(() => {
+        miniTutorialInputRef.current?.focus()
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [step, isMiniTutorial, miniTutorialSolved])
+
   if (!isOpen) return null
 
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    // Only allow closing if tutorial is already completed
+    if (hasCompletedTutorial && e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
+  const handleClose = () => {
+    // Only allow closing if tutorial is already completed
+    if (hasCompletedTutorial) {
+      onClose()
+    }
+  }
+
   const handleContinue = () => {
-    if (step === 1) {
+    // Only allow going to step 2 if tutorial is not completed
+    if (!hasCompletedTutorial && step === 1) {
       setStep(2)
       setIsMiniTutorial(true)
     } else if (miniTutorialSolved) {
       // Only mark tutorial as completed when user solves the mini tutorial
       localStorage.setItem('hasSeenHelp', 'true')
+      setHasCompletedTutorial(true)
       setIsMiniTutorial(false)
       onClose()
     }
@@ -61,9 +92,14 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
     if (matchingClue) {
       setMiniTutorialSolved(true)
       setMiniTutorialInput('')
+      setMiniTutorialInputError(false)
     } else if (miniTutorialInput.trim()) {
-      // Wrong answer - could show feedback but for now just clear
-      setMiniTutorialInput('')
+      // Wrong answer - show error feedback
+      setMiniTutorialInputError(true)
+      setTimeout(() => {
+        setMiniTutorialInput('')
+        setMiniTutorialInputError(false)
+      }, 800)
     }
   }
 
@@ -109,12 +145,12 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
               ) : (
                 <form onSubmit={handleMiniTutorialSubmit} className="mini-tutorial-form">
                   <input
+                    ref={miniTutorialInputRef}
                     type="text"
                     value={miniTutorialInput}
                     onChange={(e) => setMiniTutorialInput(e.target.value)}
                     placeholder="Introdueix la resposta..."
-                    className="mini-tutorial-input"
-                    autoFocus
+                    className={`mini-tutorial-input ${miniTutorialInputError ? 'input-error' : ''}`}
                   />
                   <button type="submit" className="mini-tutorial-submit-btn">
                     Enviar
@@ -138,10 +174,15 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
   }
 
   return (
-    <div className="help-modal-overlay">
+    <div className="help-modal-overlay" onClick={handleOverlayClick}>
       <div className="help-modal">
         <div className="help-modal-header">
           <h2>[Com Jugar]</h2>
+          {hasCompletedTutorial && (
+            <button onClick={handleClose} className="help-modal-close-btn" title="Tancar">
+              ×
+            </button>
+          )}
         </div>
         <div className="help-modal-content">
           <div className="help-section">
@@ -160,9 +201,15 @@ export const HelpModal = ({ isOpen, onClose }: HelpModalProps) => {
           </div>
         </div>
         <div className="help-modal-footer">
-          <button onClick={handleContinue} className="help-modal-ok-btn">
-            Continuar
-          </button>
+          {hasCompletedTutorial ? (
+            <button onClick={handleClose} className="help-modal-ok-btn">
+              Tancar
+            </button>
+          ) : (
+            <button onClick={handleContinue} className="help-modal-ok-btn">
+              Continuar
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ import './Game.css'
 
 const Game = () => {
   const [inputValue, setInputValue] = useState('')
+  const [inputError, setInputError] = useState(false)
   const [firstLetterModal, setFirstLetterModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; firstLetter: string } | null>(null)
   const [solveClueModal, setSolveClueModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>(null)
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false)
@@ -52,7 +53,8 @@ const Game = () => {
     setWrongAnswers,
     setFullClueReveals,
     setFirstLetterModal,
-    setSolveClueModal
+    setSolveClueModal,
+    setInputError
   })
 
   // Show score modal when game finishes (including on page load if already finished)
@@ -110,7 +112,7 @@ const Game = () => {
             onChange={(e) => setInputValue(e.target.value)}
             onFocus={handleInputFocus}
             placeholder="Introdueix una resposta..."
-            className="answer-input"
+            className={`answer-input ${inputError ? 'input-error' : ''}`}
           />
           <button type="submit" className="submit-btn">Enviar</button>
         </form>
