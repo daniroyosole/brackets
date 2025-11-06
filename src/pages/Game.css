@@ -215,7 +215,7 @@
   text-align: center;
   box-sizing: border-box;
   border-radius: 4px;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.3s ease;
 }
 
 .game-container .answer-input:focus {
@@ -226,7 +226,8 @@
 }
 
 .game-container .answer-input.input-error {
-  animation: inputShake 0.5s ease-in-out;
+  border-color: #e57373;
+  transition: border-color 0.3s ease;
 }
 
 .game-container .answer-input:disabled {
@@ -240,18 +241,6 @@
   cursor: not-allowed;
   background-color: var(--color-gray-medium);
   border-color: var(--color-gray-medium);
-}
-
-@keyframes inputShake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-5px);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translateX(5px);
-  }
 }
 
 .game-container .submit-btn {
@@ -387,7 +376,7 @@
   .game-container .answer-input {
     width: 100%;
     padding: 1rem 1.25rem;
-    font-size: 1rem;
+    font-size: 16px; /* Prevents zoom on iOS Safari */
     min-height: 56px;
     -webkit-appearance: none;
     appearance: none;
@@ -505,7 +494,7 @@
   .game-container .answer-input {
     width: 100%;
     padding: 0.75rem 0.875rem;
-    font-size: 15px; /* Prevents zoom on iOS */
+    font-size: 16px; /* Prevents zoom on iOS */
     min-height: 48px;
     margin: 0;
     border-radius: 6px;

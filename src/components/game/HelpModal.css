@@ -75,6 +75,7 @@
   border-radius: 4px;
   font-family: inherit;
   animation: inputPulse 2s ease-in-out infinite;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 @keyframes inputPulse {
@@ -96,19 +97,8 @@
 }
 
 .mini-tutorial-input.input-error {
-  animation: inputShake 0.5s ease-in-out;
-}
-
-@keyframes inputShake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-5px);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translateX(5px);
-  }
+  border-color: #e57373;
+  transition: border-color 0.3s ease;
 }
 
 .mini-tutorial-submit-btn {
@@ -300,7 +290,7 @@
   }
 
   .mini-tutorial-input {
-    font-size: 0.9rem;
+    font-size: 16px; /* Prevents zoom on iOS Safari */
     padding: 0.625rem 0.875rem;
   }
 
