@@ -35,6 +35,9 @@ const Game = () => {
 
   const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal()
   const viewportHeight = useViewportHeight()
+  
+  // Hide header when keyboard is open on small devices (viewport height < 500px)
+  const isKeyboardOpen = viewportHeight < 500
 
   const {
     handleClueClick,
@@ -73,7 +76,7 @@ const Game = () => {
         '--viewport-height': `${viewportHeight}px` 
       } as React.CSSProperties}
     >
-      <div className="game-header">
+      <div className={`game-header ${isKeyboardOpen ? 'game-header-hidden' : ''}`}>
         <h1>[Claudàtors]</h1>
         <div className="game-header-actions">
           <button
