@@ -7,6 +7,7 @@
   flex: 1;
   padding: 2rem 1rem 1.5rem 1rem;
   overflow: hidden;
+  overflow-y: hidden;
   position: relative;
   z-index: 1;
   height: 100vh;
@@ -105,6 +106,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  overflow-y: hidden;
   min-height: 0;
 }
 
