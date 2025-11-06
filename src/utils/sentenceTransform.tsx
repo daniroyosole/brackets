@@ -21,7 +21,7 @@ export function normalizeString(str: string): string {
  * Eligible clues are highlighted with the 'clue-eligible' class.
  */
 export function renderSentenceWithHighlighting(
-  sentence: Sentence,
+  sentence: Sentence | Clue,
   solvedClues: Set<string>,
   eligibleCluePaths: Set<string>,
   revealedFirstLetters: Set<string>,
@@ -111,7 +111,7 @@ function createCluePath(parentPath: string, index: number): string {
  * @returns True if all inner clues are solved or there are no inner clues
  */
 function areAllInnerCluesSolved(
-  clue: Clue,
+  clue: Sentence | Clue,
   cluePath: string,
   solvedClues: Set<string>
 ): boolean {
@@ -132,7 +132,7 @@ function areAllInnerCluesSolved(
  * - All of its inner clues have been solved
  */
 export function findEligibleClues(
-  sentence: Sentence,
+  sentence: Sentence | Clue,
   solvedClues: Set<string>,
   path: string = "",
   eligibleClues: Array<{ clue: Clue; path: string }> = []

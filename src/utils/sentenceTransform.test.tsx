@@ -11,7 +11,6 @@ const createSentence = (text: string, clues?: Clue[]): Sentence => ({
 })
 
 const createClue = (text: string, value: string, startIndex: number, clues?: Clue[]): Clue => ({
-  date: '2025-11-06',
   text,
   value,
   startIndex,

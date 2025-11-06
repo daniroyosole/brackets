@@ -16,8 +16,7 @@ const miniTutorialSentence: Sentence = {
     {
       text: 'Obre una porta o una partitura',
       value: 'Clau',
-      startIndex: 12,
-      date: ''
+      startIndex: 12
     }
   ]
 }

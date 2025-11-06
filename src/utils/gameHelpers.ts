@@ -3,13 +3,13 @@ import type { Sentence, Clue } from '../models/sentence'
 
 /**
  * Recursively finds a clue by its path in a sentence structure.
- * @param sentenceObj - The sentence containing clues
+ * @param sentenceObj - The sentence or clue containing clues
  * @param targetPath - The path to find (e.g., "0", "0-1", "0-1-2")
  * @param currentPath - Current path being traversed (used for recursion)
  * @returns The clue and its text, or null if not found
  */
 export function findClueByPath(
-  sentenceObj: Sentence,
+  sentenceObj: Sentence | Clue,
   targetPath: string,
   currentPath: string = ""
 ): { clue: Clue; clueText: string } | null {

@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import type { Sentence, Clue } from '../models/sentence'
 import type { ClueNode } from '../hooks/useGenerateState'
+import { getTodayDate } from './api'
 
 export const useGenerateHelpers = (
   sentenceText: string,
@@ -27,6 +28,7 @@ export const useGenerateHelpers = (
     }
     
     return {
+      date: getTodayDate(),
       text: sentenceText,
       clues: rootClues.length > 0 ? rootClues.map(convertClueNode) : undefined
     }

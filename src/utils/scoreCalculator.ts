@@ -1,7 +1,7 @@
-import type { Sentence } from '../models/sentence'
+import type { Sentence, Clue } from '../models/sentence'
 
 export function getAllCluePaths(
-  sentence: Sentence,
+  sentence: Sentence | Clue,
   path: string = "",
   allPaths: string[] = []
 ): string[] {
