@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { initialSentence } from '../mockData'
 import type { Sentence } from '../models/sentence'
 import { checkGameVersion, getStoredSet, saveSet, getStoredNumber, saveNumber } from '../utils/storageUtils'
