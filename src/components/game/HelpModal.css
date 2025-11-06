@@ -295,6 +295,22 @@
     padding: 0.5rem 1rem;
   }
 
+  .mini-tutorial-form {
+    gap: 0.5rem;
+  }
+
+  .mini-tutorial-input {
+    font-size: 0.9rem;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .mini-tutorial-submit-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
   .help-modal-close-btn {
     width: 40px;
     height: 40px;
@@ -303,7 +319,18 @@
   }
 
   .help-modal-content {
-    padding: 1.25rem 1.25rem;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .mini-tutorial-sentence {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
+  .mini-tutorial-form {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
   }
 
   .help-section {
@@ -338,7 +365,7 @@
   }
 
   .help-modal-footer {
-    padding: 1rem 1.25rem;
+    padding: 1rem 0.75rem;
   }
 
   .help-modal-ok-btn {

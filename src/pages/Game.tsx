@@ -132,6 +132,7 @@ const Game = () => {
           title="Revelar la Primera Lletra"
           clueText={firstLetterModal.clueText}
           confirmButtonText="Sí, revelar"
+          message={`Vols revelar la primera lletra de la pista <strong>"${firstLetterModal.clueText}"</strong>?`}
           onConfirm={handleRevealFirstLetter}
           onCancel={handleCancelFirstLetter}
         />
@@ -143,6 +144,7 @@ const Game = () => {
           title="Resoldre"
           clueText={solveClueModal.clueText}
           confirmButtonText="Sí, resoldre"
+          message={`Vols resoldre la pista <strong>"${solveClueModal.clueText}"</strong>?`}
           onConfirm={handleSolveClue}
           onCancel={handleCancelSolveClue}
         />

@@ -5,6 +5,7 @@ interface ClueActionModalProps {
   title: string
   clueText: string
   confirmButtonText: string
+  message?: string
   onConfirm: () => void
   onCancel: () => void
 }
@@ -14,6 +15,7 @@ export const ClueActionModal = ({
   title, 
   clueText, 
   confirmButtonText, 
+  message,
   onConfirm, 
   onCancel 
 }: ClueActionModalProps) => {
@@ -35,7 +37,7 @@ export const ClueActionModal = ({
           </button>
         </div>
         <div className="clue-action-modal-content">
-          <p>Vols {title.toLowerCase()} la pista <strong>"{clueText}"</strong>?</p>
+          <p dangerouslySetInnerHTML={{ __html: message || `Vols ${title.toLowerCase()} la pista <strong>"${clueText}"</strong>?` }} />
         </div>
         <div className="clue-action-modal-footer">
           <button onClick={onConfirm} className="clue-action-confirm-btn">
