@@ -205,6 +205,13 @@
 @media (max-width: 768px) {
   .game-container {
     padding: 1.5rem 1rem 1rem 1rem;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
   }
 
   .game-header {
