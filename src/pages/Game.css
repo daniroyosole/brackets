@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 2rem 1rem 0.5rem 1rem;
+  padding: 2rem 1rem 1.5rem 1rem;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -109,8 +109,8 @@
 }
 
 .sentence-wrapper {
-  flex: 1 1 auto;
-  margin-bottom: 1rem;
+  flex: 1;
+  margin-bottom: 2rem;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -315,7 +315,7 @@
 
 @media (max-width: 480px) {
   .game-container {
-    padding: 1.25rem 0.75rem 0.5rem 0.75rem;
+    padding: 1.25rem 0.75rem 1rem 0.75rem;
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic viewport height for mobile */
     min-height: var(--viewport-height, 100dvh); /* Use actual viewport height */
@@ -323,7 +323,7 @@
     max-height: var(--viewport-height, 100dvh);
     overflow: hidden;
     /* Account for browser UI (bookmarks bar, address bar, etc.) */
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   }
 
   .game-header {
@@ -384,23 +384,26 @@
   }
 
   .sentence-wrapper {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    border: 2px solid var(--color-gray-medium);
+    border: 2px solid var(--color-border);
     background-color: var(--color-white);
     box-sizing: border-box;
     flex: 1 1 auto;
     min-height: 0;
-    max-height: none;
+    /* Adjust based on actual viewport height, accounting for keyboard and browser UI */
+    max-height: calc(var(--viewport-height, 100dvh) - 290px);
+    /* Fallback for browsers without CSS variables */
+    max-height: calc(100dvh - 290px);
   }
 
   .answer-form {
     gap: 0.75rem;
     margin-top: 0;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0;
     padding-left: 0;
     padding-right: 0;
     margin-left: 0;
