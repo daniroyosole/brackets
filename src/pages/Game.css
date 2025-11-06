@@ -9,6 +9,8 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .game-header {
@@ -104,8 +106,6 @@
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
-  max-height: 100vh;
-  max-height: 100dvh; /* Dynamic viewport height */
 }
 
 .sentence-wrapper {
