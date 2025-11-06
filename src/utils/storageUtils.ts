@@ -1,5 +1,5 @@
 // Game version - increment this to force all users to reset their localStorage
-export const GAME_VERSION = '1.0.1'
+export const GAME_VERSION = '1.0.2'
 
 // Helper function to clear all game-related localStorage
 export const clearGameStorage = () => {

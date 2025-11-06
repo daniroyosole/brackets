@@ -18,7 +18,7 @@
 .clue-eligible {
   background-color: var(--clue-eligible-bg);
   color: var(--color-black);
-  padding: 0.125rem 0.375rem;
+  padding: 0.125rem 0.2rem;
   display: inline-block;
   margin: 0 0.125rem;
   font-size: inherit;
@@ -42,7 +42,7 @@
   }
 
   .clue-eligible {
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.2rem;
     margin: 0 0.125rem;
     min-height: 36px;
     display: inline-flex;
@@ -63,7 +63,7 @@
   }
 
   .clue-eligible {
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.2rem;
     margin: 0 0.125rem;
     min-height: 32px;
     font-size: inherit;
