@@ -98,7 +98,7 @@ const Game = () => {
       />
 
       <div className="game-content">
-        <div className="sentence-wrapper">
+        <div className={`sentence-wrapper ${isKeyboardOpen ? 'sentence-wrapper-keyboard-open' : ''}`}>
           <SentenceComponent 
             sentence={sentence} 
             solvedClues={solvedClues}
