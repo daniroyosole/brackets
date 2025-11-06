@@ -116,8 +116,9 @@ const Game = () => {
             onFocus={handleInputFocus}
             placeholder="Introdueix una resposta..."
             className={`answer-input ${inputError ? 'input-error' : ''}`}
+            disabled={isGameFinished}
           />
-          <button type="submit" className="submit-btn">Enviar</button>
+          <button type="submit" className="submit-btn" disabled={isGameFinished}>Enviar</button>
         </form>
       </div>
 

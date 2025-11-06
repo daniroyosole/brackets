@@ -161,6 +161,19 @@
   animation: inputShake 0.5s ease-in-out;
 }
 
+.game-container .answer-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-gray-light);
+}
+
+.game-container .submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-gray-medium);
+  border-color: var(--color-gray-medium);
+}
+
 @keyframes inputShake {
   0%, 100% {
     transform: translateX(0);
