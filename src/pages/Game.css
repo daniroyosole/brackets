@@ -271,66 +271,15 @@
   transform: translateY(0) scale(0.97);
 }
 
-/* Keyboard open styles - shared across all mobile breakpoints */
-.game-container.keyboard-open {
-  overflow-y: hidden !important;
-  height: 100%;
-  max-height: 100%;
-}
-
-.game-container.keyboard-open .game-header {
-  opacity: 0;
-  max-height: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.game-container.keyboard-open .game-stats {
-  flex-shrink: 0;
-  margin-bottom: 0.5rem;
-}
-
-.game-container.keyboard-open .game-content {
-  flex: 1 1 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.game-container.keyboard-open .sentence-wrapper {
-  flex: 1 1 0;
-  min-height: 0;
-  max-height: calc(100% - 180px);
-  overflow-y: auto;
-}
-
-.game-container.keyboard-open .answer-form {
-  flex-shrink: 0;
-  margin-top: 0.5rem;
-  padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: #ffffff;
-  z-index: 10;
-}
-
 @media (max-width: 900px), (hover: none), (pointer: coarse) {
   .game-container {
     padding: 1.5rem 1rem 1rem 1rem;
     max-width: 100%;
     width: 100%;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: visible;
     min-height: 100dvh;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .game-container.keyboard-open {
-    padding-bottom: 0.5rem;
   }
 
   .game-header {
@@ -342,11 +291,6 @@
     padding-bottom: 0.75rem;
     padding-top: 0.5rem;
     position: relative;
-    transition: opacity 0.2s ease, max-height 0.2s ease, margin 0.2s ease, padding 0.2s ease;
-  }
-
-  .game-container.keyboard-open .answer-form {
-    gap: 1rem;
   }
 
   .game-header h1 {
@@ -457,15 +401,9 @@
     max-width: 100%;
     width: 100%;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: visible;
     min-height: 100dvh;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .game-container.keyboard-open {
-    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
   }
 
   .game-header {
@@ -475,15 +413,6 @@
     position: relative;
     max-width: 100%;
     box-sizing: border-box;
-    transition: opacity 0.2s ease, max-height 0.2s ease, margin 0.2s ease, padding 0.2s ease;
-  }
-
-  .game-container.keyboard-open .sentence-wrapper {
-    max-height: calc(100% - 160px);
-  }
-
-  .game-container.keyboard-open .answer-form {
-    gap: 0.5rem;
   }
 
   .game-stats {
