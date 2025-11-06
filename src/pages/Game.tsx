@@ -7,6 +7,7 @@ import { GameStats } from '../components/game/GameStats'
 import { useGameState } from '../hooks/useGameState'
 import { useGameHandlers } from '../hooks/useGameHandlers'
 import { useHelpModal } from '../hooks/useHelpModal'
+import { useKeyboardDetection } from '../hooks/useKeyboardDetection'
 import './Game.css'
 
 const Game = () => {
@@ -65,6 +66,7 @@ const Game = () => {
   }, [isGameFinished])
 
   const answerInputRef = useRef<HTMLInputElement>(null)
+  const isKeyboardOpen = useKeyboardDetection(answerInputRef)
 
   if (isLoading) {
     return (
@@ -89,7 +91,7 @@ const Game = () => {
   }
 
   return (
-    <div className="game-container">
+    <div className={`game-container ${isKeyboardOpen ? 'keyboard-open' : ''}`}>
       <div className="game-header">
         <h1>[Claudàtors]</h1>
         <div className="game-header-actions">
