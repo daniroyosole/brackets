@@ -155,6 +155,11 @@ const Game = () => {
         isOpen={isScoreModalOpen}
         score={score}
         onClose={() => setIsScoreModalOpen(false)}
+        solvedClues={solvedClues.size}
+        totalClues={totalClues}
+        revealedFirstLetters={revealedFirstLetters.size}
+        fullClueReveals={fullClueReveals}
+        wrongAnswers={wrongAnswers}
       />
     </div>
   )

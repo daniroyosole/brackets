@@ -1,14 +1,30 @@
 import './ScoreModal.css'
 import { useNextGameTimer } from '../../hooks/useNextGameTimer'
+import { useState } from 'react'
 
 interface ScoreModalProps {
   isOpen: boolean
   score: number
   onClose: () => void
+  solvedClues: number
+  totalClues: number
+  revealedFirstLetters: number
+  fullClueReveals: number
+  wrongAnswers: number
 }
 
-export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
+export const ScoreModal = ({ 
+  isOpen, 
+  score, 
+  onClose, 
+  solvedClues, 
+  totalClues, 
+  revealedFirstLetters, 
+  fullClueReveals, 
+  wrongAnswers 
+}: ScoreModalProps) => {
   const timeRemaining = useNextGameTimer()
+  const [copied, setCopied] = useState(false)
   
   if (!isOpen) return null
 
@@ -36,6 +52,79 @@ export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
     return 'Casi bé!'
   }
 
+  const formatDate = () => {
+    const today = new Date()
+    const day = today.getDate()
+    const month = today.toLocaleDateString('ca-ES', { month: 'long' })
+    const year = today.getFullYear()
+    return `${day} de ${month} de ${year}`
+  }
+
+  const generateShareText = () => {
+    const emoji = getScoreEmoji()
+    const date = formatDate()
+    
+    return `[Claudàtors] - ${date}
+
+${emoji} Puntuació: ${score.toFixed(0)}/100
+
+📊 Estadístiques:
+✅ Encerts: ${solvedClues}/${totalClues}
+🔍 Primera lletra: ${revealedFirstLetters}
+💡 Pista sencera: ${fullClueReveals}
+❌ Errors: ${wrongAnswers}
+
+Juga a: https://brackets-delta.vercel.app/`
+  }
+
+  const handleShare = async () => {
+    const shareText = generateShareText()
+    
+    // Try Web Share API first (mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '[Claudàtors]',
+          text: shareText,
+        })
+        return
+      } catch (err) {
+        // User cancelled or error occurred, fall back to clipboard
+        if ((err as Error).name !== 'AbortError') {
+          console.error('Error sharing:', err)
+        }
+      }
+    }
+    
+    // Fallback to clipboard
+    try {
+      await navigator.clipboard.writeText(shareText)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Error copying to clipboard:', err)
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = shareText
+      textArea.style.position = 'fixed'
+      textArea.style.opacity = '0'
+      textArea.style.left = '-999999px'
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
+      try {
+        const successful = document.execCommand('copy')
+        if (successful) {
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2000)
+        }
+      } catch (fallbackErr) {
+        console.error('Fallback copy failed:', fallbackErr)
+      }
+      document.body.removeChild(textArea)
+    }
+  }
+
   return (
     <div className="score-modal-overlay" onClick={handleOverlayClick}>
       <div className="score-modal">
@@ -58,6 +147,9 @@ export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
           </div>
         </div>
         <div className="score-modal-footer">
+          <button onClick={handleShare} className="score-modal-share-btn">
+            {copied ? '✓ Copiat!' : '📤 Compartir resultats'}
+          </button>
           <button onClick={onClose} className="score-modal-ok-btn">
             D'acord
           </button>

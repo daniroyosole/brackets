@@ -158,7 +158,38 @@
 .score-modal-footer {
   padding: 1.5rem;
   display: flex;
+  gap: 0.75rem;
   justify-content: flex-end;
+}
+
+.score-modal-share-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: 2px solid var(--color-gray-medium);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.score-modal-share-btn:hover {
+  background-color: var(--clue-eligible-bg);
+  border-color: var(--clue-eligible-bg-hover);
+  color: var(--color-black);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-modal-share-btn:active {
+  transform: translateY(0);
 }
 
 .score-modal-ok-btn {
@@ -246,6 +277,17 @@
 
   .score-modal-footer {
     padding: 1rem 1.25rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .score-modal-share-btn {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    min-height: 48px;
+    letter-spacing: 0.06em;
+    justify-content: center;
   }
 
   .score-modal-ok-btn {
