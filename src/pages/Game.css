@@ -280,9 +280,10 @@
   }
 
   .sentence-wrapper.sentence-wrapper-keyboard-open {
-    flex: 1 1 0;
+    flex: 0 1 auto;
     min-height: 0;
-    max-height: none;
+    max-height: calc(var(--viewport-height, 100dvh) - 200px);
+    height: calc(var(--viewport-height, 100dvh) - 200px);
   }
 
   .answer-form {
@@ -409,9 +410,10 @@
   }
 
   .sentence-wrapper.sentence-wrapper-keyboard-open {
-    flex: 1 1 0;
+    flex: 0 1 auto;
     min-height: 0;
-    max-height: none;
+    max-height: calc(var(--viewport-height, 100dvh) - 200px);
+    height: calc(var(--viewport-height, 100dvh) - 200px);
   }
 
   .answer-form {
@@ -425,10 +427,10 @@
     margin-right: 0;
     margin-bottom: 0;
     flex-shrink: 0;
+    flex-grow: 0;
     background-color: #ffffff;
     z-index: 10;
-    position: sticky;
-    bottom: 0;
+    position: relative;
   }
 
   .game-container .answer-input {
