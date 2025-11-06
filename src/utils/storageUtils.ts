@@ -1,13 +1,19 @@
 // Game version - increment this to force all users to reset their localStorage
 export const GAME_VERSION = '1.0.2'
 
-// Helper function to clear all game-related localStorage
-export const clearGameStorage = () => {
+// Helper function to clear only game state (not core settings like hasSeenHelp)
+export const clearGameState = () => {
   localStorage.removeItem('gameSolvedClues')
   localStorage.removeItem('gameRevealedFirstLetters')
   localStorage.removeItem('gameWrongAnswers')
   localStorage.removeItem('gameFullClueReveals')
   localStorage.removeItem('gameJsonInput')
+  localStorage.removeItem('gameDate')
+}
+
+// Helper function to clear all game-related localStorage (including core settings)
+export const clearGameStorage = () => {
+  clearGameState()
   localStorage.removeItem('hasSeenHelp')
 }
 

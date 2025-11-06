@@ -10,6 +10,7 @@ export function normalizeString(str: string): string {
     .normalize('NFD') // Decompose characters into base + combining marks
     .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
     .toLowerCase()
+    .replace(/\s+/g, '') // Remove all spaces
     .trim();
 }
 

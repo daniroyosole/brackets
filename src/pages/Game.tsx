@@ -30,7 +30,9 @@ const Game = () => {
     totalClues,
     score,
     isGameFinished,
-    eligibleCluePaths
+    eligibleCluePaths,
+    isLoading,
+    error
   } = useGameState()
 
   const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal()
@@ -68,6 +70,38 @@ const Game = () => {
   }, [isGameFinished])
 
   const answerInputRef = useRef<HTMLInputElement>(null)
+
+  if (isLoading) {
+    return (
+      <div 
+        className="game-container"
+        style={{ 
+          '--viewport-height': `${viewportHeight}px` 
+        } as React.CSSProperties}
+      >
+        <div className="game-loading">
+          <div className="loading-spinner"></div>
+          <p className="loading-text">Carregant partida...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div 
+        className="game-container"
+        style={{ 
+          '--viewport-height': `${viewportHeight}px` 
+        } as React.CSSProperties}
+      >
+        <div className="game-error">
+          <div className="error-emoji">🏖️</div>
+          <p className="error-text">{error}</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div 

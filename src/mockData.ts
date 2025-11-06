@@ -1,6 +1,7 @@
 import type { Sentence } from "./models/sentence";
 
-export const initialSentence: Sentence = {
+export const sentences: Sentence[] = [{
+  "date": "2025-11-06",
   "text": "Avui sembla que plou",
   "clues": [
     {
@@ -88,4 +89,143 @@ export const initialSentence: Sentence = {
       ]
     }
   ]
-}
+}, {
+  "date": "2025-11-07",
+  "text": "La Rosalia ha tret disc",
+  "clues": [
+    {
+      "text": "Per Sant Jordi va molt cara",
+      "value": "Rosa",
+      "startIndex": 3,
+      "clues": [
+        {
+          "text": "Un dau en té sis (singular)",
+          "value": "cara",
+          "startIndex": 23,
+          "clues": [
+            {
+              "text": "Ho he pillat, ho he _____",
+              "value": "en té s",
+              "startIndex": 7,
+              "clues": [
+                {
+                  "text": "Diagonal, deserta o de la discòrdia",
+                  "value": "illa",
+                  "startIndex": 7,
+                  "clues": [
+                    {
+                      "text": "Monopoly __, Pokemon __, Sushi __",
+                      "value": "go",
+                      "startIndex": 3,
+                      "clues": [
+                        {
+                          "text": "Un bowl amb arròs, salmó i alvocat",
+                          "value": "Poke",
+                          "startIndex": 13
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Honestament t'ho diu amb això a la ma",
+                      "value": "còr",
+                      "startIndex": 29,
+                      "clues": [
+                        {
+                          "text": "Amb t-, motiu de disputa entre germans orfes",
+                          "value": "estament",
+                          "startIndex": 3
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Amb sort hi trobes un oasi",
+                      "value": "desert",
+                      "startIndex": 10,
+                      "clues": [
+                        {
+                          "text": "Al Pallars Sobirà hi venen loteria",
+                          "value": "sort",
+                          "startIndex": 4
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "S'embolica parda",
+      "value": "lia",
+      "startIndex": 7,
+      "clues": [
+        {
+          "text": "Bic, el més conegut",
+          "value": "boli",
+          "startIndex": 4,
+          "clues": [
+            {
+              "text": "El de trànsit és taronja",
+              "value": "con",
+              "startIndex": 12,
+              "clues": [
+                {
+                  "text": "Què era abans, la fruita o el color?",
+                  "value": "taronja",
+                  "startIndex": 17,
+                  "clues": [
+                    {
+                      "text": "En porta la truita cuita",
+                      "value": "uita",
+                      "startIndex": 20,
+                      "clues": [
+                        {
+                          "text": "Sant Pere guarda la del cel",
+                          "value": "porta",
+                          "startIndex": 3
+                        },
+                        {
+                          "text": "Amb ceba o sense ceba?",
+                          "value": "truita",
+                          "startIndex": 12
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "text": "Els camions del colectiu",
+                  "value": "tràns",
+                  "startIndex": 6,
+                  "clues": [
+                    {
+                      "text": "A Brusel·les també n'hi ha de Kale",
+                      "value": "col",
+                      "startIndex": 16
+                    },
+                    {
+                      "text": "Un d'aquests et porta a Roma",
+                      "value": "cami",
+                      "startIndex": 4,
+                      "clues": [
+                        {
+                          "text": "Capgirat l'amor",
+                          "value": "Roma",
+                          "startIndex": 24
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}]
+

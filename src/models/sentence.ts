@@ -1,4 +1,5 @@
 export interface Sentence {
+  date: string
   text: string
   clues?: Clue[]
 }
