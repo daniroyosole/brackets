@@ -21,13 +21,19 @@ export const getTimeUntilNextGame = () => {
 }
 
 /**
- * Format time remaining as a string (only hours)
+ * Format time remaining as a string (hours and minutes, or "menys d'1h")
  */
-export const formatTimeRemaining = (hours: number): string => {
+export const formatTimeRemaining = (hours: number, minutes: number): string => {
   if (hours > 0) {
+    if (minutes > 0) {
+      return `${hours}h ${minutes}m`
+    }
     return `${hours}h`
   } else {
-    return "menys d'1h"
+    if (minutes > 0) {
+      return `${minutes}m`
+    }
+    return ""
   }
 }
 

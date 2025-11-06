@@ -7,14 +7,14 @@ import { getTimeUntilNextGame, formatTimeRemaining } from '../utils/timeUtils'
  */
 export const useNextGameTimer = () => {
   const [timeRemaining, setTimeRemaining] = useState(() => {
-    const { hours } = getTimeUntilNextGame()
-    return formatTimeRemaining(hours)
+    const { hours, minutes } = getTimeUntilNextGame()
+    return formatTimeRemaining(hours, minutes)
   })
 
   useEffect(() => {
     const updateTimer = () => {
-      const { hours } = getTimeUntilNextGame()
-      setTimeRemaining(formatTimeRemaining(hours))
+      const { hours, minutes } = getTimeUntilNextGame()
+      setTimeRemaining(formatTimeRemaining(hours, minutes))
     }
 
     // Update immediately
