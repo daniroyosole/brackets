@@ -1,4 +1,5 @@
 import './ScoreModal.css'
+import { useNextGameTimer } from '../../hooks/useNextGameTimer'
 
 interface ScoreModalProps {
   isOpen: boolean
@@ -7,6 +8,8 @@ interface ScoreModalProps {
 }
 
 export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
+  const timeRemaining = useNextGameTimer()
+  
   if (!isOpen) return null
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -49,10 +52,14 @@ export const ScoreModal = ({ isOpen, score, onClose }: ScoreModalProps) => {
             <div className="score-label">Puntuació</div>
           </div>
           <div className="score-message">{getScoreMessage()}</div>
+          <div className="next-game-timer">
+            <span className="next-game-text">Proper joc disponible en</span>
+            <span className="next-game-time">{timeRemaining}</span>
+          </div>
         </div>
         <div className="score-modal-footer">
           <button onClick={onClose} className="score-modal-ok-btn">
-            Entesos
+            D'acord
           </button>
         </div>
       </div>
