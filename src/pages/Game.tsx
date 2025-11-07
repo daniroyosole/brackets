@@ -3,10 +3,13 @@ import { Sentence as SentenceComponent } from '../components/game/Sentence'
 import { HelpModal } from '../components/game/HelpModal'
 import { ClueActionModal } from '../components/game/ClueActionModal'
 import { ScoreModal } from '../components/game/ScoreModal'
+import { StatsModal } from '../components/game/StatsModal'
 import { GameStats } from '../components/game/GameStats'
 import { useGameState } from '../hooks/useGameState'
 import { useGameHandlers } from '../hooks/useGameHandlers'
 import { useHelpModal } from '../hooks/useHelpModal'
+import { saveGameResult } from '../utils/statsApi'
+import { getTodayDate } from '../utils/api'
 import './Game.css'
 
 const Game = () => {
@@ -15,6 +18,7 @@ const Game = () => {
   const [firstLetterModal, setFirstLetterModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; firstLetter: string } | null>(null)
   const [solveClueModal, setSolveClueModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>(null)
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false)
+  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
 
   const {
     sentence,
@@ -61,8 +65,12 @@ const Game = () => {
   useEffect(() => {
     if (isGameFinished) {
       setIsScoreModalOpen(true)
+      // Save game result to statistics
+      saveGameResult(score, getTodayDate()).catch(err => {
+        console.error('Error saving game result:', err)
+      })
     }
-  }, [isGameFinished])
+  }, [isGameFinished, score])
 
   const answerInputRef = useRef<HTMLInputElement>(null)
 
@@ -91,6 +99,13 @@ const Game = () => {
   return (
     <div className="game-container">
       <div className="game-header">
+        <button
+          onClick={() => setIsStatsModalOpen(true)}
+          className="stats-btn"
+          title="Estadístiques"
+        >
+          📊
+        </button>
         <h1>[Claudàtors]</h1>
         <div className="game-header-actions">
           <button
@@ -165,19 +180,28 @@ const Game = () => {
         />
       )}
 
-      <ScoreModal
-        isOpen={isScoreModalOpen}
-        score={score}
-        onClose={() => setIsScoreModalOpen(false)}
-        solvedClues={solvedClues.size}
-        totalClues={totalClues}
-        revealedFirstLetters={revealedFirstLetters.size}
-        fullClueReveals={fullClueReveals}
-        wrongAnswers={wrongAnswers}
-      />
-    </div>
-  )
-}
+          <ScoreModal
+            isOpen={isScoreModalOpen}
+            score={score}
+            onClose={() => setIsScoreModalOpen(false)}
+            onShowStats={() => {
+              setIsScoreModalOpen(false)
+              setIsStatsModalOpen(true)
+            }}
+            solvedClues={solvedClues.size}
+            totalClues={totalClues}
+            revealedFirstLetters={revealedFirstLetters.size}
+            fullClueReveals={fullClueReveals}
+            wrongAnswers={wrongAnswers}
+          />
 
-export default Game
+          <StatsModal
+            isOpen={isStatsModalOpen}
+            onClose={() => setIsStatsModalOpen(false)}
+          />
+        </div>
+      )
+    }
+    
+    export default Game
 

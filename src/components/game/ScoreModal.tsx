@@ -6,6 +6,7 @@ interface ScoreModalProps {
   isOpen: boolean
   score: number
   onClose: () => void
+  onShowStats?: () => void
   solvedClues: number
   totalClues: number
   revealedFirstLetters: number
@@ -16,7 +17,8 @@ interface ScoreModalProps {
 export const ScoreModal = ({ 
   isOpen, 
   score, 
-  onClose, 
+  onClose,
+  onShowStats,
   solvedClues, 
   totalClues, 
   revealedFirstLetters, 
@@ -147,11 +149,13 @@ Juga a: https://brackets-delta.vercel.app/`
           </div>
         </div>
         <div className="score-modal-footer">
+          {onShowStats && (
+            <button onClick={onShowStats} className="score-modal-stats-btn">
+              📊 Veure estadístiques
+            </button>
+          )}
           <button onClick={handleShare} className="score-modal-share-btn">
             {copied ? '✓ Copiat!' : '📤 Compartir resultats'}
-          </button>
-          <button onClick={onClose} className="score-modal-ok-btn">
-            D'acord
           </button>
         </div>
       </div>
