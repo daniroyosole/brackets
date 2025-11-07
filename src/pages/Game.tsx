@@ -159,10 +159,10 @@ const Game = () => {
       {firstLetterModal && (
         <ClueActionModal
           isOpen={firstLetterModal.isOpen}
-          title="Revelar la Primera Lletra"
+          title="PISTA"
           clueText={firstLetterModal.clueText}
           confirmButtonText="Sí, revelar"
-          message={`Vols revelar la primera lletra de la pista <strong>"${firstLetterModal.clueText}"</strong>?`}
+          message={`Vols revelar la primera lletra de <strong>"${firstLetterModal.clueText}"</strong>?<br/><br/><em>🚨 Això penalitzarà la teva puntuació.</em>`}
           onConfirm={handleRevealFirstLetter}
           onCancel={handleCancelFirstLetter}
         />
@@ -171,10 +171,10 @@ const Game = () => {
       {solveClueModal && (
         <ClueActionModal
           isOpen={solveClueModal.isOpen}
-          title="Resoldre"
+          title="PISTA"
           clueText={solveClueModal.clueText}
           confirmButtonText="Sí, resoldre"
-          message={`Vols resoldre la pista <strong>"${solveClueModal.clueText}"</strong>?`}
+          message={`Vols resoldre <strong>"${solveClueModal.clueText}"</strong>?<br/><br/><em>🚨 Això penalitzarà la teva puntuació.</em>`}
           onConfirm={handleSolveClue}
           onCancel={handleCancelSolveClue}
         />

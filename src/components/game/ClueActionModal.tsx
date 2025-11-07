@@ -40,6 +40,9 @@ export const ClueActionModal = ({
           <p dangerouslySetInnerHTML={{ __html: message || `Vols ${title.toLowerCase()} la pista <strong>"${clueText}"</strong>?` }} />
         </div>
         <div className="clue-action-modal-footer">
+          <button onClick={onCancel} className="clue-action-cancel-btn">
+            No
+          </button>
           <button onClick={onConfirm} className="clue-action-confirm-btn">
             {confirmButtonText}
           </button>
