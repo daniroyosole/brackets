@@ -1,5 +1,5 @@
 // Game version - increment this to force all users to reset their localStorage
-export const GAME_VERSION = '1.0.2'
+export const GAME_VERSION = '1.0.3'
 
 // Helper function to clear only game state (not core settings like hasSeenHelp)
 export const clearGameState = () => {
