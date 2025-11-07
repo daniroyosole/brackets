@@ -100,7 +100,7 @@
   display: flex;
   gap: 1.25rem;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: 0;
   margin-bottom: 1rem;
   padding-left: 0.5rem;
@@ -333,6 +333,7 @@
 
   .game-stats {
     gap: 1rem;
+    justify-content: space-evenly;
     font-size: 0.85rem;
     margin-bottom: 0.75rem;
   }
