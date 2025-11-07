@@ -40,6 +40,7 @@ export function renderSentenceWithHighlighting(
   const sortedClues = [...cluesWithIndices].sort((a, b) => a.clue.startIndex - b.clue.startIndex);
 
   let lastIndex = 0;
+  let textIndex = 0; // Counter for unique text segment keys
 
   for (const { clue, originalIdx } of sortedClues) {
     const cluePath = path ? `${path}-${originalIdx}` : `${originalIdx}`;
@@ -48,12 +49,23 @@ export function renderSentenceWithHighlighting(
 
     // Add text before this clue
     if (clue.startIndex > lastIndex) {
-      result.push(text.substring(lastIndex, clue.startIndex));
+      const textSegment = text.substring(lastIndex, clue.startIndex);
+      if (textSegment) {
+        result.push(
+          <span key={`${path}-text-${textIndex++}`}>
+            {textSegment}
+          </span>
+        );
+      }
     }
 
     if (isSolved) {
-      // If solved, show the value directly
-      result.push(clue.value);
+      // If solved, show the value directly with a key
+      result.push(
+        <span key={`${cluePath}-solved`}>
+          {clue.value}
+        </span>
+      );
     } else {
       // If not solved, recursively render the clue
       const clueContent = renderSentenceWithHighlighting(clue, solvedClues, eligibleCluePaths, revealedFirstLetters, onClueClick, cluePath);
@@ -85,7 +97,14 @@ export function renderSentenceWithHighlighting(
 
   // Add remaining text after all clues
   if (lastIndex < text.length) {
-    result.push(text.substring(lastIndex));
+    const textSegment = text.substring(lastIndex);
+    if (textSegment) {
+      result.push(
+        <span key={`${path}-text-${textIndex}`}>
+          {textSegment}
+        </span>
+      );
+    }
   }
 
   return <>{result}</>;
