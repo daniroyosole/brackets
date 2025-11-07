@@ -227,5 +227,161 @@ export const sentences: Sentence[] = [{
       ]
     }
   ]
+},{
+  "date": "2025-11-08",
+  "text": "Bon cap de setmana",
+  "clues": [
+    {
+      "text": "Un número raonable de nans",
+      "value": "set",
+      "startIndex": 11,
+      "clues": [
+        {
+          "text": "Qui la té no s'equivoca",
+          "value": "rao",
+          "startIndex": 10,
+          "clues": [
+            {
+              "text": "Del cavall",
+              "value": "equi",
+              "startIndex": 15
+            },
+            {
+              "text": "Agafa aquesta infusió",
+              "value": "té",
+              "startIndex": 7,
+              "clues": [
+                {
+                  "text": "La nuclear ajunta dos àtoms",
+                  "value": "fusió",
+                  "startIndex": 16
+                },
+                {
+                  "text": "Genera mala sort",
+                  "value": "gafa",
+                  "startIndex": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "El palíndrom més baixet",
+          "value": "nan",
+          "startIndex": 22
+        }
+      ]
+    },
+    {
+      "text": "L'ocell avergonyit el posa sota l'ala",
+      "value": "cap",
+      "startIndex": 4,
+      "clues": [
+        {
+          "text": "Cogito ___ sum",
+          "value": "ergo",
+          "startIndex": 10,
+          "clues": [
+            {
+              "text": "-ombre que confonen amb carbassó",
+              "value": "Cog",
+              "startIndex": 0,
+              "clues": [
+                {
+                  "text": "Desfan la xocolata",
+                  "value": "fonen",
+                  "startIndex": 14,
+                  "clues": [
+                    {
+                      "text": "Refresc que enganxa",
+                      "value": "cola",
+                      "startIndex": 12
+                    }
+                  ]
+                },
+                {
+                  "text": "El cotxe que circula per l'esquerra",
+                  "value": "car",
+                  "startIndex": 24
+                }
+              ]
+            },
+            {
+              "text": "Setrac ed coj  (3 lletres)",
+              "value": "sum",
+              "startIndex": 11
+            }
+          ]
+        },
+        {
+          "text": "Es baralla amb el cavall i el rei",
+          "value": "sota",
+          "startIndex": 27,
+          "clues": [
+            {
+              "text": "No li miris les dents si guanya",
+              "value": "cavall",
+              "startIndex": 18,
+              "clues": [
+                {
+                  "text": "Ull, que pot ser marró, negre, blau o verd",
+                  "value": "iris",
+                  "startIndex": 7,
+                  "clues": [
+                    {
+                      "text": "També ho està el gat que està trist",
+                      "value": "blau",
+                      "startIndex": 31
+                    },
+                    {
+                      "text": "En el petit hi ha la bona confitura",
+                      "value": "pot",
+                      "startIndex": 9,
+                      "clues": [
+                        {
+                          "text": "El gos pastor",
+                          "value": "tura",
+                          "startIndex": 31
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "text": "Acaba la muntanya i la piranya",
+                  "value": "anya",
+                  "startIndex": 27
+                }
+              ]
+            },
+            {
+              "text": "Les cartes generen discussió",
+              "value": "baralla",
+              "startIndex": 3,
+              "clues": [
+                {
+                  "text": "78 del tarot",
+                  "value": "cartes",
+                  "startIndex": 4
+                },
+                {
+                  "text": "Si ho repeteixes et surt un plat del nord d'Àfrica",
+                  "value": "cus",
+                  "startIndex": 22,
+                  "clues": [
+                    {
+                      "text": "Un gas que té un grup de música",
+                      "value": "pet",
+                      "startIndex": 8
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }]
 
