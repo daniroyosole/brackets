@@ -49,7 +49,7 @@ export function calculateScore(
   
   const firstLetterPenalty = (100 / N) * adjustedScale * firstLetterRequests
   const fullCluePenalty = (100 / N) * 2.5 * adjustedScale * fullClueReveals
-  const wrongAnswerPenalty = (100 / (N * 1.5)) * adjustedScale * wrongAnswers
+  const wrongAnswerPenalty = (100 / (N * 3)) * adjustedScale * wrongAnswers
 
   const score = 100 - firstLetterPenalty - fullCluePenalty - wrongAnswerPenalty
 

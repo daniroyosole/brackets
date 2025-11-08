@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from 'react'
 import type { Sentence, Clue } from '../models/sentence'
 import type { ClueNode } from '../hooks/useGenerateState'
-import { getTodayDate } from './api'
 
 export const useGenerateHelpers = (
   sentenceText: string,
-  clues: Map<string, ClueNode>
+  clues: Map<string, ClueNode>,
+  scheduledDate: string
 ) => {
   const getRootClues = useCallback(() => {
     return Array.from(clues.values()).filter(c => !c.parentId)
@@ -28,11 +28,11 @@ export const useGenerateHelpers = (
     }
     
     return {
-      date: getTodayDate(),
+      date: scheduledDate,
       text: sentenceText,
       clues: rootClues.length > 0 ? rootClues.map(convertClueNode) : undefined
     }
-  }, [sentenceText, clues, getRootClues])
+  }, [sentenceText, clues, getRootClues, scheduledDate])
 
   const sentence = useMemo(() => buildSentence(), [buildSentence])
 

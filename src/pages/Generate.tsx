@@ -6,6 +6,7 @@ import { JsonPreviewSection } from '../components/generate/JsonPreviewSection'
 import { useGenerateState } from '../hooks/useGenerateState'
 import { useGenerateHandlers } from '../hooks/useGenerateHandlers'
 import { useGenerateHelpers } from '../utils/generateHelpers'
+import { getTodayDate } from '../utils/api'
 import './Generate.css'
 
 const Generate = () => {
@@ -21,7 +22,9 @@ const Generate = () => {
     isPreviewExpanded,
     setIsPreviewExpanded,
     isJsonExpanded,
-    setIsJsonExpanded
+    setIsJsonExpanded,
+    scheduledDate,
+    setScheduledDate
   } = useGenerateState()
 
   const {
@@ -39,10 +42,11 @@ const Generate = () => {
     selections,
     setSelections,
     setIsSentenceLocked,
-    setSentenceText
+    setSentenceText,
+    setScheduledDate
   })
 
-  const { getRootClues, sentence } = useGenerateHelpers(sentenceText, clues)
+  const { getRootClues, sentence } = useGenerateHelpers(sentenceText, clues, scheduledDate)
 
   const exportSentence = () => {
     navigator.clipboard.writeText(JSON.stringify(sentence, null, 2))
@@ -61,6 +65,20 @@ const Generate = () => {
             Copiar JSON
           </button>
         </div>
+      </div>
+
+      <div className="schedule-date-row">
+        <label htmlFor="scheduled-date" className="schedule-date-label">
+          Data programada
+        </label>
+        <input
+          type="date"
+          id="scheduled-date"
+          className="schedule-date-input"
+          value={scheduledDate}
+          min={getTodayDate()}
+          onChange={(e) => setScheduledDate(e.target.value)}
+        />
       </div>
 
       <div className="generate-content">

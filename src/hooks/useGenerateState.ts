@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getTomorrowDate } from '../utils/api'
 import type { Clue } from '../models/sentence'
 
 export interface ClueNode extends Clue {
@@ -21,6 +22,7 @@ export const useGenerateState = () => {
   const [selections, setSelections] = useState<Map<string, SelectionState & { clueText: string }>>(new Map())
   const [isPreviewExpanded, setIsPreviewExpanded] = useState(false)
   const [isJsonExpanded, setIsJsonExpanded] = useState(false)
+  const [scheduledDate, setScheduledDate] = useState(getTomorrowDate())
 
   return {
     sentenceText,
@@ -34,7 +36,9 @@ export const useGenerateState = () => {
     isPreviewExpanded,
     setIsPreviewExpanded,
     isJsonExpanded,
-    setIsJsonExpanded
+    setIsJsonExpanded,
+    scheduledDate,
+    setScheduledDate
   }
 }
 

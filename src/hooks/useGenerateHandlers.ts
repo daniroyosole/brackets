@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import type { ClueNode, SelectionState } from './useGenerateState'
+import { getTomorrowDate } from '../utils/api'
 
 interface UseGenerateHandlersProps {
   sentenceText: string
@@ -9,6 +10,7 @@ interface UseGenerateHandlersProps {
   setSelections: React.Dispatch<React.SetStateAction<Map<string, SelectionState & { clueText: string }>>>
   setIsSentenceLocked: React.Dispatch<React.SetStateAction<boolean>>
   setSentenceText: React.Dispatch<React.SetStateAction<string>>
+  setScheduledDate: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const useGenerateHandlers = ({
@@ -18,7 +20,8 @@ export const useGenerateHandlers = ({
   selections,
   setSelections,
   setIsSentenceLocked,
-  setSentenceText
+  setSentenceText,
+  setScheduledDate
 }: UseGenerateHandlersProps) => {
   const handleSubmitSentence = (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,6 +43,7 @@ export const useGenerateHandlers = ({
     setIsSentenceLocked(false)
     setClues(new Map())
     setSelections(new Map())
+    setScheduledDate(getTomorrowDate())
   }
 
   const handleSelection = useCallback((sourceId: string | null, start: number, end: number, text: string) => {

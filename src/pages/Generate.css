@@ -29,6 +29,35 @@
   letter-spacing: 0.1em;
 }
 
+.schedule-date-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.schedule-date-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #000000;
+  font-size: 0.95rem;
+}
+
+.schedule-date-input {
+  border: 2px solid #000000;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.schedule-date-input:focus {
+  outline: none;
+  background-color: #fafafa;
+}
+
 .header-actions {
   display: flex;
   gap: 0.5rem;
@@ -187,6 +216,13 @@
     gap: 1.25rem;
     padding-bottom: 1rem;
     margin-bottom: 2rem;
+  }
+
+  .schedule-date-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .generate-header h1 {
