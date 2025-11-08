@@ -14,6 +14,7 @@ interface UseGameHandlersProps {
   setFirstLetterModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; cluePath: string; clueText: string; firstLetter: string } | null>>
   setSolveClueModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>>
   setInputError: React.Dispatch<React.SetStateAction<boolean>>
+  setLastSolvedClue: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 export const useGameHandlers = ({
@@ -26,7 +27,8 @@ export const useGameHandlers = ({
   setFullClueReveals,
   setFirstLetterModal,
   setSolveClueModal,
-  setInputError
+  setInputError,
+  setLastSolvedClue
 }: UseGameHandlersProps) => {
   const handleClueClick = useCallback((cluePath: string) => {
     const clueInfo = findClueByPath(sentence, cluePath)
@@ -72,11 +74,12 @@ export const useGameHandlers = ({
       if (prev) {
         setSolvedClues(state => new Set(state).add(prev.cluePath))
         setFullClueReveals(state => state + 1)
+        setLastSolvedClue(prev.cluePath)
         return null
       }
       return prev
     })
-  }, [setSolvedClues, setFullClueReveals, setSolveClueModal])
+  }, [setSolvedClues, setFullClueReveals, setSolveClueModal, setLastSolvedClue])
 
   const handleCancelSolveClue = useCallback(() => {
     setSolveClueModal(null)
@@ -90,6 +93,7 @@ export const useGameHandlers = ({
       setSolvedClues(prev => new Set(prev).add(matchingClue.path))
       setInputValue('')
       setInputError(false)
+      setLastSolvedClue(matchingClue.path)
     } else if (inputValue.trim()) {
       // Track wrong answer only if input is not empty
       setWrongAnswers(prev => prev + 1)
@@ -99,7 +103,7 @@ export const useGameHandlers = ({
         setInputError(false)
       }, 800)
     }
-  }, [sentence, solvedClues, setSolvedClues, setWrongAnswers, setInputError])
+  }, [sentence, solvedClues, setSolvedClues, setWrongAnswers, setInputError, setLastSolvedClue])
 
   const handleInputFocus = useCallback(() => {
     // Scroll to show sentence container top when keyboard opens on mobile

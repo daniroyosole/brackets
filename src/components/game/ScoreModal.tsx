@@ -149,14 +149,14 @@ Juga a: https://brackets-delta.vercel.app/`
           </div>
         </div>
         <div className="score-modal-footer">
+          <button onClick={handleShare} className="score-modal-share-btn">
+            {copied ? '✓ Copiat!' : '📤 Compartir resultats'}
+          </button>
           {onShowStats && (
             <button onClick={onShowStats} className="score-modal-stats-btn">
               📊 Veure estadístiques
             </button>
           )}
-          <button onClick={handleShare} className="score-modal-share-btn">
-            {copied ? '✓ Copiat!' : '📤 Compartir resultats'}
-          </button>
         </div>
       </div>
     </div>

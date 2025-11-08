@@ -26,7 +26,8 @@ export function renderSentenceWithHighlighting(
   eligibleCluePaths: Set<string>,
   revealedFirstLetters: Set<string>,
   onClueClick: (cluePath: string) => void,
-  path: string = ""
+  path: string = "",
+  lastSolvedClue: string | null = null
 ): React.ReactNode {
   if (!sentence.clues || sentence.clues.length === 0) {
     return sentence.text;
@@ -62,13 +63,21 @@ export function renderSentenceWithHighlighting(
     if (isSolved) {
       // If solved, show the value directly with a key
       result.push(
-        <span key={`${cluePath}-solved`}>
-          {clue.value}
+        <span key={`${cluePath}-solved`} className="clue-solved">
+          {cluePath === lastSolvedClue ? <strong className="clue-last-solved">{clue.value}</strong> : clue.value}
         </span>
       );
     } else {
       // If not solved, recursively render the clue
-      const clueContent = renderSentenceWithHighlighting(clue, solvedClues, eligibleCluePaths, revealedFirstLetters, onClueClick, cluePath);
+      const clueContent = renderSentenceWithHighlighting(
+        clue,
+        solvedClues,
+        eligibleCluePaths,
+        revealedFirstLetters,
+        onClueClick,
+        cluePath,
+        lastSolvedClue
+      );
       
       const hasFirstLetterRevealed = revealedFirstLetters.has(cluePath);
       const displayContent = hasFirstLetterRevealed 

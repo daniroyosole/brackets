@@ -19,6 +19,7 @@ const Game = () => {
   const [solveClueModal, setSolveClueModal] = useState<{ isOpen: boolean; cluePath: string; clueText: string; clueValue: string } | null>(null)
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
+  const [lastSolvedClue, setLastSolvedClue] = useState<string | null>(null)
 
   const {
     sentence,
@@ -58,8 +59,15 @@ const Game = () => {
     setFullClueReveals,
     setFirstLetterModal,
     setSolveClueModal,
-    setInputError
+    setInputError,
+    setLastSolvedClue
   })
+
+  useEffect(() => {
+    if (solvedClues.size === 0) {
+      setLastSolvedClue(null)
+    }
+  }, [solvedClues])
 
   // Show score modal when game finishes (including on page load if already finished)
   useEffect(() => {
@@ -133,6 +141,7 @@ const Game = () => {
             solvedClues={solvedClues}
             eligibleCluePaths={eligibleCluePaths}
             revealedFirstLetters={revealedFirstLetters}
+            lastSolvedClue={lastSolvedClue}
             onClueClick={handleClueClick}
           />
         </div>

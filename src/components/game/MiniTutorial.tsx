@@ -71,6 +71,7 @@ export const MiniTutorial = ({ sentence, onComplete }: MiniTutorialProps) => {
               solvedClues={solved ? new Set(['0']) : new Set()}
               eligibleCluePaths={eligibleCluePaths}
               revealedFirstLetters={revealedFirstLetters}
+              lastSolvedClue={solved ? '0' : null}
               onClueClick={handleClueClick}
             />
           </div>

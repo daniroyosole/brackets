@@ -32,6 +32,14 @@
   background-color: var(--clue-eligible-bg-hover);
 }
 
+.clue-solved {
+  display: inline;
+}
+
+.clue-last-solved {
+  font-weight: 700;
+}
+
 @media (max-width: 768px) {
   .sentence {
     font-size: 1.25rem;

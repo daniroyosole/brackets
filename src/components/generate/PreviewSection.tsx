@@ -27,6 +27,7 @@ export const PreviewSection = ({ sentence, isExpanded, onToggle }: PreviewSectio
             solvedClues={new Set()}
             eligibleCluePaths={new Set()}
             revealedFirstLetters={new Set()}
+            lastSolvedClue={null}
             onClueClick={() => {}}
           />
         </div>
