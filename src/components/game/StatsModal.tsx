@@ -65,9 +65,18 @@ export const StatsModal = ({ isOpen, onClose }: StatsModalProps) => {
     const distributionBars = stats.scoreDistribution.map((count, index) => {
       const emoji = getScoreEmoji(index)
       const maxCount = Math.max(...stats.scoreDistribution, 1)
-      const barLength = maxCount > 0 ? Math.ceil((count / maxCount) * 10) : 0
-      const bar = '█'.repeat(barLength) || '░'
-      return `${emoji} ${bar} ${count}`
+
+      if (count === 0) {
+        return `${emoji} · 0`
+      }
+
+      const normalized = maxCount > 0 ? (count / maxCount) * 8 : 0
+      const wholeBlocks = Math.max(1, Math.floor(normalized))
+      const halfBlock = normalized - wholeBlocks >= 0.5 ? 1 : 0
+
+      const blocks = '🟩'.repeat(wholeBlocks) + (halfBlock ? '🟨' : '')
+
+      return `${emoji} ${blocks} ${count}`
     }).join('\n')
     
     return `[Claudàtors] - Estadístiques
