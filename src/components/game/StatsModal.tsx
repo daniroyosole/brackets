@@ -72,9 +72,9 @@ export const StatsModal = ({ isOpen, onClose }: StatsModalProps) => {
     
     return `[Claudàtors] - Estadístiques
 
-📊 Partides jugades: ${stats.totalGames}
-🔥 Ratxa actual: ${stats.currentStreak}
-⭐ Puntuació mitjana: ${stats.averageScore.toFixed(1)}/100
+📊 Partides: ${stats.totalGames}
+🔥 Ratxa: ${stats.currentStreak}
+⭐ Mitjana: ${stats.averageScore.toFixed(1)}/100
 
 📈 Puntuacions:
 ${distributionBars}
@@ -152,17 +152,17 @@ Juga a: https://brackets-delta.vercel.app/`
             <div className="stats-summary">
               <div className="stat-item-large">
                 <div className="stat-value-large">{stats.totalGames}</div>
-                <div className="stat-label">Partides jugades</div>
+              <div className="stat-label">Partides</div>
               </div>
               
               <div className="stat-item-large">
-                <div className="stat-value-large">{stats.currentStreak}</div>
-                <div className="stat-label">Ratxa actual</div>
+              <div className="stat-value-large">{stats.currentStreak}</div>
+              <div className="stat-label">Ratxa</div>
               </div>
               
               <div className="stat-item-large">
-                <div className="stat-value-large">{stats.averageScore.toFixed(1)}</div>
-                <div className="stat-label">Puntuació mitjana</div>
+              <div className="stat-value-large">{stats.averageScore.toFixed(1)}</div>
+              <div className="stat-label">Mitjana</div>
               </div>
             </div>
 
