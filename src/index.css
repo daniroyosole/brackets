@@ -4,7 +4,8 @@
   line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: light;
+  color-scheme: only light;
+  forced-color-adjust: none;
   color: #000000;
   background-color: #ffffff;
 
