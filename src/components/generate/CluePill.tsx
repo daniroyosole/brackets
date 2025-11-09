@@ -1,5 +1,6 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 import type { Clue } from '../../models/sentence'
+import { adjustSelectionRange } from '../../utils/selectionUtils'
 import './GenerateComponents.css'
 
 interface ClueNode extends Clue {
@@ -125,24 +126,25 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
     endRange.setEnd(range.endContainer, range.endOffset)
     const end = endRange.toString().length
 
-    const overlapsWithUsed = sortedNestedClues.some(nestedClue => {
-      const nestedClueEnd = nestedClue.startIndex + nestedClue.value.length
-      return !(end <= nestedClue.startIndex || start >= nestedClueEnd)
-    })
+    const usedRanges = sortedNestedClues.map(nestedClue => ({
+      start: nestedClue.startIndex,
+      end: nestedClue.startIndex + nestedClue.value.length
+    }))
 
-    if (overlapsWithUsed) {
+    const { selection: normalizedSelection, overlaps } = adjustSelectionRange(
+      displayClue.text,
+      start,
+      end,
+      usedRanges
+    )
+
+    if (overlaps) {
       selection.removeAllRanges()
       return
     }
 
-    const actualSelectedText = displayClue.text.substring(start, end).trim()
-
-    if (start >= 0 && end > start && end <= displayClue.text.length && actualSelectedText.length > 0) {
-      setCurrentSelection({
-        start,
-        end,
-        text: actualSelectedText
-      })
+    if (normalizedSelection) {
+      setCurrentSelection(normalizedSelection)
     }
   }, [displayClue.text, sortedNestedClues])
 

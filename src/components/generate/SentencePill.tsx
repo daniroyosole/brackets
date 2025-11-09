@@ -1,5 +1,6 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 import type { Clue } from '../../models/sentence'
+import { adjustSelectionRange } from '../../utils/selectionUtils'
 import './GenerateComponents.css'
 
 interface ClueNode extends Clue {
@@ -122,24 +123,25 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
     endRange.setEnd(range.endContainer, range.endOffset)
     const end = endRange.toString().length
 
-    const overlapsWithUsed = sortedClues.some(clue => {
-      const clueEnd = clue.startIndex + clue.value.length
-      return !(end <= clue.startIndex || start >= clueEnd)
-    })
+    const usedRanges = sortedClues.map(clue => ({
+      start: clue.startIndex,
+      end: clue.startIndex + clue.value.length
+    }))
 
-    if (overlapsWithUsed) {
+    const { selection: normalizedSelection, overlaps } = adjustSelectionRange(
+      text,
+      start,
+      end,
+      usedRanges
+    )
+
+    if (overlaps) {
       selection.removeAllRanges()
       return
     }
 
-    const actualSelectedText = text.substring(start, end).trim()
-
-    if (start >= 0 && end > start && end <= text.length && actualSelectedText.length > 0) {
-      setCurrentSelection({
-        start,
-        end,
-        text: actualSelectedText
-      })
+    if (normalizedSelection) {
+      setCurrentSelection(normalizedSelection)
     }
   }, [text, sortedClues])
 
