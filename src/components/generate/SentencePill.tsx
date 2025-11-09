@@ -1,6 +1,5 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 import type { Clue } from '../../models/sentence'
-import { adjustSelectionRange } from '../../utils/selectionUtils'
 import './GenerateComponents.css'
 
 interface ClueNode extends Clue {
@@ -123,25 +122,104 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
     endRange.setEnd(range.endContainer, range.endOffset)
     const end = endRange.toString().length
 
-    const usedRanges = sortedClues.map(clue => ({
-      start: clue.startIndex,
-      end: clue.startIndex + clue.value.length
-    }))
-
-    const { selection: normalizedSelection, overlaps } = adjustSelectionRange(
-      text,
-      start,
-      end,
-      usedRanges
-    )
-
-    if (overlaps) {
-      selection.removeAllRanges()
+    const rawSelected = text.substring(start, end)
+    if (!rawSelected) {
       return
     }
 
-    if (normalizedSelection) {
-      setCurrentSelection(normalizedSelection)
+    const trimmed = rawSelected.trim()
+    if (!trimmed) {
+      return
+    }
+
+    const trimOffset = rawSelected.indexOf(trimmed)
+    const adjustedStart = start + (trimOffset >= 0 ? trimOffset : 0)
+    const adjustedEnd = adjustedStart + trimmed.length
+
+    const overlappingClue = sortedClues.find(clue => {
+      const clueEnd = clue.startIndex + clue.value.length
+      return !(adjustedEnd <= clue.startIndex || adjustedStart >= clueEnd)
+    })
+
+    if (overlappingClue) {
+      const clueStart = overlappingClue.startIndex
+      const clueEnd = clueStart + overlappingClue.value.length
+
+      if (adjustedStart >= clueStart && adjustedEnd <= clueEnd) {
+        // Completely inside existing clue – block
+        selection.removeAllRanges()
+        return
+      }
+
+      if (adjustedStart < clueStart && adjustedEnd > clueStart && adjustedEnd <= clueEnd) {
+        const segmentStart = adjustedStart
+        const segmentEnd = clueStart
+        const segmentText = text.substring(segmentStart, segmentEnd).trim()
+
+        if (!segmentText) {
+          selection.removeAllRanges()
+          return
+        }
+
+        setCurrentSelection({
+          start: segmentStart,
+          end: segmentEnd,
+          text: segmentText
+        })
+        return
+      }
+
+      if (adjustedEnd > clueEnd && adjustedStart >= clueStart && adjustedStart < clueEnd) {
+        const segmentStart = clueEnd
+        const segmentEnd = adjustedEnd
+        const segmentText = text.substring(segmentStart, segmentEnd).trim()
+
+        if (!segmentText) {
+          selection.removeAllRanges()
+          return
+        }
+
+        setCurrentSelection({
+          start: segmentStart,
+          end: segmentEnd,
+          text: segmentText
+        })
+        return
+      }
+
+      if (adjustedStart < clueStart && adjustedEnd > clueEnd) {
+        const segmentTextBefore = text.substring(adjustedStart, clueStart).trim()
+        const segmentTextAfter = text.substring(clueEnd, adjustedEnd).trim()
+
+        if (segmentTextBefore) {
+          setCurrentSelection({
+            start: adjustedStart,
+            end: clueStart,
+            text: segmentTextBefore
+          })
+          return
+        }
+
+        if (segmentTextAfter) {
+          setCurrentSelection({
+            start: clueEnd,
+            end: adjustedEnd,
+            text: segmentTextAfter
+          })
+          return
+        }
+
+        selection.removeAllRanges()
+        return
+      }
+    }
+
+    if (adjustedStart >= 0 && adjustedEnd > adjustedStart && adjustedEnd <= text.length) {
+      setCurrentSelection({
+        start: adjustedStart,
+        end: adjustedEnd,
+        text: trimmed
+      })
     }
   }, [text, sortedClues])
 
