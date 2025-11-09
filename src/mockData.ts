@@ -383,5 +383,207 @@ export const sentences: Sentence[] = [{
       ]
     }
   ]
-}]
+}, {
+  "date": "2025-11-09",
+  "text": "És quan plou que ballo sol / Vestit d'algues, or i escata — És quan dormo que hi veig clar, Josep-Vicenç Foix",
+  "clues": [
+    {
+      "text": "Pel poc que passa això quan passa poc ja passa prou",
+      "value": "plou",
+      "startIndex": 8,
+      "clues": [
+        {
+          "text": "D'arribar a la lluna, Neil Armstrong va dir que n'era una de petita per l'home ",
+          "value": "passa",
+          "startIndex": 12,
+          "clues": [
+            {
+              "text": "Aquesta té una cara fosca",
+              "value": "lluna",
+              "startIndex": 15,
+              "clues": [
+                {
+                  "text": "El contrari de creu",
+                  "value": "cara",
+                  "startIndex": 15
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Ni què, ni qui, ni com, ni on, ni per què ",
+      "value": "quan",
+      "startIndex": 3,
+      "clues": [
+        {
+          "text": "Campi ___ pugui",
+          "value": "qui",
+          "startIndex": 11
+        },
+        {
+          "text": "En francès pot ser nosaltres, la gent en general, o algú indeterminat",
+          "value": "on",
+          "startIndex": 27
+        }
+      ]
+    },
+    {
+      "text": "Peça del revestiment del rap",
+      "value": "escata",
+      "startIndex": 51,
+      "clues": [
+        {
+          "text": "Gènere de música parlada",
+          "value": "rap",
+          "startIndex": 25,
+          "clues": [
+            {
+              "text": "Els substantius en tenen en català, però no en anglès",
+              "value": "Gènere",
+              "startIndex": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Millor que la plata i el bronze",
+      "value": "or",
+      "startIndex": 46,
+      "clues": [
+        {
+          "text": "Pels argentins és pasta",
+          "value": "plata",
+          "startIndex": 14,
+          "clues": [
+            {
+              "text": "Macarrons, raviolis, fideus...",
+              "value": "pasta",
+              "startIndex": 18,
+              "clues": [
+                {
+                  "text": "A l'escola, d'aquests se'n fan collars",
+                  "value": "Macarrons",
+                  "startIndex": 0,
+                  "clues": [
+                    {
+                      "text": "Pot ser bressol, o de la vida",
+                      "value": "escola",
+                      "startIndex": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Òbvi, evident",
+      "value": "clar",
+      "startIndex": 86
+    },
+    {
+      "text": "Va després del fa i abans del la",
+      "value": "sol",
+      "startIndex": 23
+    },
+    {
+      "text": "Com una samarreta cosida a una faldilla",
+      "value": "Vestit",
+      "startIndex": 29,
+      "clues": [
+        {
+          "text": "A la castanyera li va petita",
+          "value": "faldilla",
+          "startIndex": 31
+        }
+      ]
+    },
+    {
+      "text": "Em moc al ritme de la música ",
+      "value": "ballo",
+      "startIndex": 17,
+      "clues": [
+        {
+          "text": "Substància més o menys espessa expulsada pel nas",
+          "value": "moc",
+          "startIndex": 3
+        }
+      ]
+    },
+    {
+      "text": "Les nori es mengen",
+      "value": "algues",
+      "startIndex": 38
+    },
+    {
+      "text": "Clisso, guipo, espio",
+      "value": "veig",
+      "startIndex": 81
+    },
+    {
+      "text": "Sovint va amb Maria",
+      "value": "Josep",
+      "startIndex": 92,
+      "clues": [
+        {
+          "text": "La Callas tenia un registre molt alt",
+          "value": "Maria",
+          "startIndex": 14,
+          "clues": [
+            {
+              "text": "Si juga a basquetbol, probablement ho és ",
+              "value": "alt",
+              "startIndex": 33
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Faig nit",
+      "value": "dormo",
+      "startIndex": 68,
+      "clues": [
+        {
+          "text": "És al dia el que un ou a una castanya",
+          "value": "nit",
+          "startIndex": 5,
+          "clues": [
+            {
+              "text": "Una que es menja per Tots Sants",
+              "value": "castanya",
+              "startIndex": 29,
+              "clues": [
+                {
+                  "text": "D'aquesta estació en surt l'AVE",
+                  "value": "Sants",
+                  "startIndex": 26
+                }
+              ]
+            },
+            {
+              "text": "Component essencial de la truita",
+              "value": "ou",
+              "startIndex": 20,
+              "clues": [
+                {
+                  "text": "Pot ser de riu o de mar",
+                  "value": "truita",
+                  "startIndex": 26
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+]
 
