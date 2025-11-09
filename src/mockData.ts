@@ -384,7 +384,7 @@ export const sentences: Sentence[] = [{
     }
   ]
 }, {
-  "date": "2025-11-10",
+  "date": "2025-11-09",
   "text": "És quan plou que ballo sol / Vestit d'algues, or i escata — És quan dormo que hi veig clar, Josep-Vicenç Foix",
   "clues": [
     {
