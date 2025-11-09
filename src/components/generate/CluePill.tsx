@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect } from 'react'
+import { useRef, useCallback, useState, useEffect, useMemo } from 'react'
 import type { Clue } from '../../models/sentence'
 import './GenerateComponents.css'
 
@@ -20,6 +20,7 @@ interface SelectionInfo {
   start: number
   end: number
   text: string
+  isValid: boolean
 }
 
 export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: CluePillProps) => {
@@ -28,7 +29,10 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
   
   const latestClue = clues.get(clue.id) || clue
   const nestedClues = (latestClue.clues || []).filter(c => (c as ClueNode).id) as ClueNode[]
-  const sortedNestedClues = [...nestedClues].sort((a, b) => a.startIndex - b.startIndex)
+  const sortedNestedClues = useMemo(
+    () => [...nestedClues].sort((a, b) => a.startIndex - b.startIndex),
+    [nestedClues]
+  )
   const displayClue = latestClue
 
   const renderClueWithSegments = () => {
@@ -126,12 +130,10 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
     const end = endRange.toString().length
 
     const rawSelected = displayClue.text.substring(start, end)
-    if (!rawSelected) {
-      return
-    }
-
     const trimmed = rawSelected.trim()
+
     if (!trimmed) {
+      setCurrentSelection(null)
       return
     }
 
@@ -139,98 +141,28 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
     const adjustedStart = start + (trimOffset >= 0 ? trimOffset : 0)
     const adjustedEnd = adjustedStart + trimmed.length
 
-    const overlappingClue = sortedNestedClues.find(nestedClue => {
+    const overlapsExisting = sortedNestedClues.some(nestedClue => {
       const nestedClueEnd = nestedClue.startIndex + nestedClue.value.length
       return !(adjustedEnd <= nestedClue.startIndex || adjustedStart >= nestedClueEnd)
     })
 
-    if (overlappingClue) {
-      const clueStart = overlappingClue.startIndex
-      const clueEnd = clueStart + overlappingClue.value.length
-
-      if (adjustedStart >= clueStart && adjustedEnd <= clueEnd) {
-        selection.removeAllRanges()
-        return
-      }
-
-      if (adjustedStart < clueStart && adjustedEnd > clueStart && adjustedEnd <= clueEnd) {
-        const segmentStart = adjustedStart
-        const segmentEnd = clueStart
-        const segmentText = displayClue.text.substring(segmentStart, segmentEnd).trim()
-
-        if (!segmentText) {
-          selection.removeAllRanges()
-          return
-        }
-
-        setCurrentSelection({
-          start: segmentStart,
-          end: segmentEnd,
-          text: segmentText
-        })
-        return
-      }
-
-      if (adjustedEnd > clueEnd && adjustedStart >= clueStart && adjustedStart < clueEnd) {
-        const segmentStart = clueEnd
-        const segmentEnd = adjustedEnd
-        const segmentText = displayClue.text.substring(segmentStart, segmentEnd).trim()
-
-        if (!segmentText) {
-          selection.removeAllRanges()
-          return
-        }
-
-        setCurrentSelection({
-          start: segmentStart,
-          end: segmentEnd,
-          text: segmentText
-        })
-        return
-      }
-
-      if (adjustedStart < clueStart && adjustedEnd > clueEnd) {
-        const segmentTextBefore = displayClue.text.substring(adjustedStart, clueStart).trim()
-        const segmentTextAfter = displayClue.text.substring(clueEnd, adjustedEnd).trim()
-
-        if (segmentTextBefore) {
-          setCurrentSelection({
-            start: adjustedStart,
-            end: clueStart,
-            text: segmentTextBefore
-          })
-          return
-        }
-
-        if (segmentTextAfter) {
-          setCurrentSelection({
-            start: clueEnd,
-            end: adjustedEnd,
-            text: segmentTextAfter
-          })
-          return
-        }
-
-        selection.removeAllRanges()
-        return
-      }
+    if (overlapsExisting) {
+      setCurrentSelection(null)
+      return
     }
 
-    if (
-      adjustedStart >= 0 &&
-      adjustedEnd > adjustedStart &&
-      adjustedEnd <= displayClue.text.length
-    ) {
+    if (adjustedStart >= 0 && adjustedEnd > adjustedStart && adjustedEnd <= displayClue.text.length) {
       setCurrentSelection({
         start: adjustedStart,
         end: adjustedEnd,
-        text: trimmed
+        text: trimmed,
+        isValid: true
       })
     }
   }, [displayClue.text, sortedNestedClues])
 
   const handleCreateClue = useCallback(() => {
-    if (currentSelection) {
+    if (currentSelection?.isValid) {
       onSelection(displayClue.id, currentSelection.start, currentSelection.end, currentSelection.text)
       setCurrentSelection(null)
       window.getSelection()?.removeAllRanges()
@@ -290,7 +222,7 @@ export const CluePill = ({ clue, clues, onSelection, onUpdate, onDelete }: ClueP
           ×
         </button>
       </div>
-      {currentSelection && (
+      {currentSelection?.isValid && (
         <div className="selection-button-container">
           <button
             className="create-clue-button"

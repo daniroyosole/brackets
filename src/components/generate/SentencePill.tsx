@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect } from 'react'
+import { useRef, useCallback, useState, useEffect, useMemo } from 'react'
 import type { Clue } from '../../models/sentence'
 import './GenerateComponents.css'
 
@@ -19,13 +19,17 @@ interface SelectionInfo {
   start: number
   end: number
   text: string
+  isValid: boolean
 }
 
 export const SentencePill = ({ text, sourceId, rootClues, onSelection }: SentencePillProps) => {
   const pillRef = useRef<HTMLDivElement>(null)
   const [currentSelection, setCurrentSelection] = useState<SelectionInfo | null>(null)
 
-  const sortedClues = [...rootClues].sort((a, b) => a.startIndex - b.startIndex)
+  const sortedClues = useMemo(
+    () => [...rootClues].sort((a, b) => a.startIndex - b.startIndex),
+    [rootClues]
+  )
 
   const renderSentenceWithSegments = () => {
     const segments: Array<{ text: string; isUsed: boolean; start: number; end: number }> = []
@@ -123,12 +127,10 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
     const end = endRange.toString().length
 
     const rawSelected = text.substring(start, end)
-    if (!rawSelected) {
-      return
-    }
-
     const trimmed = rawSelected.trim()
+
     if (!trimmed) {
+      setCurrentSelection(null)
       return
     }
 
@@ -136,106 +138,34 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
     const adjustedStart = start + (trimOffset >= 0 ? trimOffset : 0)
     const adjustedEnd = adjustedStart + trimmed.length
 
-    const overlappingClue = sortedClues.find(clue => {
+    const overlapsExisting = sortedClues.some(clue => {
       const clueEnd = clue.startIndex + clue.value.length
       return !(adjustedEnd <= clue.startIndex || adjustedStart >= clueEnd)
     })
 
-    if (overlappingClue) {
-      const clueStart = overlappingClue.startIndex
-      const clueEnd = clueStart + overlappingClue.value.length
-
-      if (adjustedStart >= clueStart && adjustedEnd <= clueEnd) {
-        // Completely inside existing clue – block
-        selection.removeAllRanges()
-        return
-      }
-
-      if (adjustedStart < clueStart && adjustedEnd > clueStart && adjustedEnd <= clueEnd) {
-        const segmentStart = adjustedStart
-        const segmentEnd = clueStart
-        const segmentText = text.substring(segmentStart, segmentEnd).trim()
-
-        if (!segmentText) {
-          selection.removeAllRanges()
-          return
-        }
-
-        setCurrentSelection({
-          start: segmentStart,
-          end: segmentEnd,
-          text: segmentText
-        })
-        return
-      }
-
-      if (adjustedEnd > clueEnd && adjustedStart >= clueStart && adjustedStart < clueEnd) {
-        const segmentStart = clueEnd
-        const segmentEnd = adjustedEnd
-        const segmentText = text.substring(segmentStart, segmentEnd).trim()
-
-        if (!segmentText) {
-          selection.removeAllRanges()
-          return
-        }
-
-        setCurrentSelection({
-          start: segmentStart,
-          end: segmentEnd,
-          text: segmentText
-        })
-        return
-      }
-
-      if (adjustedStart < clueStart && adjustedEnd > clueEnd) {
-        const segmentTextBefore = text.substring(adjustedStart, clueStart).trim()
-        const segmentTextAfter = text.substring(clueEnd, adjustedEnd).trim()
-
-        if (segmentTextBefore) {
-          setCurrentSelection({
-            start: adjustedStart,
-            end: clueStart,
-            text: segmentTextBefore
-          })
-          return
-        }
-
-        if (segmentTextAfter) {
-          setCurrentSelection({
-            start: clueEnd,
-            end: adjustedEnd,
-            text: segmentTextAfter
-          })
-          return
-        }
-
-        selection.removeAllRanges()
-        return
-      }
+    if (overlapsExisting) {
+      setCurrentSelection(null)
+      return
     }
 
     if (adjustedStart >= 0 && adjustedEnd > adjustedStart && adjustedEnd <= text.length) {
       setCurrentSelection({
         start: adjustedStart,
         end: adjustedEnd,
-        text: trimmed
+        text: trimmed,
+        isValid: true
       })
     }
   }, [text, sortedClues])
 
   const handleCreateClue = useCallback(() => {
-    if (currentSelection) {
-      onSelection(sourceId, currentSelection.start, currentSelection.end, currentSelection.text)
-      setCurrentSelection(null)
-      window.getSelection()?.removeAllRanges()
-    }
+    if (!currentSelection?.isValid) return
+    onSelection(sourceId, currentSelection.start, currentSelection.end, currentSelection.text)
+    setCurrentSelection(null)
+    window.getSelection()?.removeAllRanges()
   }, [currentSelection, sourceId, onSelection])
 
   useEffect(() => {
-    const handleSelectionChangeEvent = () => {
-      handleSelectionChange()
-    }
-
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       if (
         currentSelection &&
@@ -251,11 +181,11 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
       }
     }
 
-    document.addEventListener('selectionchange', handleSelectionChangeEvent)
+    document.addEventListener('selectionchange', handleSelectionChange)
     document.addEventListener('mousedown', handleClickOutside)
     document.addEventListener('touchstart', handleClickOutside)
     return () => {
-      document.removeEventListener('selectionchange', handleSelectionChangeEvent)
+      document.removeEventListener('selectionchange', handleSelectionChange)
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('touchstart', handleClickOutside)
     }
@@ -269,7 +199,7 @@ export const SentencePill = ({ text, sourceId, rootClues, onSelection }: Sentenc
       >
         {renderSentenceWithSegments()}
       </div>
-      {currentSelection && (
+      {currentSelection?.isValid && (
         <div className="selection-button-container">
           <button
             className="create-clue-button"
