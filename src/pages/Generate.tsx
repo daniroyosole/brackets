@@ -56,18 +56,18 @@ const Generate = () => {
   return (
     <div className="generate-container">
       <div className="generate-header">
-        <h1>Generar Frase Personalitzada</h1>
+        <h1>Generar [Claudàtor]</h1>
         <div className="header-actions">
-          <button onClick={handleReset} className="reset-btn">
+          <button onClick={handleReset} className="button button-secondary">
             Reiniciar
           </button>
-          <button onClick={exportSentence} className="export-btn">
+          <button onClick={exportSentence} className="button button-primary">
             Copiar JSON
           </button>
         </div>
       </div>
 
-      <div className="schedule-date-row">
+      <div className="schedule-date-row generate-card">
         <label htmlFor="scheduled-date" className="schedule-date-label">
           Data programada
         </label>
@@ -81,7 +81,7 @@ const Generate = () => {
         />
       </div>
 
-      <div className="generate-content">
+      <div className="generate-content generate-card">
         {!isSentenceLocked ? (
           <form onSubmit={handleSubmitSentence} className="sentence-form">
             <input
@@ -92,7 +92,7 @@ const Generate = () => {
               className="sentence-input"
               autoFocus
             />
-            <button type="submit" className="submit-btn">
+            <button type="submit" className="button button-primary submit-btn">
               Enviar
             </button>
           </form>
