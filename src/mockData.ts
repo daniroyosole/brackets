@@ -584,6 +584,154 @@ export const sentences: Sentence[] = [{
       ]
     }
   ]
+},
+{
+  "date": "2025-11-10",
+  "text": "Els adolescents tenen coses a dir, però n'han perdut els mots. - Montserrat Roig",
+  "clues": [
+    {
+      "text": "Durant aquest periode la família va vestir de negre",
+      "value": "dol",
+      "startIndex": 5,
+      "clues": [
+        {
+          "text": "Per regla general ve cada 28 dies",
+          "value": "periode",
+          "startIndex": 14
+        },
+        {
+          "text": "No es pot adoptar un gat d'aquest color abans de Tots Sants",
+          "value": "negre",
+          "startIndex": 46,
+          "clues": [
+            {
+              "text": "Els innocents et posen una llufa",
+              "value": "Sants",
+              "startIndex": 54
+            }
+          ]
+        },
+        {
+          "text": "Entre Saturn i Neptú",
+          "value": "ura",
+          "startIndex": 1,
+          "clues": [
+            {
+              "text": "Aquí hi és qui no treballa",
+              "value": "atur",
+              "startIndex": 7,
+              "clues": [
+                {
+                  "text": "Sant Vito ho fa quan tremola",
+                  "value": "balla",
+                  "startIndex": 21
+                },
+                {
+                  "text": "De fons, alpí, i de muntanya",
+                  "value": "és qui",
+                  "startIndex": 8,
+                  "clues": [
+                    {
+                      "text": "El lavabo sempre el trobes al ___ a la dreta",
+                      "value": "fons",
+                      "startIndex": 3,
+                      "clues": [
+                        {
+                          "text": "T'endús vestits sense permís",
+                          "value": "robes",
+                          "startIndex": 21
+                        },
+                        {
+                          "text": "A aquesta banda tothom està dempeus",
+                          "value": "dreta",
+                          "startIndex": 39
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Bat la nata a punt de neu",
+                      "value": "munta",
+                      "startIndex": 20
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "El consell més comptat",
+      "value": "cent",
+      "startIndex": 10,
+      "clues": [
+        {
+          "text": "El noble paga al moment",
+          "value": "comptat",
+          "startIndex": 15,
+          "clues": [
+            {
+              "text": "Al juliol i desembre ve l'extraordinària",
+              "value": "paga",
+              "startIndex": 9
+            },
+            {
+              "text": "L'aristòcrata més franc",
+              "value": "noble",
+              "startIndex": 3
+            }
+          ]
+        },
+        {
+          "text": "El suggeriment del comitè (pot ser de guerra, escolar, comarcal, ...)",
+          "value": "consell",
+          "startIndex": 3,
+          "clues": [
+            {
+              "text": "Catalunya en té 42",
+              "value": "comarca",
+              "startIndex": 55
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "El temps que ja no pots ni trobar ni recuperar ",
+      "value": "perdut",
+      "startIndex": 46,
+      "clues": [
+        {
+          "text": "En Joan posa veu a en Woody Allen",
+          "value": "pera",
+          "startIndex": 41
+        },
+        {
+          "text": "Ve després del telenotícies",
+          "value": "temps",
+          "startIndex": 3
+        }
+      ]
+    },
+    {
+      "text": "Eina dentada del fuster",
+      "value": "serra",
+      "startIndex": 69,
+      "clues": [
+        {
+          "text": "El gos en té alguna de canina i l'humà també",
+          "value": "dent",
+          "startIndex": 5
+        }
+      ]
+    },
+    {
+      "text": "Cabell taronja que fa goig",
+      "value": "Roig",
+      "startIndex": 76
+    }
+  ]
 }
 ]
 
