@@ -662,14 +662,14 @@ export const sentences: Sentence[] = [{
       ]
     },
     {
-      "text": "El consell més comptat",
+      "text": "Aquest consell és el més comptat",
       "value": "cent",
       "startIndex": 10,
       "clues": [
         {
           "text": "El noble paga així, al moment",
           "value": "comptat",
-          "startIndex": 15,
+          "startIndex": 25,
           "clues": [
             {
               "text": "Al juliol i desembre ve l'extraordinària",
@@ -686,7 +686,7 @@ export const sentences: Sentence[] = [{
         {
           "text": "El suggeriment del comitè (pot ser de guerra, escolar, comarcal, ...)",
           "value": "consell",
-          "startIndex": 3,
+          "startIndex": 7,
           "clues": [
             {
               "text": "Catalunya en té 42 (singular)",
