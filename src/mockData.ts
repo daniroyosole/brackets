@@ -732,6 +732,271 @@ export const sentences: Sentence[] = [{
       "startIndex": 76
     }
   ]
+},
+{
+  "date": "2025-11-11",
+  "text": "Avui en dia la gent coneix el preu de tot i el valor de res — El ventall de Lady Windermere, Oscar Wilde",
+  "clues": [
+    {
+      "text": "Entre ahir i demà",
+      "value": "Avui",
+      "startIndex": 0,
+      "clues": [
+        {
+          "text": "A TV3 recorden com si fos aquest dia",
+          "value": "ahir",
+          "startIndex": 6,
+          "clues": [
+            {
+              "text": "Més a prop que aquell",
+              "value": "aquest",
+              "startIndex": 26,
+              "clues": [
+                {
+                  "text": "Les abelles el recullen amb oli",
+                  "value": "prop",
+                  "startIndex": 6,
+                  "clues": [
+                    {
+                      "text": "Animals de color de taxi de Barcelona",
+                      "value": "abelles",
+                      "startIndex": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "L'etiqueta el posa en euros",
+      "value": "preu",
+      "startIndex": 30
+    },
+    {
+      "text": "El que es mou a TV3",
+      "value": "tot",
+      "startIndex": 38
+    },
+    {
+      "text": "Una xocolata amb molt coratge",
+      "value": "valor",
+      "startIndex": 47,
+      "clues": [
+        {
+          "text": "Amb els xurros és essencial",
+          "value": "xocolata",
+          "startIndex": 4
+        }
+      ]
+    },
+    {
+      "text": "Eina d'actuació manual per refrescar-se molt estimat per les flamenques",
+      "value": "ventall",
+      "startIndex": 65,
+      "clues": [
+        {
+          "text": "Una com una serra, una clau Allen, una rasqueta...",
+          "value": "Eina",
+          "startIndex": 0
+        },
+        {
+          "text": "El d'instruccions ens diu com muntar la prestatgeria de l'Ikea",
+          "value": "manual",
+          "startIndex": 16,
+          "clues": [
+            {
+              "text": "Botiga de mobles i mandonguilles",
+              "value": "Ikea",
+              "startIndex": 58,
+              "clues": [
+                {
+                  "text": "Aquestes pilotes de carn són més bones quan les fa la iaia",
+                  "value": "mandonguilles",
+                  "startIndex": 19
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "La dona del Lord",
+      "value": "Lady",
+      "startIndex": 76
+    },
+    {
+      "text": "___ows Vista, ___ows XP, ___ows 10...",
+      "value": "Wind",
+      "startIndex": 81
+    },
+    {
+      "text": "Estèril, com un desert",
+      "value": "erm",
+      "startIndex": 85,
+      "clues": [
+        {
+          "text": "El Gobi, o els Monegres (singular)",
+          "value": "desert",
+          "startIndex": 16
+        }
+      ]
+    },
+    {
+      "text": "Aquesta estatueta es dóna al millor guió, i a la millor actriu, entre altres",
+      "value": "Oscar",
+      "startIndex": 93
+    },
+    {
+      "text": "L'anglès salvatge",
+      "value": "Wild",
+      "startIndex": 99
+    },
+    {
+      "text": "2.71828...",
+      "value": "e",
+      "startIndex": 103
+    }
+  ]
+},
+{
+  "date": "2025-11-12",
+  "text": "Déu mata indiscriminadament... i nosaltres també — Entrevista amb el vampir, Anne Rice",
+  "clues": [
+    {
+      "text": "Hermes, per exemple",
+      "value": "Déu",
+      "startIndex": 0,
+      "clues": [
+        {
+          "text": "Per a l'anglesa, és seu",
+          "value": "Her",
+          "startIndex": 0
+        },
+        {
+          "text": "Té entre 28 i 31 dies",
+          "value": "mes",
+          "startIndex": 3
+        }
+      ]
+    },
+    {
+      "text": "Arbust que sona més mortal del que és ",
+      "value": "mata",
+      "startIndex": 4,
+      "clues": [
+        {
+          "text": "Salt en l'aire en rotació al voltant de l'eix transversal",
+          "value": "mortal",
+          "startIndex": 20
+        }
+      ]
+    },
+    {
+      "text": "La seva capital és Nova Delhi",
+      "value": "indi",
+      "startIndex": 9,
+      "clues": [
+        {
+          "text": "El que va escriure Marx",
+          "value": "capital",
+          "startIndex": 8
+        }
+      ]
+    },
+    {
+      "text": "l'Angela Lansbury diu que se n'ha escrit un",
+      "value": "crim",
+      "startIndex": 14
+    },
+    {
+      "text": "Després d'ell i abans que vosaltres",
+      "value": "nosaltres",
+      "startIndex": 33
+    },
+    {
+      "text": "En aquesta, el periodista fa preguntes",
+      "value": "Entrevista",
+      "startIndex": 51,
+      "clues": [
+        {
+          "text": "Acaben amb un signe d'interrogació",
+          "value": "preguntes",
+          "startIndex": 29,
+          "clues": [
+            {
+              "text": "En Genís s'ha confós amb la senyal",
+              "value": "signe",
+              "startIndex": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Ésser de dieta sanguínia",
+      "value": "vampir",
+      "startIndex": 69,
+      "clues": [
+        {
+          "text": "Ha de ser equilibrada, però alguns la fan per aprimar (o per engreixar)",
+          "value": "dieta",
+          "startIndex": 9,
+          "clues": [
+            {
+              "text": "Li agraden molt els ventiladors anglesos",
+              "value": "fan",
+              "startIndex": 38
+            },
+            {
+              "text": "Va després d'òpera i abans que de risc",
+              "value": "prim",
+              "startIndex": 47
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Arròs americà",
+      "value": "Rice",
+      "startIndex": 82,
+      "clues": [
+        {
+          "text": "Pot ser bomba, llarg, o integral",
+          "value": "Arròs",
+          "startIndex": 0,
+          "clues": [
+            {
+              "text": "Posició en la que et tires a la piscina quan t'agafes pels genolls i et fas bola",
+              "value": "bomba",
+              "startIndex": 8,
+              "clues": [
+                {
+                  "text": "Una d'olímpica fa 50m de llargada",
+                  "value": "piscina",
+                  "startIndex": 32
+                },
+                {
+                  "text": "Dos que tenen menisc",
+                  "value": "genolls",
+                  "startIndex": 59
+                },
+                {
+                  "text": "Una esfera mentidera",
+                  "value": "bola",
+                  "startIndex": 76
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ]
 
