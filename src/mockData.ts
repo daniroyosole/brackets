@@ -649,7 +649,7 @@ export const sentences: Sentence[] = [{
                       ]
                     },
                     {
-                      "text": "Bat la nata a punt de neu",
+                      "text": "Bat la nata i la fa pujar",
                       "value": "munta",
                       "startIndex": 20
                     }
@@ -667,7 +667,7 @@ export const sentences: Sentence[] = [{
       "startIndex": 10,
       "clues": [
         {
-          "text": "El noble paga al moment",
+          "text": "El noble paga així, al moment",
           "value": "comptat",
           "startIndex": 15,
           "clues": [
@@ -677,7 +677,7 @@ export const sentences: Sentence[] = [{
               "startIndex": 9
             },
             {
-              "text": "L'aristòcrata més franc",
+              "text": "L'aristòcrata més lleial",
               "value": "noble",
               "startIndex": 3
             }
@@ -689,7 +689,7 @@ export const sentences: Sentence[] = [{
           "startIndex": 3,
           "clues": [
             {
-              "text": "Catalunya en té 42",
+              "text": "Catalunya en té 42 (singular)",
               "value": "comarca",
               "startIndex": 55
             }
