@@ -10,6 +10,7 @@ import { useGameHandlers } from '../hooks/useGameHandlers'
 import { useHelpModal } from '../hooks/useHelpModal'
 import { saveGameResult } from '../utils/statsApi'
 import { getTodayDate } from '../utils/api'
+import { getScoreEmoji } from '../utils/scoreCalculator'
 import './Game.css'
 
 const Game = () => {
@@ -135,7 +136,7 @@ const Game = () => {
       />
 
       <div className="game-content">
-        <div className="sentence-wrapper">
+        <div className={`sentence-wrapper ${isGameFinished ? 'game-finished' : ''}`}>
           <SentenceComponent 
             sentence={sentence} 
             solvedClues={solvedClues}
@@ -144,6 +145,17 @@ const Game = () => {
             lastSolvedClue={lastSolvedClue}
             onClueClick={handleClueClick}
           />
+          {isGameFinished && (
+            <div className="results-button-container">
+              <button
+                onClick={() => setIsScoreModalOpen(true)}
+                className="results-btn-center"
+                title="Veure resultats d'avui"
+              >
+                {getScoreEmoji(score)} Veure resultats d'avui
+              </button>
+            </div>
+          )}
         </div>
         <form onSubmit={(e) => handleSubmit(e, inputValue, setInputValue)} className="answer-form">
           <input
@@ -189,28 +201,28 @@ const Game = () => {
         />
       )}
 
-          <ScoreModal
-            isOpen={isScoreModalOpen}
-            score={score}
-            onClose={() => setIsScoreModalOpen(false)}
-            onShowStats={() => {
-              setIsScoreModalOpen(false)
-              setIsStatsModalOpen(true)
-            }}
-            solvedClues={solvedClues.size}
-            totalClues={totalClues}
-            revealedFirstLetters={revealedFirstLetters.size}
-            fullClueReveals={fullClueReveals}
-            wrongAnswers={wrongAnswers}
-          />
+      <ScoreModal
+        isOpen={isScoreModalOpen}
+        score={score}
+        onClose={() => setIsScoreModalOpen(false)}
+        onShowStats={() => {
+          setIsScoreModalOpen(false)
+          setIsStatsModalOpen(true)
+        }}
+        solvedClues={solvedClues.size}
+        totalClues={totalClues}
+        revealedFirstLetters={revealedFirstLetters.size}
+        fullClueReveals={fullClueReveals}
+        wrongAnswers={wrongAnswers}
+      />
 
-          <StatsModal
-            isOpen={isStatsModalOpen}
-            onClose={() => setIsStatsModalOpen(false)}
-          />
-        </div>
-      )
-    }
-    
-    export default Game
+      <StatsModal
+        isOpen={isStatsModalOpen}
+        onClose={() => setIsStatsModalOpen(false)}
+      />
+    </div>
+  )
+}
+
+export default Game
 

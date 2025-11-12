@@ -56,3 +56,28 @@ export function calculateScore(
   return Math.max(0, Math.min(100, Math.round(score * 100) / 100))
 }
 
+/**
+ * Returns the emoji corresponding to a score
+ * 🥔 (0-20), 🥦 (21-40), 🍋 (41-60), 🍑 (61-80), 🍉 (81-99), 🍓 (100)
+ */
+export function getScoreEmoji(score: number): string {
+  if (score === 100) return '🍓'
+  if (score >= 81) return '🍉'
+  if (score >= 61) return '🍑'
+  if (score >= 41) return '🍋'
+  if (score >= 21) return '🥦'
+  return '🥔'
+}
+
+/**
+ * Returns the message corresponding to a score
+ */
+export function getScoreMessage(score: number): string {
+  if (score === 100) return 'Excel·lent'
+  if (score >= 81) return 'Espectacular!'
+  if (score >= 61) return 'Fantàstic!'
+  if (score >= 41) return 'Molt bé!'
+  if (score >= 21) return "T'hi vas acostant!"
+  return 'Casi bé!'
+}
+

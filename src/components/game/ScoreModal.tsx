@@ -1,6 +1,7 @@
 import './ScoreModal.css'
 import { useNextGameTimer } from '../../hooks/useNextGameTimer'
 import { useState } from 'react'
+import { getScoreEmoji, getScoreMessage } from '../../utils/scoreCalculator'
 
 interface ScoreModalProps {
   isOpen: boolean
@@ -36,23 +37,6 @@ export const ScoreModal = ({
     }
   }
 
-  const getScoreEmoji = (): string => {
-    if (score === 100) return '🍓'
-    if (score >= 81) return '🍉'
-    if (score >= 61) return '🍑'
-    if (score >= 41) return '🍋'
-    if (score >= 21) return '🥦'
-    return '🥔'
-  }
-
-  const getScoreMessage = () => {
-    if (score === 100) return 'Excel·lent'
-    if (score >= 81) return 'Espectacular!'
-    if (score >= 61) return 'Fantàstic!'
-    if (score >= 41) return 'Molt bé!'
-    if (score >= 21) return "T'hi vas acostant!"
-    return 'Casi bé!'
-  }
 
   const formatDate = () => {
     const today = new Date()
@@ -63,7 +47,7 @@ export const ScoreModal = ({
   }
 
   const generateShareText = () => {
-    const emoji = getScoreEmoji()
+    const emoji = getScoreEmoji(score)
     const date = formatDate()
     
     return `[Claudàtors] - ${date}
@@ -138,11 +122,11 @@ Juga a: https://brackets-delta.vercel.app/`
         </div>
         <div className="score-modal-content">
           <div className="score-display">
-            <div className="score-emoji">{getScoreEmoji()}</div>
+            <div className="score-emoji">{getScoreEmoji(score)}</div>
             <div className="score-value">{score.toFixed(0)} / 100</div>
             <div className="score-label">Puntuació</div>
           </div>
-          <div className="score-message">{getScoreMessage()}</div>
+          <div className="score-message">{getScoreMessage(score)}</div>
           <div className="next-game-timer">
             <span className="next-game-text">Proper joc disponible en</span>
             <span className="next-game-time">{timeRemaining}</span>
