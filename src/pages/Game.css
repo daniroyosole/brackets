@@ -179,6 +179,7 @@
   box-shadow: 0 3px 6px rgba(106, 170, 100, 0.25);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
