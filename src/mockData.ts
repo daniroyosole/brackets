@@ -953,7 +953,7 @@ export const sentences: Sentence[] = [{
             },
             {
               "text": "Va després d'òpera i abans que de risc",
-              "value": "prim",
+              "value": "prima",
               "startIndex": 47
             }
           ]
