@@ -896,16 +896,9 @@ export const sentences: Sentence[] = [{
       ]
     },
     {
-      "text": "La seva capital és Nova Delhi",
+      "text": "Un que viu a Nova Delhi",
       "value": "indi",
       "startIndex": 9,
-      "clues": [
-        {
-          "text": "El que va escriure Marx",
-          "value": "capital",
-          "startIndex": 8
-        }
-      ]
     },
     {
       "text": "l'Angela Lansbury diu que se n'ha escrit un",
