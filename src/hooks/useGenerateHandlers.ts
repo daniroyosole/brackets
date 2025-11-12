@@ -44,6 +44,12 @@ export const useGenerateHandlers = ({
     setClues(new Map())
     setSelections(new Map())
     setScheduledDate(getTomorrowDate())
+    // Clear localStorage
+    try {
+      localStorage.removeItem('brackets-generator-state')
+    } catch (error) {
+      console.error('Failed to clear generator state from localStorage:', error)
+    }
   }
 
   const handleSelection = useCallback((sourceId: string | null, start: number, end: number, text: string) => {
