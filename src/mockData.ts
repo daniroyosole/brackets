@@ -990,6 +990,596 @@ export const sentences: Sentence[] = [{
       ]
     }
   ]
+}, {
+  "date": "2025-11-13",
+  "text": "\"Sóc un cervell, Watson. La resta de mi és un apèndix.\" — La pedra de Mazarin, Arthur Conan Doyle",
+  "clues": [
+    {
+      "text": "El de mosquit no pensa molt",
+      "value": "cervell",
+      "startIndex": 8,
+      "clues": [
+        {
+          "text": "El tigre va arribar a Catalunya el 2004",
+          "value": "mosquit",
+          "startIndex": 6
+        }
+      ]
+    },
+    {
+      "text": "Amb Crick i Wilkins, rep el Nobel per recerca en L'ADN ",
+      "value": "Watson",
+      "startIndex": 17
+    },
+    {
+      "text": "Per exemple, 21 - 3",
+      "value": "resta",
+      "startIndex": 28,
+      "clues": [
+        {
+          "text": "Número de punts en un dau",
+          "value": "21",
+          "startIndex": 13
+        },
+        {
+          "text": "Número de rodes en un tricicle",
+          "value": "3",
+          "startIndex": 18
+        }
+      ]
+    },
+    {
+      "text": "Va al final del llibre, per exemple una bibliografia",
+      "value": "apèndix",
+      "startIndex": 46,
+      "clues": [
+        {
+          "text": "Per Sant Jordi es regala amb una rosa",
+          "value": "llibre",
+          "startIndex": 16
+        }
+      ]
+    },
+    {
+      "text": "Picar-la és una feina dura però necessària",
+      "value": "pedra",
+      "startIndex": 61,
+      "clues": [
+        {
+          "text": "La feta no té espera",
+          "value": "feina",
+          "startIndex": 16,
+          "clues": [
+            {
+              "text": "Formatge grec d'ovella",
+              "value": "feta",
+              "startIndex": 3,
+              "clues": [
+                {
+                  "text": "Festival internacional de música, teatre, dansa i circ de Barcelona",
+                  "value": "grec",
+                  "startIndex": 9,
+                  "clues": [
+                    {
+                      "text": "La tetera embrollada va al Tívoli o al Poliorama",
+                      "value": "teatre",
+                      "startIndex": 34
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "32 llaunes de sopa són un exemple del pop",
+      "value": "Art",
+      "startIndex": 79,
+      "clues": [
+        {
+          "text": "Té vuit braços i tres cors",
+          "value": "pop",
+          "startIndex": 38,
+          "clues": [
+            {
+              "text": "Van amb les piques, els diamants i els trèvols",
+              "value": "cors",
+              "startIndex": 22,
+              "clues": [
+                {
+                  "text": "Truques per telèfon, o et resols rascant",
+                  "value": "piques",
+                  "startIndex": 12
+                },
+                {
+                  "text": "Quan tenen quatre fulles porten sort",
+                  "value": "trèvols",
+                  "startIndex": 39
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Junt amb Ben, fa una pel·lícula èpica bíblica",
+      "value": "hur",
+      "startIndex": 82,
+      "clues": [
+        {
+          "text": "El que fa gelats amb en Jerry",
+          "value": "Ben",
+          "startIndex": 9
+        }
+      ]
+    },
+    {
+      "text": "Aquest detectiu té el cos d'un nen però el cervell d'un adult",
+      "value": "Conan",
+      "startIndex": 86
+    }
+  ]
+}, {
+  "date": "2025-11-14",
+  "text": "Es pot estimar com a ésser humà una persona estimada; però tan sols a l'enemic se'l pot estimar amb amor diví. — Guerra i Pau, Lev Tolstoi",
+  "clues": [
+    {
+      "text": "Adorar, o calibrar",
+      "value": "estimar",
+      "startIndex": 7,
+      "clues": [
+        {
+          "text": "Altrament dit balança",
+          "value": "libra",
+          "startIndex": 12
+        }
+      ]
+    },
+    {
+      "text": "Aquest verb és ser, també",
+      "value": "ésser",
+      "startIndex": 21
+    },
+    {
+      "text": "La non grata no la volem",
+      "value": "persona",
+      "startIndex": 36,
+      "clues": [
+        {
+          "text": "Ho fa quan li pica",
+          "value": "grata",
+          "startIndex": 7,
+          "clues": [
+            {
+              "text": "Aquesta paraula repetida és una garsa científica",
+              "value": "pica",
+              "startIndex": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Com estem quan estem només tu i jo ;)",
+      "value": "sols",
+      "startIndex": 63
+    },
+    {
+      "text": "Qui en necessita un, quan l'amic ja et passa el joc més addictiu inventat (el claudàtors)",
+      "value": "enemic",
+      "startIndex": 72,
+      "clues": [
+        {
+          "text": "Un del de les arts",
+          "value": "amic",
+          "startIndex": 28
+        },
+        {
+          "text": "Pot ser de taula o de claus",
+          "value": "joc",
+          "startIndex": 48,
+          "clues": [
+            {
+              "text": "A la rodona s'hi asseien els cavallers i Artur",
+              "value": "taula",
+              "startIndex": 11
+            }
+          ]
+        },
+        {
+          "text": "Que enganxa molt",
+          "value": "addictiu",
+          "startIndex": 56
+        }
+      ]
+    },
+    {
+      "text": "Amar, o calcular mides aproximades",
+      "value": "estimar",
+      "startIndex": 88
+    },
+    {
+      "text": "La ciutat eterna s'ha desconstruït i ara és encara més romàntica",
+      "value": "amor",
+      "startIndex": 100,
+      "clues": [
+        {
+          "text": "Dura fins la fi dels temps",
+          "value": "eterna",
+          "startIndex": 10,
+          "clues": [
+            {
+              "text": "Lletra grega representada per un cercle creuat per una línia vertical",
+              "value": "fi",
+              "startIndex": 13,
+              "clues": [
+                {
+                  "text": "Quan la fas et poses cap per avall",
+                  "value": "vertical",
+                  "startIndex": 61
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Pot ser freda o civil",
+      "value": "Guerra",
+      "startIndex": 113
+    },
+    {
+      "text": "Aquest treballa i estudia, segons els Pets",
+      "value": "Pau",
+      "startIndex": 122,
+      "clues": [
+        {
+          "text": "Els de monja es mengen, els meus no",
+          "value": "Pets",
+          "startIndex": 38,
+          "clues": [
+            {
+              "text": "Criatura d'hàbit",
+              "value": "monja",
+              "startIndex": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Les núvies en porten del revés",
+      "value": "Lev",
+      "startIndex": 127,
+      "clues": [
+        {
+          "text": "Dones que es casen",
+          "value": "núvies",
+          "startIndex": 4
+        }
+      ]
+    },
+    {
+      "text": "Rus dels rètols Toilet WC",
+      "value": "Tolstoi",
+      "startIndex": 131
+    }
+  ]
+}, {
+  "date": "2025-11-15",
+  "text": "Una munió odiosa es precipita eternament / entre rialles..., però sense somriure. — La caiguda de la Casa Usher, Edgar Allan Poe",
+  "clues": [
+    {
+      "text": "La cap d'en Bond, James Bond",
+      "value": "m",
+      "startIndex": 4,
+      "clues": [
+        {
+          "text": "Qui no en té ha de tenir cames",
+          "value": "cap",
+          "startIndex": 3,
+          "clues": [
+            {
+              "text": "Les que porten els pantalons",
+              "value": "cames",
+              "startIndex": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Es va separar de convergència",
+      "value": "unió",
+      "startIndex": 5
+    },
+    {
+      "text": "Animadversió profunda",
+      "value": "odi",
+      "startIndex": 10
+    },
+    {
+      "text": "Aquest pa rodó va farcit",
+      "value": "pita",
+      "startIndex": 25,
+      "clues": [
+        {
+          "text": "Va amb tomàquet, que no tumaca",
+          "value": "pa",
+          "startIndex": 7,
+          "clues": [
+            {
+              "text": "Quan t'enrojoles et poses vermell com aquest",
+              "value": "tomàquet",
+              "startIndex": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "A l'Iran paguen amb aquest",
+      "value": "rial",
+      "startIndex": 49
+    },
+    {
+      "text": "Amb el que encens les llums de colors que m'il·luminen nit i dia",
+      "value": "somriure",
+      "startIndex": 72,
+      "clues": [
+        {
+          "text": "Gris, groc, blau...",
+          "value": "colors",
+          "startIndex": 31,
+          "clues": [
+            {
+              "text": "Com el quadern d'en Josep Pla",
+              "value": "Gris",
+              "startIndex": 0,
+              "clues": [
+                {
+                  "text": "Qualitat del plat ple de pebre negre",
+                  "value": "Pla",
+                  "startIndex": 26
+                }
+              ]
+            },
+            {
+              "text": "Com el submarí dels Beatles",
+              "value": "groc",
+              "startIndex": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "La Tarradellas fa fuet i pizza",
+      "value": "Casa",
+      "startIndex": 101,
+      "clues": [
+        {
+          "text": "Va després de tele i abans de hut",
+          "value": "pizza",
+          "startIndex": 25
+        }
+      ]
+    },
+    {
+      "text": "Ella, l'anglesa",
+      "value": "she",
+      "startIndex": 107
+    },
+    {
+      "text": "Desenredes la llana i en treus un senyor",
+      "value": "Allan",
+      "startIndex": 119,
+      "clues": [
+        {
+          "text": "Roba d'ovella",
+          "value": "llana",
+          "startIndex": 14,
+          "clues": [
+            {
+              "text": "La negra és la rara del ramat",
+              "value": "ovella",
+              "startIndex": 7,
+              "clues": [
+                {
+                  "text": "La memòria de l'ordinador és un grapat de flors",
+                  "value": "ram",
+                  "startIndex": 24
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Els poetes van perdre les infusions",
+      "value": "Poe",
+      "startIndex": 125,
+      "clues": [
+        {
+          "text": "Lorca, Marçal, Safo...",
+          "value": "poetes",
+          "startIndex": 4
+        }
+      ]
+    }
+  ]
+},
+                                      {
+  "date": "2025-11-16",
+  "text": "La bellesa és terror. Tremolem davant de tot allò que anomenem bell. — La història secreta, Donna Tartt",
+  "clues": [
+    {
+      "text": "Les abelles es desorganitzen de forma molt atractiva",
+      "value": "bellesa",
+      "startIndex": 3,
+      "clues": [
+        {
+          "text": "Semblen vespes però només piquen un cop",
+          "value": "abelles",
+          "startIndex": 4,
+          "clues": [
+            {
+              "text": "Motos italianes",
+              "value": "vespes",
+              "startIndex": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Rec o Midsommar són pel·lícules d'aquest gènere",
+      "value": "terror",
+      "startIndex": 14,
+      "clues": [
+        {
+          "text": "Per on passen les aigües amb què hidratem els horts",
+          "value": "Rec",
+          "startIndex": 0
+        }
+      ]
+    },
+    {
+      "text": "Unitat de quantitat de substància",
+      "value": "mol",
+      "startIndex": 25,
+      "clues": [
+        {
+          "text": "Diuen que val més la qualitat que no pas aquesta",
+          "value": "quantitat",
+          "startIndex": 10
+        }
+      ]
+    },
+    {
+      "text": "En rugby en fas quan la pilota no va enrere",
+      "value": "avant",
+      "startIndex": 32
+    },
+    {
+      "text": "Alba, per exemple",
+      "value": "nom",
+      "startIndex": 55,
+      "clues": [
+        {
+          "text": "Sortida de sol",
+          "value": "Alba",
+          "startIndex": 0,
+          "clues": [
+            {
+              "text": "Desemparat com el mussol",
+              "value": "sol",
+              "startIndex": 11,
+              "clues": [
+                {
+                  "text": "Amb cartes té gran, petita, parells, i joc",
+                  "value": "mus",
+                  "startIndex": 18,
+                  "clues": [
+                    {
+                      "text": "No en facis un de massa, de l'acne",
+                      "value": "gra",
+                      "startIndex": 14
+                    },
+                    {
+                      "text": "2, 4, 36, però no 3, 5, 27",
+                      "value": "parells",
+                      "startIndex": 28
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "El Graham trucava per telèfon abans que fos guai",
+      "value": "bell",
+      "startIndex": 63
+    },
+    {
+      "text": "A batxillerat se'n fa de genèrica i de la filosofia",
+      "value": "història",
+      "startIndex": 74
+    },
+    {
+      "text": "L'illa del minotaure",
+      "value": "creta",
+      "startIndex": 85,
+      "clues": [
+        {
+          "text": "Pot ser del tresor o diagonal",
+          "value": "illa",
+          "startIndex": 2,
+          "clues": [
+            {
+              "text": "En un mapa pirata el denota una X",
+              "value": "tresor",
+              "startIndex": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "La prima acostuma a ser soprano",
+      "value": "Donna",
+      "startIndex": 92
+    },
+    {
+      "text": "Repeteix es aquesta síl·laba i arribes a l'infern grec",
+      "value": "Tar",
+      "startIndex": 98,
+      "clues": [
+        {
+          "text": "On viuen els dimonis",
+          "value": "infern",
+          "startIndex": 43
+        },
+        {
+          "text": "Un que viu a Atenes",
+          "value": "grec",
+          "startIndex": 50
+        }
+      ]
+    },
+    {
+      "text": "Un parell de lletres iguals que fem servir per dir que estem plorant",
+      "value": "tt",
+      "startIndex": 101,
+      "clues": [
+        {
+          "text": "a, b, m, pi, omega...",
+          "value": "lletres",
+          "startIndex": 13,
+          "clues": [
+            {
+              "text": "Pot ser negre, roig, o pinyer",
+              "value": "pi",
+              "startIndex": 9
+            }
+          ]
+        },
+        {
+          "text": "Fent treballar els lacrimals",
+          "value": "plorant",
+          "startIndex": 61
+        }
+      ]
+    }
+  ]
 }
 ]
 
