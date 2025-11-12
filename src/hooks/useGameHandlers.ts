@@ -101,7 +101,7 @@ export const useGameHandlers = ({
       setTimeout(() => {
         setInputValue('')
         setInputError(false)
-      }, 800)
+      }, 2000)
     }
   }, [sentence, solvedClues, setSolvedClues, setWrongAnswers, setInputError, setLastSolvedClue])
 
