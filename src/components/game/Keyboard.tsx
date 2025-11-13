@@ -41,10 +41,7 @@ export const Keyboard = ({ onKeyPress, onBackspace, onSubmit, disabled = false }
   const startBackspaceRepeat = () => {
     if (disabled || !onBackspace) return
     
-    // Executar immediatament
-    handleBackspace()
-    
-    // Esperar una mica abans de començar a repetir
+    // Esperar abans de començar a repetir (només si es manté apretat)
     backspaceTimeoutRef.current = setTimeout(() => {
       // Començar a repetir cada 100ms
       backspaceIntervalRef.current = setInterval(() => {
@@ -52,7 +49,7 @@ export const Keyboard = ({ onKeyPress, onBackspace, onSubmit, disabled = false }
           onBackspace()
         }
       }, 100)
-    }, 300)
+    }, 500)
   }
 
   const stopBackspaceRepeat = () => {
