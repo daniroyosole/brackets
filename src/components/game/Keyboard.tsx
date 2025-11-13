@@ -16,8 +16,8 @@ const ROWS = [
 ]
 
 export const Keyboard = ({ onKeyPress, onBackspace, onSubmit, disabled = false }: KeyboardProps) => {
-  const backspaceIntervalRef = useRef<NodeJS.Timeout | null>(null)
-  const backspaceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const backspaceIntervalRef = useRef<number | null>(null)
+  const backspaceTimeoutRef = useRef<number | null>(null)
 
   useEffect(() => {
     return () => {
