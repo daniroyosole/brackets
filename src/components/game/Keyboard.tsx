@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import './Keyboard.css'
 
 interface KeyboardProps {
@@ -15,12 +16,54 @@ const ROWS = [
 ]
 
 export const Keyboard = ({ onKeyPress, onBackspace, onSubmit, disabled = false }: KeyboardProps) => {
+  const backspaceIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const backspaceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (backspaceIntervalRef.current) {
+        clearInterval(backspaceIntervalRef.current)
+      }
+      if (backspaceTimeoutRef.current) {
+        clearTimeout(backspaceTimeoutRef.current)
+      }
+    }
+  }, [])
+
   const handleKeyClick = (key: string) => {
     if (!disabled) onKeyPress(key)
   }
 
   const handleBackspace = () => {
     if (!disabled && onBackspace) onBackspace()
+  }
+
+  const startBackspaceRepeat = () => {
+    if (disabled || !onBackspace) return
+    
+    // Executar immediatament
+    handleBackspace()
+    
+    // Esperar una mica abans de començar a repetir
+    backspaceTimeoutRef.current = setTimeout(() => {
+      // Començar a repetir cada 100ms
+      backspaceIntervalRef.current = setInterval(() => {
+        if (!disabled && onBackspace) {
+          onBackspace()
+        }
+      }, 100)
+    }, 300)
+  }
+
+  const stopBackspaceRepeat = () => {
+    if (backspaceTimeoutRef.current) {
+      clearTimeout(backspaceTimeoutRef.current)
+      backspaceTimeoutRef.current = null
+    }
+    if (backspaceIntervalRef.current) {
+      clearInterval(backspaceIntervalRef.current)
+      backspaceIntervalRef.current = null
+    }
   }
 
   const handleSubmit = () => {
@@ -30,7 +73,16 @@ export const Keyboard = ({ onKeyPress, onBackspace, onSubmit, disabled = false }
   return (
     <div className="keyboard">
       {ROWS.map((row, rowIndex) => (
-        <div key={rowIndex} className="keyboard-row">
+        <div key={rowIndex} className={`keyboard-row ${rowIndex === 3 ? 'keyboard-row-with-backspace' : ''}`}>
+          {rowIndex === 3 && onBackspace && (
+            <button
+              className="keyboard-key keyboard-key-spacer"
+              disabled
+              type="button"
+              aria-hidden="true"
+            >
+            </button>
+          )}
           {row.map((key) => (
             <button
               key={key}
@@ -42,17 +94,24 @@ export const Keyboard = ({ onKeyPress, onBackspace, onSubmit, disabled = false }
               {rowIndex === 0 ? key : key.toUpperCase()}
             </button>
           ))}
+          {rowIndex === 3 && onBackspace && (
+            <button
+              className="keyboard-key keyboard-key-backspace"
+              onClick={handleBackspace}
+              onMouseDown={startBackspaceRepeat}
+              onMouseUp={stopBackspaceRepeat}
+              onMouseLeave={stopBackspaceRepeat}
+              onTouchStart={startBackspaceRepeat}
+              onTouchEnd={stopBackspaceRepeat}
+              disabled={disabled || !onBackspace}
+              type="button"
+            >
+              ⌫
+            </button>
+          )}
         </div>
       ))}
       <div className="keyboard-row keyboard-row-actions">
-        <button
-          className="keyboard-key keyboard-key-backspace"
-          onClick={handleBackspace}
-          disabled={disabled || !onBackspace}
-          type="button"
-        >
-          ⌫ Esborrar
-        </button>
         {onSubmit && (
           <button
             className="keyboard-key keyboard-key-submit"

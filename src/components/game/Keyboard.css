@@ -16,6 +16,25 @@
   justify-content: center;
 }
 
+.keyboard-row-with-backspace {
+  justify-content: center;
+}
+
+.keyboard-key-spacer {
+  visibility: hidden;
+  pointer-events: none;
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 0.65rem 2rem;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+}
+
+.keyboard-row-with-backspace .keyboard-key-backspace {
+  margin-left: 0;
+}
+
 .keyboard-row-actions {
   margin-top: 0.75rem;
   justify-content: flex-start;
@@ -28,7 +47,7 @@
   min-width: 0;
   min-height: 3.5rem;
   padding: 0.75rem 0.8rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   background-color: var(--color-white);
@@ -42,16 +61,26 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+  -moz-outline: none;
 }
 
-.keyboard-key:hover:not(:disabled) {
-  background-color: var(--clue-eligible-bg);
-  border-color: var(--clue-eligible-border);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.keyboard-key:focus,
+.keyboard-key:focus-visible,
+.keyboard-key:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .keyboard-key:active:not(:disabled) {
+  background-color: var(--clue-eligible-bg);
+  border-color: var(--clue-eligible-border);
   transform: translateY(0);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -62,7 +91,7 @@
 }
 
 .keyboard-key-number {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .keyboard-row-actions .keyboard-key-backspace,
@@ -71,18 +100,26 @@
   max-width: none;
   width: auto;
   padding: 0.75rem 1.75rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .keyboard-key-backspace {
-  background-color: var(--color-gray-medium);
-  border-color: var(--color-gray-dark);
+  flex: 0 1 auto;
+  max-width: none;
+  background-color: var(--color-border);
+  border-color: var(--color-gray-medium);
 }
 
-.keyboard-key-backspace:hover:not(:disabled) {
-  background-color: var(--color-gray-dark);
-  border-color: var(--color-black);
-  color: var(--color-white);
+.keyboard-row-with-backspace .keyboard-key-backspace {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 0.65rem 2rem;
+  font-size: 1.2rem;
+}
+
+.keyboard-key-backspace:active:not(:disabled) {
+  background-color: var(--color-gray-light);
+  border-color: var(--color-gray-medium);
 }
 
 .keyboard-key-submit {
@@ -111,18 +148,28 @@
     max-width: calc((100% - 2.1rem) / 10);
     min-height: 3rem;
     padding: 0.7rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .keyboard-key-number {
     max-width: calc((100% - 3.6rem) / 10);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .keyboard-key-backspace,
   .keyboard-key-submit {
     padding: 0.7rem 1.5rem;
     font-size: 0.85rem;
+  }
+
+  .keyboard-key-spacer {
+    padding: 0.6rem 1.75rem;
+    font-size: 1.1rem;
+  }
+
+  .keyboard-row-with-backspace .keyboard-key-backspace {
+    padding: 0.6rem 1.75rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -140,18 +187,28 @@
     max-width: calc((100% - 1.2rem) / 10);
     min-height: 2.75rem;
     padding: 0.6rem 0.6rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .keyboard-key-number {
     max-width: calc((100% - 2.7rem) / 10);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .keyboard-key-backspace,
   .keyboard-key-submit {
     padding: 0.6rem 1.25rem;
     font-size: 0.8rem;
+  }
+
+  .keyboard-key-spacer {
+    padding: 0.55rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .keyboard-row-with-backspace .keyboard-key-backspace {
+    padding: 0.55rem 1.5rem;
+    font-size: 1rem;
   }
 }
 
