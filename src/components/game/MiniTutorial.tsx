@@ -45,14 +45,8 @@ export const MiniTutorial = ({ sentence, onComplete }: MiniTutorialProps) => {
   }
 
   const handleClueClick = (cluePath: string) => {
-    if (revealedFirstLetters.has(cluePath)) {
-      setSolved(true)
-      setRevealedFirstLetters(prev => {
-        const updated = new Set(prev)
-        updated.delete(cluePath)
-        return updated
-      })
-    } else {
+    // Only allow revealing the first letter, not solving the clue
+    if (!revealedFirstLetters.has(cluePath)) {
       setRevealedFirstLetters(prev => new Set(prev).add(cluePath))
     }
   }
@@ -64,7 +58,7 @@ export const MiniTutorial = ({ sentence, onComplete }: MiniTutorialProps) => {
       <div className="help-modal-content">
         <div className="help-section">
           <p><strong>Escriu</strong> aquesta pista per continuar:</p>
-          <p className="mini-tutorial-hint">💡 Pots clicar <strong>un cop</strong> a la pista per saber la primera lletra, o <strong>dos cops</strong> per resoldre-la si t'has encallat.</p>
+          <p className="mini-tutorial-hint">💡 Pots clicar <strong>un cop</strong> a la pista per saber la primera lletra.</p>
           <div className="mini-tutorial-sentence">
             <SentenceComponent 
               sentence={sentence} 

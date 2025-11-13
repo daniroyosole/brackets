@@ -68,14 +68,20 @@
 
 .mini-tutorial-input {
   flex: 1;
+  width: 100%;
   padding: 0.75rem 1rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   border: 2px solid var(--color-gray-medium);
   background-color: var(--color-white);
-  border-radius: 4px;
   font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 4px;
   animation: inputPulse 2s ease-in-out infinite;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 @keyframes inputPulse {
@@ -91,14 +97,17 @@
 
 .mini-tutorial-input:focus {
   outline: none;
-  border-color: var(--color-primary);
+  background-color: var(--color-white);
+  border-color: var(--clue-eligible-border);
   animation: none;
-  box-shadow: 0 0 0 3px rgba(106, 170, 100, 0.2);
+  box-shadow: 0 0 0 2px rgba(91, 179, 217, 0.2);
 }
 
 .mini-tutorial-input.input-error {
   border-color: #e57373;
-  transition: border-color 0.3s ease;
+  color: #c62828;
+  animation: none;
+  box-shadow: inset 0 0 0 2px #e57373, 0 0 0 4px rgba(229, 115, 115, 0.4), 0 4px 12px rgba(229, 115, 115, 0.3);
 }
 
 .mini-tutorial-submit-btn {
