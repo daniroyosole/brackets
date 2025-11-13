@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Sentence as SentenceComponent } from '../components/game/Sentence'
 import { HelpModal } from '../components/game/HelpModal'
 import { ClueActionModal } from '../components/game/ClueActionModal'
 import { ScoreModal } from '../components/game/ScoreModal'
 import { StatsModal } from '../components/game/StatsModal'
 import { GameStats } from '../components/game/GameStats'
+import { Keyboard } from '../components/game/Keyboard'
 import { useGameState } from '../hooks/useGameState'
 import { useGameHandlers } from '../hooks/useGameHandlers'
 import { useHelpModal } from '../hooks/useHelpModal'
@@ -48,8 +49,7 @@ const Game = () => {
     handleCancelFirstLetter,
     handleSolveClue,
     handleCancelSolveClue,
-    handleSubmit,
-    handleInputFocus
+    handleSubmit
   } = useGameHandlers({
     sentence,
     solvedClues,
@@ -80,8 +80,6 @@ const Game = () => {
       })
     }
   }, [isGameFinished, score])
-
-  const answerInputRef = useRef<HTMLInputElement>(null)
 
   if (isLoading) {
     return (
@@ -159,18 +157,30 @@ const Game = () => {
         </div>
         <form onSubmit={(e) => handleSubmit(e, inputValue, setInputValue)} className="answer-form">
           <input
-            ref={answerInputRef}
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onFocus={handleInputFocus}
             placeholder="Introdueix una resposta..."
             className={`answer-input ${inputError ? 'input-error' : ''}`}
             disabled={isGameFinished}
           />
           <button type="submit" className="submit-btn" disabled={isGameFinished}>Enviar</button>
         </form>
+        <div className="answer-form-mobile">
+          <div
+            className={`answer-display ${inputError ? 'input-error' : ''} ${isGameFinished ? 'disabled' : ''}`}
+          >
+            {inputValue || <span className="answer-placeholder">Introdueix una resposta...</span>}
+          </div>
+        </div>
       </div>
+
+      <Keyboard
+        onKeyPress={(key) => setInputValue(prev => prev + key)}
+        onBackspace={() => setInputValue(prev => prev.slice(0, -1))}
+        onSubmit={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>, inputValue, setInputValue)}
+        disabled={isGameFinished}
+      />
 
       <HelpModal
         isOpen={isHelpModalOpen}
