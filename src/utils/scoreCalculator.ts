@@ -78,6 +78,6 @@ export function getScoreMessage(score: number): string {
   if (score >= 61) return 'Fantàstic!'
   if (score >= 41) return 'Molt bé!'
   if (score >= 21) return "T'hi vas acostant!"
-  return 'Casi bé!'
+  return 'Quasi bé!'
 }
 
