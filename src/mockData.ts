@@ -1539,7 +1539,7 @@ export const sentences: Sentence[] = [{
       "startIndex": 92
     },
     {
-      "text": "Repeteix es aquesta síl·laba i arribes a l'infern grec",
+      "text": "Repeteixes aquesta síl·laba i arribes a l'infern grec",
       "value": "Tar",
       "startIndex": 98,
       "clues": [
