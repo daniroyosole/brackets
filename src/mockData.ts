@@ -1580,6 +1580,995 @@ export const sentences: Sentence[] = [{
       ]
     }
   ]
-}
+}, {
+  "date": "2025-11-17",
+  "text": "N'hi ha molts que han perdut molt, només perquè van deixar passar una oportunitat perfecta de no dir res. — Tres llums, Claire Keegan",
+  "clues": [
+    {
+      "text": "Aquesta Marie va plegar de fabricar calces",
+      "value": "Claire",
+      "startIndex": 120
+    },
+    {
+      "text": "Lligat o del compte",
+      "value": "port",
+      "startIndex": 71,
+      "clues": [
+        {
+          "text": "Te'l porten a taula perquè paguis",
+          "value": "compte",
+          "startIndex": 13
+        }
+      ]
+    },
+    {
+      "text": "Els súpers sovint diuen que la segona és a la meitat",
+      "value": "unitat",
+      "startIndex": 75,
+      "clues": [
+        {
+          "text": "La de l'alfabet es la B",
+          "value": "segona",
+          "startIndex": 31
+        },
+        {
+          "text": "Mortadelo i Filemón li diuen així al seu cap",
+          "value": "súper",
+          "startIndex": 4
+        }
+      ]
+    },
+    {
+      "text": "Que no és poc",
+      "value": "molt",
+      "startIndex": 29
+    },
+    {
+      "text": "Els peus que no li has de buscar al gat",
+      "value": "Tres",
+      "startIndex": 108,
+      "clues": [
+        {
+          "text": "Un que fa meu",
+          "value": "gat",
+          "startIndex": 36
+        }
+      ]
+    },
+    {
+      "text": "No trobes Halen o Damme sense aquesta paraula",
+      "value": "van",
+      "startIndex": 48
+    },
+    {
+      "text": "La d'espelma és molt romàntica",
+      "value": "llum",
+      "startIndex": 113,
+      "clues": [
+        {
+          "text": "N'encenem de citronel·la per foragitar els mosquits",
+          "value": "espelma",
+          "startIndex": 5,
+          "clues": [
+            {
+              "text": "Sacsejar, com un còctel",
+              "value": "agitar",
+              "startIndex": 32,
+              "clues": [
+                {
+                  "text": "Per exemple, un mojito",
+                  "value": "còctel",
+                  "startIndex": 17
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Aquest gimnàs incita a parlar",
+      "value": "dir",
+      "startIndex": 97,
+      "clues": [
+        {
+          "text": "Casa de les peses i les pilotes medicinals",
+          "value": "gimnàs",
+          "startIndex": 7,
+          "clues": [
+            {
+              "text": "Per exemple, 57kg",
+              "value": "pes",
+              "startIndex": 12
+            },
+            {
+              "text": "Quan vas en aquestes vas despullat, almenys si ets un home",
+              "value": "pilotes",
+              "startIndex": 24,
+              "clues": [
+                {
+                  "text": "El del sac segresta nens",
+                  "value": "home",
+                  "startIndex": 54,
+                  "clues": [
+                    {
+                      "text": "N'uses un per dormir quan vas d'acampada",
+                      "value": "sac",
+                      "startIndex": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Una que no té cap defecte",
+      "value": "perfecta",
+      "startIndex": 82
+    },
+    {
+      "text": "Com estic en la immensa mar blava, amb les mans al timó de la nau?",
+      "value": "perdut",
+      "startIndex": 22,
+      "clues": [
+        {
+          "text": "Pot ser negre, mort, o jònic",
+          "value": "mar",
+          "startIndex": 24
+        },
+        {
+          "text": "Aquestes làmpades en realitat són de cera, i no d'això",
+          "value": "lava",
+          "startIndex": 29,
+          "clues": [
+            {
+              "text": "En fan figures de famosos, alguns museus",
+              "value": "cera",
+              "startIndex": 37,
+              "clues": [
+                {
+                  "text": "El MNAC, el MoMA, l'Hermitage...",
+                  "value": "museus",
+                  "startIndex": 34,
+                  "clues": [
+                    {
+                      "text": "Es molt heavy, amb DC",
+                      "value": "AC",
+                      "startIndex": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Acaben els braços ",
+          "value": "mans",
+          "startIndex": 43
+        },
+        {
+          "text": "Pot ser espacial o industrial",
+          "value": "nau",
+          "startIndex": 62
+        }
+      ]
+    },
+    {
+      "text": "El col·lega és degollat",
+      "value": "ega",
+      "startIndex": 129
+    }
+  ]
+}, {
+  "date": "2025-11-18",
+  "text": "Es pensa que m'atreviria a oferir-li vodka a una dama? Això és alcohol pur! — El mestre i Margarita, Mikhail Bulgakov",
+  "clues": [
+    {
+      "text": "És un còctel i una flor",
+      "value": "Margarita",
+      "startIndex": 90,
+      "clues": [
+        {
+          "text": "Conté pistil I estams",
+          "value": "flor",
+          "startIndex": 19
+        },
+        {
+          "text": "El Molotov és explosiu",
+          "value": "còctel",
+          "startIndex": 6
+        }
+      ]
+    },
+    {
+      "text": "Smirnoff o absolut",
+      "value": "vodka",
+      "startIndex": 37
+    },
+    {
+      "text": "En aquesta Fontana de Roma hi presideix el déu Oceà",
+      "value": "trevi",
+      "startIndex": 16,
+      "clues": [
+        {
+          "text": "Entre diagonal i Lesseps",
+          "value": "Fontana",
+          "startIndex": 11,
+          "clues": [
+            {
+              "text": "Em diuen que en aquest joc hi hauria d'haver menys anglès",
+              "value": "Less",
+              "startIndex": 17
+            },
+            {
+              "text": "Travessa Barcelona del sud-oest al nord-est",
+              "value": "diagonal",
+              "startIndex": 6
+            }
+          ]
+        },
+        {
+          "text": "El Pacífic, per exemple",
+          "value": "Oceà",
+          "startIndex": 47,
+          "clues": [
+            {
+              "text": "Aquest man menja fantasmes",
+              "value": "Pac",
+              "startIndex": 3
+            }
+          ]
+        },
+        {
+          "text": "On porten tots els camins",
+          "value": "Roma",
+          "startIndex": 22,
+          "clues": [
+            {
+              "text": "___ que ara s'esvaeixen...",
+              "value": "camins",
+              "startIndex": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Les termes estan en ruïnes però ens ensenyen molt",
+      "value": "mestre",
+      "startIndex": 81,
+      "clues": [
+        {
+          "text": "Les romanes tenien caldarium i frigidarium",
+          "value": "termes",
+          "startIndex": 4
+        }
+      ]
+    },
+    {
+      "text": "Entre re i fa",
+      "value": "Mi",
+      "startIndex": 101
+    },
+    {
+      "text": "Neteja ferides i emborratxa",
+      "value": "alcohol",
+      "startIndex": 63,
+      "clues": [
+        {
+          "text": "La fas amb escombra, aspiradora, baieta...",
+          "value": "Neteja",
+          "startIndex": 0
+        }
+      ]
+    },
+    {
+      "text": "Amb el rodamón, té l'escena menjant espaguetis més romàntica de la història del cinema",
+      "value": "dama",
+      "startIndex": 49,
+      "clues": [
+        {
+          "text": "Pasta en forma de cordons",
+          "value": "espaguetis",
+          "startIndex": 36,
+          "clues": [
+            {
+              "text": "Alguna sabata té velcro, però la majoria té això",
+              "value": "cordons",
+              "startIndex": 18,
+              "clues": [
+                {
+                  "text": "Quan et passes de cocció, la carn et queda dura com una sola d'això",
+                  "value": "sabata",
+                  "startIndex": 7
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "On veus pel·lícules en pantalla gran",
+          "value": "cinema",
+          "startIndex": 80
+        }
+      ]
+    },
+    {
+      "text": "Article masculí singular italià ",
+      "value": "il",
+      "startIndex": 106
+    },
+    {
+      "text": "Bulgària sense la música",
+      "value": "Bulg",
+      "startIndex": 109,
+      "clues": [
+        {
+          "text": "Sofia hi és",
+          "value": "Bulgària",
+          "startIndex": 0
+        },
+        {
+          "text": "Pot ser clàssica o pop",
+          "value": "música",
+          "startIndex": 18
+        }
+      ]
+    }
+  ]
+}, {
+  "date": "2025-11-19",
+  "text": "Què són els homes comparats amb les roques i les muntanyes? - Orgull i prejudici, Jane Austen",
+  "clues": [
+    {
+      "text": "Es celebra al juny i s'hi veuen molts arcs de Sant Martí",
+      "value": "Orgull",
+      "startIndex": 62
+    },
+    {
+      "text": "La Goodall s'entenia amb els ximpanzés",
+      "value": "Jane",
+      "startIndex": 82,
+      "clues": [
+        {
+          "text": "Combina popularment amb l'oli",
+          "value": "all",
+          "startIndex": 7,
+          "clues": [
+            {
+              "text": "En fan de gira-sol i de colza",
+              "value": "oli",
+              "startIndex": 26,
+              "clues": [
+                {
+                  "text": "Marrameu Torracastanyes era una fulla d'aquest vegetal",
+                  "value": "col",
+                  "startIndex": 24
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Ocells amb caire daurat",
+      "value": "Aus",
+      "startIndex": 87,
+      "clues": [
+        {
+          "text": "Blauets, garses, oriols...",
+          "value": "Ocells",
+          "startIndex": 0,
+          "clues": [
+            {
+              "text": "Pot ser cel o marí ",
+              "value": "Blau",
+              "startIndex": 0
+            },
+            {
+              "text": "Les a les Balears",
+              "value": "ses",
+              "startIndex": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Prefix de prefixos",
+      "value": "pre",
+      "startIndex": 71
+    },
+    {
+      "text": "El el final tothom rebrà una sentència",
+      "value": "judici",
+      "startIndex": 74,
+      "clues": [
+        {
+          "text": "On s'enfronten els guanyadors de les semis",
+          "value": "final",
+          "startIndex": 6
+        }
+      ]
+    },
+    {
+      "text": "Les del Canigó són fresques i regalades",
+      "value": "muntanyes",
+      "startIndex": 49,
+      "clues": [
+        {
+          "text": "Li'n fas un al que fa anys",
+          "value": "regal",
+          "startIndex": 30,
+          "clues": [
+            {
+              "text": "En Serrat va estar molt de temps dient que en tenia 20",
+              "value": "anys",
+              "startIndex": 22
+            }
+          ]
+        },
+        {
+          "text": "El pitges quan arribes al semàfor vermell",
+          "value": "fre",
+          "startIndex": 19
+        }
+      ]
+    },
+    {
+      "text": "Els de negre esborren la memòria a qualsevol que entra en contacte amb un alienígena",
+      "value": "homes",
+      "startIndex": 12,
+      "clues": [
+        {
+          "text": "La d'elefant és el contrari que la de peix",
+          "value": "memòria",
+          "startIndex": 25,
+          "clues": [
+            {
+              "text": "El Dumbo, per exemple",
+              "value": "elefant",
+              "startIndex": 5
+            }
+          ]
+        },
+        {
+          "text": "El contrincant del blanc als escacs",
+          "value": "negre",
+          "startIndex": 7
+        },
+        {
+          "text": "En aquesta pel·lícula hi havia un vuitè passatger",
+          "value": "alien",
+          "startIndex": 74
+        }
+      ]
+    },
+    {
+      "text": "Les grasses són un èxit musical",
+      "value": "oques",
+      "startIndex": 37,
+      "clues": [
+        {
+          "text": "En aquest dijous mengem truita i botifarra",
+          "value": "gras",
+          "startIndex": 4,
+          "clues": [
+            {
+              "text": "Gest maleducat que fas amb la mà per enviar algú a pastar",
+              "value": "botifarra",
+              "startIndex": 33,
+              "clues": [
+                {
+                  "text": "Pal que fa girar pollastres",
+                  "value": "ast",
+                  "startIndex": 52
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Analitza si dos textos s'assemblen o no",
+      "value": "compara",
+      "startIndex": 18
+    }
+  ]
+}, {
+  "date": "2025-11-20",
+  "text": "Hi haurà amor engrunat al fons de les butxaques. — Tombant, Maria Mercè Marçal",
+  "clues": [
+    {
+      "text": "El capçal d'aquest llit és una làpida",
+      "value": "Tomba",
+      "startIndex": 51,
+      "clues": [
+        {
+          "text": "La part del riu que també és un moble",
+          "value": "llit",
+          "startIndex": 19,
+          "clues": [
+            {
+              "text": "El Ter, per exemple",
+              "value": "riu",
+              "startIndex": 12
+            }
+          ]
+        },
+        {
+          "text": "L'àrea del cercle dividida entre el quadrat del radi",
+          "value": "pi",
+          "startIndex": 33
+        }
+      ]
+    },
+    {
+      "text": "Te les rasques buscant els cèntims que et gastes",
+      "value": "butxaques",
+      "startIndex": 38,
+      "clues": [
+        {
+          "text": "Venen en monedes d'1, 2, 5, 10, 20 i 50",
+          "value": "cèntims",
+          "startIndex": 27
+        },
+        {
+          "text": "Al rellotge senyala les hores o els minuts",
+          "value": "busca",
+          "startIndex": 15,
+          "clues": [
+            {
+              "text": "Pot ser de sorra, de sol, o de paret",
+              "value": "rellotge",
+              "startIndex": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Pot ser voltor o marí",
+      "value": "fons",
+      "startIndex": 26,
+      "clues": [
+        {
+          "text": "Unitat de potencial elèctric",
+          "value": "volt",
+          "startIndex": 8
+        }
+      ]
+    },
+    {
+      "text": "El mes que mata la vella a la vora del foc",
+      "value": "Març",
+      "startIndex": 72,
+      "clues": [
+        {
+          "text": "No és ni jove ni nova",
+          "value": "vella",
+          "startIndex": 19
+        },
+        {
+          "text": "Crema a la llar",
+          "value": "foc",
+          "startIndex": 39,
+          "clues": [
+            {
+              "text": "Farceix el xuixo",
+              "value": "Crema",
+              "startIndex": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Una de les que cauen a les estovalles quan menges pa",
+      "value": "engruna",
+      "startIndex": 14,
+      "clues": [
+        {
+          "text": "El contrari d'endureix",
+          "value": "estova",
+          "startIndex": 27
+        },
+        {
+          "text": "El fan al forn amb farina, aigua i sal",
+          "value": "pa",
+          "startIndex": 50,
+          "clues": [
+            {
+              "text": "L'electrodomèstic de cuina que té ventilador",
+              "value": "forn",
+              "startIndex": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Pot ser platònic o propi",
+      "value": "amor",
+      "startIndex": 9,
+      "clues": [
+        {
+          "text": "Aquest narcòtic surt de la rosella",
+          "value": "opi",
+          "startIndex": 21,
+          "clues": [
+            {
+              "text": "Color de cabell com la palla",
+              "value": "ros",
+              "startIndex": 27
+            }
+          ]
+        },
+        {
+          "text": "Vaixella que es dispara per esport",
+          "value": "plat",
+          "startIndex": 8
+        }
+      ]
+    },
+    {
+      "text": "En aquest bany desfem xocolata",
+      "value": "Maria",
+      "startIndex": 60,
+      "clues": [
+        {
+          "text": "En mengem a la tassa",
+          "value": "xocolata",
+          "startIndex": 22
+        },
+        {
+          "text": "Quan te'n fas un gastes més aigua que en una dutxa",
+          "value": "bany",
+          "startIndex": 10
+        }
+      ]
+    },
+    {
+      "text": "La més festiva de Barcelona",
+      "value": "Mercè",
+      "startIndex": 66,
+      "clues": [
+        {
+          "text": "Té barris com Horta o Ciutat Meridiana",
+          "value": "Barcelona",
+          "startIndex": 18,
+          "clues": [
+            {
+              "text": "El de Greenwich passa per Alacant",
+              "value": "Meridia",
+              "startIndex": 29
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}, {
+  "date": "2025-11-21",
+  "text": "Només recordem allò que mai no ha succeït. — Marina, Carlos Ruiz Zafón",
+  "clues": [
+    {
+      "text": "Està morena i es fa una trena",
+      "value": "Marina",
+      "startIndex": 45,
+      "clues": [
+        {
+          "text": "És bruna i fa cara de peix",
+          "value": "morena",
+          "startIndex": 5,
+          "clues": [
+            {
+              "text": "Un rap ho és però un dofí no",
+              "value": "peix",
+              "startIndex": 22
+            }
+          ]
+        },
+        {
+          "text": "Pentinat aconseguit entreteixint tres seccions de cabell",
+          "value": "trena",
+          "startIndex": 24
+        }
+      ]
+    },
+    {
+      "text": "Nom del Cuevas que és la causa que molts nois nascuts a partir del 2005 es diguin Biel",
+      "value": "Carlos",
+      "startIndex": 53
+    },
+    {
+      "text": "El fa qui supera totes les marques anteriors en la mateixa disciplina",
+      "value": "record",
+      "startIndex": 6,
+      "clues": [
+        {
+          "text": "Ni present ni posterior",
+          "value": "anterior",
+          "startIndex": 35,
+          "clues": [
+            {
+              "text": "Tancat a la garjola",
+              "value": "pres",
+              "startIndex": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Carla, per exemple",
+      "value": "Nom",
+      "startIndex": 0
+    },
+    {
+      "text": "Jo ___ ___, joc popular en festes adolescents ",
+      "value": "mai",
+      "startIndex": 24,
+      "clues": [
+        {
+          "text": "Les majors acostumen a ser a l'estiu ",
+          "value": "festes",
+          "startIndex": 27,
+          "clues": [
+            {
+              "text": "La Carla Simón va filmar el de 1993",
+              "value": "estiu",
+              "startIndex": 31
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "L'aconsegueixes liquant fruita",
+      "value": "suc",
+      "startIndex": 34,
+      "clues": [
+        {
+          "text": "Pera, poma, plàtan...",
+          "value": "fruita",
+          "startIndex": 24
+        }
+      ]
+    },
+    {
+      "text": "Primer cognom de l'Ágata dels vestits de cors i flors i colors",
+      "value": "Ruiz",
+      "startIndex": 60,
+      "clues": [
+        {
+          "text": "Grups que canten per veus",
+          "value": "cors",
+          "startIndex": 41
+        }
+      ]
+    },
+    {
+      "text": "Cap i cul de la zebra",
+      "value": "Za",
+      "startIndex": 65,
+      "clues": [
+        {
+          "text": "Aquest pas és per vianants",
+          "value": "zebra",
+          "startIndex": 16,
+          "clues": [
+            {
+              "text": "Nega a França i a Girona",
+              "value": "pas",
+              "startIndex": 7,
+              "clues": [
+                {
+                  "text": "Ciutat amb un famós cul de lleona",
+                  "value": "Girona",
+                  "startIndex": 18
+                }
+              ]
+            },
+            {
+              "text": "Siusplau, no s'acostin a la ___ — megafonia de Renfe",
+              "value": "via",
+              "startIndex": 18
+            }
+          ]
+        },
+        {
+          "text": "El de sac no té sortida",
+          "value": "cul",
+          "startIndex": 6,
+          "clues": [
+            {
+              "text": "En dus un de dormir quan vas d'acampada",
+              "value": "sac",
+              "startIndex": 6,
+              "clues": [
+                {
+                  "text": "Per anar bé ho hauries de fer 8 hores al dia, aproximadament",
+                  "value": "dormir",
+                  "startIndex": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Això no és una olla del revés",
+      "value": "allò",
+      "startIndex": 15,
+      "clues": [
+        {
+          "text": "La de grills és un escàndol",
+          "value": "olla",
+          "startIndex": 15
+        }
+      ]
+    }
+  ]
+}, {
+  "date": "2025-11-22",
+  "text": "L'angoixava la certesa monstruosa que eren feliços sobre una muntanya de cadàvers. — Mecanoscrit del segon origen, Manuel de Pedrolo",
+  "clues": [
+    {
+      "text": "Joc originalment xinès on pedres blanques i negres busquen encerclar-se",
+      "value": "go",
+      "startIndex": 4,
+      "clues": [
+        {
+          "text": "Poden ser precioses o del ronyó",
+          "value": "pedres",
+          "startIndex": 26
+        }
+      ]
+    },
+    {
+      "text": "Nou romans",
+      "value": "ix",
+      "startIndex": 6
+    },
+    {
+      "text": "Ens desfem de les caretes i revelem la veritat",
+      "value": "certesa",
+      "startIndex": 15
+    },
+    {
+      "text": "Van menjar anissos",
+      "value": "feliços",
+      "startIndex": 43,
+      "clues": [
+        {
+          "text": "El mono en té un d'alcohòlic",
+          "value": "anis",
+          "startIndex": 11,
+          "clues": [
+            {
+              "text": "Va abans de patí, maníac, o nucleosi",
+              "value": "mono",
+              "startIndex": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Per exemple, Montserrat",
+      "value": "muntanya",
+      "startIndex": 61,
+      "clues": [
+        {
+          "text": "La mare de déu més morena",
+          "value": "Montserrat",
+          "startIndex": 13
+        }
+      ]
+    },
+    {
+      "text": "Cossos de morts",
+      "value": "cadàvers",
+      "startIndex": 73,
+      "clues": [
+        {
+          "text": "...---..., el morse més conegut",
+          "value": "sos",
+          "startIndex": 3
+        },
+        {
+          "text": "Ens arriba a tots",
+          "value": "mort",
+          "startIndex": 10
+        }
+      ]
+    },
+    {
+      "text": "El grup es va colar a una festa on donaven Coca-Cola para todos y algo de comer",
+      "value": "Mecano",
+      "startIndex": 85,
+      "clues": [
+        {
+          "text": "Pot ser major o d'aniversari",
+          "value": "festa",
+          "startIndex": 26
+        },
+        {
+          "text": "Pot ser de forner o de llardons",
+          "value": "Coca",
+          "startIndex": 43
+        },
+        {
+          "text": "Pot ser blanca o de contacte",
+          "value": "Cola",
+          "startIndex": 48,
+          "clues": [
+            {
+              "text": "El visual prolongat pot ser incòmode",
+              "value": "contacte",
+              "startIndex": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "El que deixes anar quan veus que et puja una aranya pel braç",
+      "value": "crit",
+      "startIndex": 92
+    },
+    {
+      "text": "Entre el primer i el tercer",
+      "value": "segon",
+      "startIndex": 101,
+      "clues": [
+        {
+          "text": "Aquest nombre només és divisible per 1 i per ell mateix",
+          "value": "primer",
+          "startIndex": 9
+        }
+      ]
+    },
+    {
+      "text": "La O de DO",
+      "value": "origen",
+      "startIndex": 107
+    },
+    {
+      "text": "Sánchez o del Hierro",
+      "value": "Pedro",
+      "startIndex": 125,
+      "clues": [
+        {
+          "text": "La més occidental de les Canàries",
+          "value": "Hierro",
+          "startIndex": 14,
+          "clues": [
+            {
+              "text": "Quan deixa de cantar, els miners evacuen la mina",
+              "value": "Canàri",
+              "startIndex": 25,
+              "clues": [
+                {
+                  "text": "La de llapis és de grafit",
+                  "value": "mina",
+                  "startIndex": 44
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}                                      
 ]
 
